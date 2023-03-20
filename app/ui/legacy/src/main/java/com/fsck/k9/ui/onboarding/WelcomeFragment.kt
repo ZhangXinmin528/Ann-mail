@@ -17,6 +17,9 @@ import com.fsck.k9.ui.settings.import.SettingsImportSuccess
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
+/**
+ * 首次进入
+ */
 class WelcomeFragment : Fragment() {
     private val htmlToSpanned: HtmlToSpanned by inject()
     private val importResultViewModel: SettingsImportResultViewModel by sharedViewModel()
@@ -32,7 +35,9 @@ class WelcomeFragment : Fragment() {
         welcome.text = htmlToSpanned.convert(getString(R.string.accounts_welcome))
         welcome.movementMethod = LinkMovementMethod.getInstance()
 
+        //创建账户
         view.findViewById<View>(R.id.next).setOnClickListener { launchAccountSetup() }
+        //导入设置
         view.findViewById<View>(R.id.import_settings).setOnClickListener { launchImportSettings() }
 
         importResultViewModel.settingsImportResult.observeNotNull(this) {

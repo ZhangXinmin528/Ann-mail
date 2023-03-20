@@ -45,6 +45,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import timber.log.Timber;
 
+
+/**
+ * 发件服务器设置
+ */
 public class AccountSetupOutgoing extends K9Activity implements OnClickListener,
     OnCheckedChangeListener {
     private static final String EXTRA_ACCOUNT = "account";

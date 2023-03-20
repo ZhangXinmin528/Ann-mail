@@ -40,8 +40,7 @@ private fun Long.toCalendar(): Calendar {
 
 private fun Calendar.isToday() = DateUtils.isToday(this.timeInMillis)
 
-private fun Calendar.isWithinPastSevenDaysOf(other: Calendar) = this.before(other) &&
-    DateUtils.WEEK_IN_MILLIS > other.timeInMillis - this.timeInMillis &&
-    this[DAY_OF_WEEK] != other[DAY_OF_WEEK]
+private fun Calendar.isWithinPastSevenDaysOf(other: Calendar) =
+    this.before(other) && DateUtils.WEEK_IN_MILLIS > other.timeInMillis - this.timeInMillis && this[DAY_OF_WEEK] != other[DAY_OF_WEEK]
 
 private fun Calendar.isSameYearAs(other: Calendar) = this[YEAR] == other[YEAR]

@@ -55,6 +55,9 @@ import timber.log.Timber;
 import static java.util.Collections.emptyMap;
 
 
+/**
+ * 收件服务器设置
+ */
 public class AccountSetupIncoming extends K9Activity implements OnClickListener {
     private static final String EXTRA_ACCOUNT = "account";
     private static final String EXTRA_MAKE_DEFAULT = "makeDefault";

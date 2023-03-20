@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
+import androidx.core.text.isDigitsOnly
 import com.fsck.k9.mail.Address
 import com.fsck.k9.ui.helper.MaterialColors
 
@@ -26,7 +27,7 @@ class ContactLetterBitmapCreator(
             isAntiAlias = true
             style = Paint.Style.FILL
             setARGB(255, 255, 255, 255)
-            textSize = pictureSizeInPx.toFloat() * 0.65f
+            textSize = pictureSizeInPx.toFloat() * 0.50f
         }
 
         val rect = Rect()
@@ -36,7 +37,7 @@ class ContactLetterBitmapCreator(
         canvas.drawText(
             letter,
             pictureSizeInPx / 2f - width / 2f,
-            pictureSizeInPx / 2f + rect.height() / 2f, paint
+            pictureSizeInPx / 2f + rect.height() / 2.5f, paint
         )
 
         return bitmap

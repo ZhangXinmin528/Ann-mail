@@ -47,10 +47,13 @@ class MessageListAdapter internal constructor(
     private val answeredIcon: Drawable = theme.resolveDrawableAttribute(R.attr.messageListAnswered)
     private val forwardedAnsweredIcon: Drawable = theme.resolveDrawableAttribute(R.attr.messageListAnsweredForwarded)
     private val previewTextColor: Int = theme.resolveColorAttribute(R.attr.messageListPreviewTextColor)
-    private val activeItemBackgroundColor: Int = theme.resolveColorAttribute(R.attr.messageListActiveItemBackgroundColor)
-    private val selectedItemBackgroundColor: Int = theme.resolveColorAttribute(R.attr.messageListSelectedBackgroundColor)
+    private val activeItemBackgroundColor: Int =
+        theme.resolveColorAttribute(R.attr.messageListActiveItemBackgroundColor)
+    private val selectedItemBackgroundColor: Int =
+        theme.resolveColorAttribute(R.attr.messageListSelectedBackgroundColor)
     private val readItemBackgroundColor: Int = theme.resolveColorAttribute(R.attr.messageListReadItemBackgroundColor)
-    private val unreadItemBackgroundColor: Int = theme.resolveColorAttribute(R.attr.messageListUnreadItemBackgroundColor)
+    private val unreadItemBackgroundColor: Int =
+        theme.resolveColorAttribute(R.attr.messageListUnreadItemBackgroundColor)
 
     var messages: List<MessageListItem> = emptyList()
         set(value) {
@@ -121,7 +124,10 @@ class MessageListAdapter internal constructor(
         // 1 preview line is needed even if it is set to 0, because subject is part of the same text view
         holder.preview.setLines(max(appearance.previewLines, 1))
         appearance.fontSizes.setViewTextSize(holder.preview, appearance.fontSizes.messageListPreview)
-        appearance.fontSizes.setViewTextSize(holder.threadCount, appearance.fontSizes.messageListSubject) // thread count is next to subject
+        appearance.fontSizes.setViewTextSize(
+            holder.threadCount,
+            appearance.fontSizes.messageListSubject
+        ) // thread count is next to subject
 
         holder.flagged.isVisible = appearance.stars
         holder.flagged.tag = holder

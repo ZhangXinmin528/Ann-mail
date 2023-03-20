@@ -1,72 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:installLocation="auto"
-    package="com.fsck.k9">
+    package="com.fsck.k9"
+    android:installLocation="auto">
 
     <uses-feature
         android:name="android.hardware.touchscreen"
-        android:required="false"/>
+        android:required="false" />
 
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
         android:normalScreens="true"
-        android:smallScreens="true"/>
+        android:smallScreens="true" />
 
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
         android:name="com.fsck.k9.App"
+        android:allowBackup="false"
         android:allowTaskReparenting="false"
-        android:usesCleartextTraffic="true"
-        android:networkSecurityConfig="@xml/network_security_config"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.K9.Startup"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:resizeableActivity="true"
-        android:allowBackup="false"
         android:supportsRtl="true"
-        tools:replace="android:theme"
-        tools:ignore="UnusedAttribute">
+        android:theme="@style/Theme.K9.Startup"
+        android:usesCleartextTraffic="true"
+        tools:ignore="UnusedAttribute"
+        tools:replace="android:theme">
 
         <meta-data
             android:name="android.app.default_searchable"
-            android:value="com.fsck.k9.activity.Search"/>
+            android:value="com.fsck.k9.activity.Search" />
 
         <!-- TODO: Remove once minSdkVersion has been changed to 24+ -->
         <meta-data
             android:name="com.lge.support.SPLIT_WINDOW"
-            android:value="true"/>
+            android:value="true" />
         <uses-library
             android:name="com.sec.android.app.multiwindow"
-            android:required="false"/>
+            android:required="false" />
+
         <meta-data
             android:name="com.sec.android.support.multiwindow"
-            android:value="true"/>
+            android:value="true" />
         <meta-data
             android:name="com.samsung.android.sdk.multiwindow.penwindow.enable"
-            android:value="true"/>
-        <meta-data android:name="android.webkit.WebView.MetricsOptOut"
+            android:value="true" />
+        <meta-data
+            android:name="android.webkit.WebView.MetricsOptOut"
             android:value="true" />
 
         <!-- activity-alias so old launcher shortcuts work -->
         <!-- TODO: Remove after 2020-12-31 -->
         <activity-alias
             android:name=".activity.Accounts"
-            android:targetActivity=".activity.MessageList"
-            android:exported="true" />
+            android:exported="true"
+            android:targetActivity=".activity.MessageList" />
 
+        <!--欢迎页面-->
         <activity
             android:name=".ui.onboarding.OnboardingActivity"
             android:label="@string/welcome_message_title" />
@@ -74,43 +76,48 @@
         <activity
             android:name=".ui.settings.account.OpenPgpAppSelectDialog"
             android:configChanges="locale"
-            android:theme="@style/Theme.K9.Dialog.Translucent.DayNight"
-            />
+            android:theme="@style/Theme.K9.Dialog.Translucent.DayNight" />
 
+        <!--创建账户-->
         <activity
             android:name=".activity.setup.AccountSetupBasics"
             android:configChanges="locale"
-            android:label="@string/account_setup_basics_title"/>
+            android:label="@string/account_setup_basics_title" />
 
+        <!--设置账户类型-->
         <activity
             android:name=".activity.setup.AccountSetupAccountType"
             android:configChanges="locale"
-            android:label="@string/account_setup_account_type_title"/>
+            android:label="@string/account_setup_account_type_title" />
 
+        <!--收件服务器设置-->
         <activity
             android:name=".activity.setup.AccountSetupIncoming"
             android:configChanges="locale"
-            android:label="@string/account_setup_incoming_title"/>
+            android:label="@string/account_setup_incoming_title" />
 
         <activity
             android:name=".activity.setup.AccountSetupComposition"
             android:configChanges="locale"
-            android:label="@string/account_settings_composition_title"/>
+            android:label="@string/account_settings_composition_title" />
 
+        <!--发件服务器设置-->
         <activity
             android:name=".activity.setup.AccountSetupOutgoing"
             android:configChanges="locale"
-            android:label="@string/account_setup_outgoing_title"/>
+            android:label="@string/account_setup_outgoing_title" />
 
+        <!--账户选项-->
         <activity
             android:name=".activity.setup.AccountSetupOptions"
             android:configChanges="locale"
-            android:label="@string/account_setup_options_title"/>
+            android:label="@string/account_setup_options_title" />
 
+        <!--快要完成了-->
         <activity
             android:name=".activity.setup.AccountSetupNames"
             android:configChanges="locale"
-            android:label="@string/account_setup_names_title"/>
+            android:label="@string/account_setup_names_title" />
 
         <activity
             android:name=".activity.ChooseAccount"
@@ -132,61 +139,61 @@
         <activity
             android:name=".activity.ManageIdentities"
             android:configChanges="locale"
-            android:label="@string/manage_identities_title"/>
+            android:label="@string/manage_identities_title" />
 
         <activity
             android:name=".activity.EditIdentity"
             android:configChanges="locale"
-            android:label="@string/edit_identity_title"/>
+            android:label="@string/edit_identity_title" />
 
         <activity
             android:name=".ui.notification.DeleteConfirmationActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleTop"
             android:taskAffinity=""
-            android:theme="@style/Theme.K9.Dialog.Translucent.DayNight"/>
+            android:theme="@style/Theme.K9.Dialog.Translucent.DayNight" />
 
         <!-- XXX Note: this activity is hacked to ignore config changes,
              since it doesn't currently handle them correctly in code. -->
+        <!--账户创建一些检查-->
         <activity
             android:name=".activity.setup.AccountSetupCheckSettings"
             android:configChanges="keyboardHidden|orientation|locale"
-            android:label="@string/account_setup_check_settings_title"/>
+            android:label="@string/account_setup_check_settings_title" />
 
         <activity
             android:name=".ui.endtoend.AutocryptKeyTransferActivity"
             android:configChanges="locale"
-            android:label="@string/ac_transfer_title"
-            />
+            android:label="@string/ac_transfer_title" />
 
         <!-- activity-alias so old launcher shortcuts work -->
         <!-- TODO: Remove after 2020-12-31 -->
         <activity-alias
             android:name=".activity.FolderList"
-            android:targetActivity=".activity.MessageList"
-            android:exported="true" />
+            android:exported="true"
+            android:targetActivity=".activity.MessageList" />
 
         <activity
             android:name=".activity.MessageList"
-            android:launchMode="singleTop"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleTop">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-                <category android:name="android.intent.category.APP_EMAIL"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.APP_EMAIL" />
 
                 <!-- TODO: Remove once minSdkVersion has been changed to 24+ -->
-                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
-                <category android:name="android.intent.category.PENWINDOW_LAUNCHER"/>
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+                <category android:name="android.intent.category.PENWINDOW_LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
                 <data
                     android:host="messages"
-                    android:scheme="k9mail"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                    android:scheme="k9mail" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
@@ -196,30 +203,30 @@
             android:enabled="false"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.SENDTO"/>
-                <data android:scheme="mailto"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.SENDTO" />
+                <data android:scheme="mailto" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.SEND"/>
-                <data android:mimeType="*/*"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.SEND" />
+                <data android:mimeType="*/*" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.SEND_MULTIPLE"/>
-                <data android:mimeType="*/*"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <data android:mimeType="*/*" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <data android:scheme="mailto"/>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:scheme="mailto" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
             <intent-filter>
-                <action android:name="org.autocrypt.PEER_ACTION"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="org.autocrypt.PEER_ACTION" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
             <meta-data
@@ -231,26 +238,26 @@
         <activity
             android:name=".activity.Search"
             android:configChanges="locale"
+            android:exported="true"
             android:label="@string/search_action"
-            android:uiOptions="splitActionBarWhenNarrow"
-            android:exported="true">
+            android:uiOptions="splitActionBarWhenNarrow">
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+                android:resource="@xml/searchable" />
         </activity>
 
         <activity
             android:name=".activity.LauncherShortcuts"
             android:configChanges="locale"
-            android:label="@string/shortcuts_title"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/shortcuts_title">
             <intent-filter>
-                <action android:name="android.intent.action.CREATE_SHORTCUT"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.CREATE_SHORTCUT" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
@@ -258,13 +265,14 @@
             android:name=".widget.unread.UnreadWidgetConfigurationActivity"
             android:exported="false">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
 
+        <!--更新数据库-->
         <activity
             android:name=".activity.UpgradeDatabases"
-            android:label="@string/upgrade_databases_title"/>
+            android:label="@string/upgrade_databases_title" />
 
         <activity
             android:name=".ui.managefolders.ManageFoldersActivity"
@@ -302,28 +310,29 @@
             </intent-filter>
         </activity>
 
+        <!--其他认证登录方式-->
         <activity
             android:name=".activity.setup.OAuthFlowActivity"
             android:label="@string/account_setup_basics_title" />
 
         <receiver
             android:name=".provider.UnreadWidgetProvider"
+            android:exported="false"
             android:icon="@drawable/ic_launcher"
-            android:label="@string/unread_widget_label"
-            android:exported="false">
+            android:label="@string/unread_widget_label">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/unread_widget_info"/>
+                android:resource="@xml/unread_widget_info" />
         </receiver>
 
         <receiver
             android:name=".widget.list.MessageListWidgetProvider"
+            android:exported="false"
             android:icon="@drawable/message_list_widget_preview"
-            android:label="@string/mail_list_widget_text"
-            android:exported="false">
+            android:label="@string/mail_list_widget_text">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -334,10 +343,10 @@
 
         <receiver
             android:name=".controller.push.BootCompleteReceiver"
-            android:exported="false"
-            android:enabled="false">
+            android:enabled="false"
+            android:exported="false">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
@@ -348,17 +357,17 @@
 
         <service
             android:name=".notification.NotificationActionService"
-            android:enabled="true"/>
+            android:enabled="true" />
 
         <service
             android:name=".service.DatabaseUpgradeService"
-            android:exported="false"/>
+            android:exported="false" />
 
 
         <service
             android:name="com.fsck.k9.directshare.K9ChooserTargetService"
-            android:permission="android.permission.BIND_CHOOSER_TARGET_SERVICE"
-            android:exported="false">
+            android:exported="false"
+            android:permission="android.permission.BIND_CHOOSER_TARGET_SERVICE">
             <intent-filter>
                 <action android:name="android.service.chooser.ChooserTargetService" />
             </intent-filter>
@@ -366,7 +375,7 @@
 
         <service
             android:name="com.fsck.k9.account.AccountRemoverService"
-            android:permission="android.permission.BIND_JOB_SERVICE"/>
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <service
             android:name=".controller.push.PushService"
@@ -404,7 +413,7 @@
         <provider
             android:name=".provider.EmailProvider"
             android:authorities="${applicationId}.provider.email"
-            android:exported="false"/>
+            android:exported="false" />
 
         <provider
             android:name=".provider.DecryptedFileProvider"
@@ -439,7 +448,9 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Microsoft uses a special redirect URI format for Android apps -->
-                <data android:scheme="msauth" android:host="${applicationId}"/>
+                <data
+                    android:host="${applicationId}"
+                    android:scheme="msauth" />
             </intent-filter>
         </activity>
 

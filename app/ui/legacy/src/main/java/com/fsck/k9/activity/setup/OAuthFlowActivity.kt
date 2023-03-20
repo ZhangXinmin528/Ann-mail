@@ -15,6 +15,9 @@ import com.fsck.k9.ui.observe
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+/**
+ * 其他认证登录方式
+ */
 class OAuthFlowActivity : K9Activity() {
     private val authViewModel: AuthViewModel by viewModel()
     private val accountManager: AccountManager by inject()

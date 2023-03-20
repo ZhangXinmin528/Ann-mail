@@ -24,6 +24,7 @@ import androidx.drawerlayout.widget.DrawerLayout.DrawerListener
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.fsck.k9.Account
 import com.fsck.k9.Account.SortType
 import com.fsck.k9.K9
@@ -77,13 +78,8 @@ import timber.log.Timber
  *
  * From this Activity the user can perform all standard message operations.
  */
-open class MessageList :
-    K9Activity(),
-    MessageListFragmentListener,
-    MessageViewFragmentListener,
-    FragmentManager.OnBackStackChangedListener,
-    OnSwitchCompleteListener,
-    PermissionUiHelper {
+open class MessageList : K9Activity(), MessageListFragmentListener, MessageViewFragmentListener,
+    FragmentManager.OnBackStackChangedListener, OnSwitchCompleteListener, PermissionUiHelper {
 
     private val recentChangesViewModel: RecentChangesViewModel by viewModel()
 
@@ -146,13 +142,13 @@ open class MessageList :
         val accounts = preferences.accounts
         deleteIncompleteAccounts(accounts)
         val hasAccountSetup = accounts.any { it.isFinishedSetup }
-        if (!hasAccountSetup) {
+        if (!hasAccountSetup) {//未创建账户
             OnboardingActivity.launch(this)
             finish()
             return
         }
 
-        if (UpgradeDatabases.actionUpgradeDatabases(this, intent)) {
+        if (UpgradeDatabases.actionUpgradeDatabases(this, intent)) {//更新数据库
             finish()
             return
         }
@@ -173,8 +169,8 @@ open class MessageList :
         window.statusBarColor = Color.TRANSPARENT
 
         val rootLayout = findViewById<View>(R.id.drawerLayout)
-        rootLayout.systemUiVisibility = rootLayout.systemUiVisibility or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        rootLayout.systemUiVisibility =
+            rootLayout.systemUiVisibility or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         toolbar.setOnApplyWindowInsetsListener { view, insets ->
@@ -182,8 +178,9 @@ open class MessageList :
             insets
         }
 
-        val swipeRefreshLayout = findViewById<View>(R.id.material_drawer_swipe_refresh)
+        val swipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.material_drawer_swipe_refresh)
         swipeRefreshLayout.layoutParams.width = getOptimalDrawerWidth(this)
+        swipeRefreshLayout.setColorSchemeColors(Color.GREEN,Color.BLUE)
 
         initializeActionBar()
         initializeDrawer(savedInstanceState)
@@ -319,8 +316,7 @@ open class MessageList :
     private fun useSplitView(): Boolean {
         val splitViewMode = K9.splitViewMode
         val orientation = resources.configuration.orientation
-        return splitViewMode === SplitViewMode.ALWAYS ||
-            splitViewMode === SplitViewMode.WHEN_IN_LANDSCAPE && orientation == Configuration.ORIENTATION_LANDSCAPE
+        return splitViewMode === SplitViewMode.ALWAYS || splitViewMode === SplitViewMode.WHEN_IN_LANDSCAPE && orientation == Configuration.ORIENTATION_LANDSCAPE
     }
 
     private fun initializeLayout() {
@@ -364,9 +360,9 @@ open class MessageList :
 
     @SuppressLint("ShowToast")
     private fun initializeRecentChangesSnackbar() {
-        recentChangesSnackbar = Snackbar
-            .make(findViewById(R.id.container), R.string.changelog_snackbar_text, Snackbar.LENGTH_INDEFINITE)
-            .setAction(R.string.okay_action) { launchRecentChangesActivity() }
+        recentChangesSnackbar =
+            Snackbar.make(findViewById(R.id.container), R.string.changelog_snackbar_text, Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.okay_action) { launchRecentChangesActivity() }
 
         recentChangesViewModel.shouldShowRecentChangesHint.observe(this, shouldShowRecentChangesHintObserver)
     }
@@ -389,9 +385,8 @@ open class MessageList :
         }
 
         // If no account has been specified, keep the currently active account when opening the Unified Inbox
-        val account = launchData.account
-            ?: account?.takeIf { launchData.search.isUnifiedInbox }
-            ?: search.firstAccount()
+        val account =
+            launchData.account ?: account?.takeIf { launchData.search.isUnifiedInbox } ?: search.firstAccount()
 
         if (account == null) {
             finish()
@@ -462,8 +457,7 @@ open class MessageList :
             }
 
             return LaunchData(
-                search = search,
-                noThreading = true
+                search = search, noThreading = true
             )
         } else if (intent.hasExtra(EXTRA_MESSAGE_REFERENCE)) {
             val messageReferenceString = intent.getStringExtra(EXTRA_MESSAGE_REFERENCE)
@@ -477,8 +471,7 @@ open class MessageList :
                 }
 
                 return LaunchData(
-                    search = search,
-                    messageReference = messageReference
+                    search = search, messageReference = messageReference
                 )
             }
         } else if (intent.hasExtra(EXTRA_SEARCH)) {
@@ -733,9 +726,7 @@ open class MessageList :
 
         when (event.keyCode) {
             KeyEvent.KEYCODE_VOLUME_UP -> {
-                if (messageViewFragment != null && displayMode != DisplayMode.MESSAGE_LIST &&
-                    K9.isUseVolumeKeysForNavigation
-                ) {
+                if (messageViewFragment != null && displayMode != DisplayMode.MESSAGE_LIST && K9.isUseVolumeKeysForNavigation) {
                     showPreviousMessage()
                     return true
                 } else if (displayMode != DisplayMode.MESSAGE_VIEW && K9.isUseVolumeKeysForListNavigation) {
@@ -744,9 +735,7 @@ open class MessageList :
                 }
             }
             KeyEvent.KEYCODE_VOLUME_DOWN -> {
-                if (messageViewFragment != null && displayMode != DisplayMode.MESSAGE_LIST &&
-                    K9.isUseVolumeKeysForNavigation
-                ) {
+                if (messageViewFragment != null && displayMode != DisplayMode.MESSAGE_LIST && K9.isUseVolumeKeysForNavigation) {
                     showNextMessage()
                     return true
                 } else if (displayMode != DisplayMode.MESSAGE_VIEW && K9.isUseVolumeKeysForListNavigation) {
@@ -1083,9 +1072,7 @@ open class MessageList :
         if (menu == null) return
 
         // Set visibility of menu items related to the message view
-        if (displayMode == DisplayMode.MESSAGE_LIST || messageViewFragment == null ||
-            !messageViewFragment!!.isInitialized
-        ) {
+        if (displayMode == DisplayMode.MESSAGE_LIST || messageViewFragment == null || !messageViewFragment!!.isInitialized) {
             menu.findItem(R.id.next_message).isVisible = false
             menu.findItem(R.id.previous_message).isVisible = false
             menu.findItem(R.id.single_message_options).isVisible = false
@@ -1107,8 +1094,7 @@ open class MessageList :
                 menu.findItem(R.id.previous_message).isVisible = false
             } else {
                 val ref = messageViewFragment!!.messageReference
-                val initialized = messageListFragment != null &&
-                    messageListFragment!!.isLoadFinished
+                val initialized = messageListFragment != null && messageListFragment!!.isLoadFinished
                 val canDoPrev = initialized && !messageListFragment!!.isFirst(ref)
                 val canDoNext = initialized && !messageListFragment!!.isLast(ref)
                 val prev = menu.findItem(R.id.previous_message)
@@ -1192,9 +1178,7 @@ open class MessageList :
         menu.findItem(R.id.search_remote).isVisible = false
         menu.findItem(R.id.search_everywhere).isVisible = false
 
-        if (displayMode == DisplayMode.MESSAGE_VIEW || messageListFragment == null ||
-            !messageListFragment!!.isInitialized
-        ) {
+        if (displayMode == DisplayMode.MESSAGE_VIEW || messageListFragment == null || !messageListFragment!!.isInitialized) {
             menu.findItem(R.id.set_sort).isVisible = false
             menu.findItem(R.id.select_all).isVisible = false
             menu.findItem(R.id.send_messages).isVisible = false
@@ -1212,8 +1196,8 @@ open class MessageList :
                 menu.findItem(R.id.send_messages).isVisible = false
             } else {
                 menu.findItem(R.id.send_messages).isVisible = messageListFragment!!.isOutbox
-                menu.findItem(R.id.expunge).isVisible = messageListFragment!!.isRemoteFolder &&
-                    messageListFragment!!.shouldShowExpungeAction()
+                menu.findItem(R.id.expunge).isVisible =
+                    messageListFragment!!.isRemoteFolder && messageListFragment!!.shouldShowExpungeAction()
             }
             menu.findItem(R.id.empty_trash).isVisible = messageListFragment!!.isShowingTrashFolder
 
@@ -1546,12 +1530,7 @@ open class MessageList :
     }
 
     override fun startIntentSenderForResult(
-        intent: IntentSender,
-        requestCode: Int,
-        fillInIntent: Intent?,
-        flagsMask: Int,
-        flagsValues: Int,
-        extraFlags: Int
+        intent: IntentSender, requestCode: Int, fillInIntent: Intent?, flagsMask: Int, flagsValues: Int, extraFlags: Int
     ) {
         // If any of the high 16 bits are set it is not one of our request codes
         if (requestCode and REQUEST_CODE_MASK != 0) {
@@ -1710,11 +1689,7 @@ open class MessageList :
 
         @JvmStatic
         fun intentDisplaySearch(
-            context: Context?,
-            search: SearchSpecification?,
-            noThreading: Boolean,
-            newTask: Boolean,
-            clearTop: Boolean
+            context: Context?, search: SearchSpecification?, noThreading: Boolean, newTask: Boolean, clearTop: Boolean
         ): Intent {
             return Intent(context, MessageList::class.java).apply {
                 putExtra(EXTRA_SEARCH, ParcelableUtil.marshall(search))
@@ -1776,9 +1751,7 @@ open class MessageList :
         }
 
         fun actionDisplayMessageIntent(
-            context: Context,
-            messageReference: MessageReference,
-            openInUnifiedInbox: Boolean = false
+            context: Context, messageReference: MessageReference, openInUnifiedInbox: Boolean = false
         ): Intent {
             return Intent(context, MessageList::class.java).apply {
                 putExtra(EXTRA_MESSAGE_REFERENCE, messageReference.toIdentityString())

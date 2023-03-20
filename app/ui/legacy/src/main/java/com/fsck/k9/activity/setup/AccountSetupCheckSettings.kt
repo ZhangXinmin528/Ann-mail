@@ -43,6 +43,7 @@ import timber.log.Timber
  *
  * XXX NOTE: The manifest for this app has it ignore config changes, because it doesn't correctly deal with restarting
  * while its thread is running.
+ * 账户验证
  */
 class AccountSetupCheckSettings : K9Activity(), ConfirmationDialogFragmentListener {
     private val authViewModel: AuthViewModel by viewModel()

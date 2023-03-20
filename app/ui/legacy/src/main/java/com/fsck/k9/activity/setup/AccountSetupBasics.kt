@@ -40,6 +40,7 @@ import org.koin.android.ext.android.inject
  * Attempts to lookup default settings for the domain the user specified. If the domain is known, the settings are
  * handed off to the [AccountSetupCheckSettings] activity. If no settings are found, the settings are handed off to the
  * [AccountSetupAccountType] activity.
+ * 创建新账户
  */
 class AccountSetupBasics : K9Activity() {
     private val providersXmlDiscovery: ProvidersXmlDiscovery by inject()

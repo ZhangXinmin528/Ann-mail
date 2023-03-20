@@ -22,6 +22,7 @@ import com.fsck.k9.ui.base.K9Activity;
 
 
 /**
+ * 更新数据库
  * This activity triggers a database upgrade if necessary and displays the current upgrade progress.
  *
  * <p>

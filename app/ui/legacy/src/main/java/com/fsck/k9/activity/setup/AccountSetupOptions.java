@@ -18,6 +18,9 @@ import com.fsck.k9.ui.R;
 import com.fsck.k9.ui.base.K9Activity;
 
 
+/**
+ * 账户选项
+ */
 public class AccountSetupOptions extends K9Activity implements OnClickListener {
     private static final String EXTRA_ACCOUNT = "account";
 
@@ -49,41 +52,41 @@ public class AccountSetupOptions extends K9Activity implements OnClickListener {
         findViewById(R.id.next).setOnClickListener(this);
 
         SpinnerOption checkFrequencies[] = {
-            new SpinnerOption(-1,
-            getString(R.string.account_setup_options_mail_check_frequency_never)),
-            new SpinnerOption(15,
-            getString(R.string.account_setup_options_mail_check_frequency_15min)),
-            new SpinnerOption(30,
-            getString(R.string.account_setup_options_mail_check_frequency_30min)),
-            new SpinnerOption(60,
-            getString(R.string.account_setup_options_mail_check_frequency_1hour)),
-            new SpinnerOption(120,
-            getString(R.string.account_setup_options_mail_check_frequency_2hour)),
-            new SpinnerOption(180,
-            getString(R.string.account_setup_options_mail_check_frequency_3hour)),
-            new SpinnerOption(360,
-            getString(R.string.account_setup_options_mail_check_frequency_6hour)),
-            new SpinnerOption(720,
-            getString(R.string.account_setup_options_mail_check_frequency_12hour)),
-            new SpinnerOption(1440,
-            getString(R.string.account_setup_options_mail_check_frequency_24hour)),
+                new SpinnerOption(-1,
+                        getString(R.string.account_setup_options_mail_check_frequency_never)),
+                new SpinnerOption(15,
+                        getString(R.string.account_setup_options_mail_check_frequency_15min)),
+                new SpinnerOption(30,
+                        getString(R.string.account_setup_options_mail_check_frequency_30min)),
+                new SpinnerOption(60,
+                        getString(R.string.account_setup_options_mail_check_frequency_1hour)),
+                new SpinnerOption(120,
+                        getString(R.string.account_setup_options_mail_check_frequency_2hour)),
+                new SpinnerOption(180,
+                        getString(R.string.account_setup_options_mail_check_frequency_3hour)),
+                new SpinnerOption(360,
+                        getString(R.string.account_setup_options_mail_check_frequency_6hour)),
+                new SpinnerOption(720,
+                        getString(R.string.account_setup_options_mail_check_frequency_12hour)),
+                new SpinnerOption(1440,
+                        getString(R.string.account_setup_options_mail_check_frequency_24hour)),
 
         };
 
         ArrayAdapter<SpinnerOption> checkFrequenciesAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, checkFrequencies);
         checkFrequenciesAdapter
-        .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mCheckFrequencyView.setAdapter(checkFrequenciesAdapter);
 
         SpinnerOption displayCounts[] = {
-            new SpinnerOption(10, getString(R.string.account_setup_options_mail_display_count_10)),
-            new SpinnerOption(25, getString(R.string.account_setup_options_mail_display_count_25)),
-            new SpinnerOption(50, getString(R.string.account_setup_options_mail_display_count_50)),
-            new SpinnerOption(100, getString(R.string.account_setup_options_mail_display_count_100)),
-            new SpinnerOption(250, getString(R.string.account_setup_options_mail_display_count_250)),
-            new SpinnerOption(500, getString(R.string.account_setup_options_mail_display_count_500)),
-            new SpinnerOption(1000, getString(R.string.account_setup_options_mail_display_count_1000)),
+                new SpinnerOption(10, getString(R.string.account_setup_options_mail_display_count_10)),
+                new SpinnerOption(25, getString(R.string.account_setup_options_mail_display_count_25)),
+                new SpinnerOption(50, getString(R.string.account_setup_options_mail_display_count_50)),
+                new SpinnerOption(100, getString(R.string.account_setup_options_mail_display_count_100)),
+                new SpinnerOption(250, getString(R.string.account_setup_options_mail_display_count_250)),
+                new SpinnerOption(500, getString(R.string.account_setup_options_mail_display_count_500)),
+                new SpinnerOption(1000, getString(R.string.account_setup_options_mail_display_count_1000)),
         };
 
         ArrayAdapter<SpinnerOption> displayCountsAdapter = new ArrayAdapter<>(this,
@@ -96,18 +99,18 @@ public class AccountSetupOptions extends K9Activity implements OnClickListener {
 
         mNotifyView.setChecked(mAccount.isNotifyNewMail());
         SpinnerOption.setSpinnerOptionValue(mCheckFrequencyView, mAccount
-                                            .getAutomaticCheckIntervalMinutes());
+                .getAutomaticCheckIntervalMinutes());
         SpinnerOption.setSpinnerOptionValue(mDisplayCountView, mAccount
-                                            .getDisplayCount());
+                .getDisplayCount());
     }
 
     private void onDone() {
         mAccount.setName(mAccount.getEmail());
         mAccount.setNotifyNewMail(mNotifyView.isChecked());
-        mAccount.setAutomaticCheckIntervalMinutes((Integer)((SpinnerOption)mCheckFrequencyView
+        mAccount.setAutomaticCheckIntervalMinutes((Integer) ((SpinnerOption) mCheckFrequencyView
                 .getSelectedItem()).value);
-        mAccount.setDisplayCount((Integer)((SpinnerOption)mDisplayCountView
-                                           .getSelectedItem()).value);
+        mAccount.setDisplayCount((Integer) ((SpinnerOption) mDisplayCountView
+                .getSelectedItem()).value);
 
         mAccount.setFolderPushMode(Account.FolderMode.NONE);
 

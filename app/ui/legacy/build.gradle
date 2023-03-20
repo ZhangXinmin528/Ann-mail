@@ -2,6 +2,48 @@ apply plugin: 'com.android.library'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'org.jetbrains.kotlin.plugin.parcelize'
 
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+    buildToolsVersion buildConfig.buildTools
+
+    defaultConfig {
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.robolectricSdk
+    }
+
+    buildTypes {
+        debug {
+            def useNewSetupUi = project.hasProperty('k9mail.useNewSetupUi') ? project.property('k9mail.useNewSetupUi') : "false"
+            buildConfigField "boolean", "USE_NEW_SETUP_UI_FOR_ONBOARDING", useNewSetupUi
+        }
+        release {
+            buildConfigField "boolean", "USE_NEW_SETUP_UI_FOR_ONBOARDING", "false"
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+        lintConfig file("$rootProject.projectDir/config/lint/lint.xml")
+    }
+
+    compileOptions {
+        sourceCompatibility javaVersion
+        targetCompatibility javaVersion
+    }
+
+    kotlinOptions {
+        jvmTarget = kotlinJvmVersion
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+
 dependencies {
     api project(":app:ui:base")
     debugImplementation project(":app:ui:setup")
@@ -66,44 +108,4 @@ dependencies {
     testImplementation "io.insert-koin:koin-test-junit4:${versions.koin}"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.kotlinCoroutines}"
     testImplementation "app.cash.turbine:turbine:${versions.turbine}"
-}
-
-android {
-    compileSdkVersion buildConfig.compileSdk
-    buildToolsVersion buildConfig.buildTools
-
-    defaultConfig {
-        minSdkVersion buildConfig.minSdk
-        targetSdkVersion buildConfig.robolectricSdk
-    }
-
-    buildTypes {
-        debug {
-            def useNewSetupUi = project.hasProperty('k9mail.useNewSetupUi') ? project.property('k9mail.useNewSetupUi') : "false"
-            buildConfigField "boolean", "USE_NEW_SETUP_UI_FOR_ONBOARDING", useNewSetupUi
-        }
-        release {
-            buildConfigField "boolean", "USE_NEW_SETUP_UI_FOR_ONBOARDING", "false"
-        }
-    }
-
-    lintOptions {
-        abortOnError false
-        lintConfig file("$rootProject.projectDir/config/lint/lint.xml")
-    }
-
-    compileOptions {
-        sourceCompatibility javaVersion
-        targetCompatibility javaVersion
-    }
-
-    kotlinOptions {
-        jvmTarget = kotlinJvmVersion
-    }
-
-    testOptions {
-        unitTests {
-            includeAndroidResources = true
-        }
-    }
 }

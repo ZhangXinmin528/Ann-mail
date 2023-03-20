@@ -20,6 +20,7 @@ import org.koin.android.ext.android.inject
  * Prompts the user to select an account type. The account type, along with the
  * passed in email address, password and makeDefault are then passed on to the
  * AccountSetupIncoming activity.
+ * 设置账户类型
  */
 class AccountSetupAccountType : K9Activity() {
     private val preferences: Preferences by inject()
@@ -104,6 +105,7 @@ class AccountSetupAccountType : K9Activity() {
         localFoldersCreator.createSpecialLocalFolders(account)
     }
 
+    //收件服务器设置
     private fun returnAccountTypeSelectionResult() {
         AccountSetupIncoming.actionIncomingSettings(this, account, makeDefault)
     }
