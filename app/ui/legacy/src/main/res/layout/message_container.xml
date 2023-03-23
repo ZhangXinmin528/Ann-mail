@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.fsck.k9.ui.messageview.MessageContainerView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.mail.ann.ui.messageview.MessageContainerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <!-- Content area -->
-    <com.fsck.k9.view.MessageWebView
+    <com.mail.ann.view.MessageWebView
         android:id="@+id/message_content"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent" />
@@ -80,4 +80,4 @@
             />
     </LinearLayout>
 
-</com.fsck.k9.ui.messageview.MessageContainerView>
+</com.mail.ann.ui.messageview.MessageContainerView>

@@ -17,7 +17,7 @@
             android:key="global_preferences"
             android:title="@string/global_preferences">
 
-            <com.fsck.k9.ui.settings.general.LanguagePreference
+            <com.mail.ann.ui.settings.general.LanguagePreference
                 android:dialogTitle="@string/settings_language_label"
                 android:entries="@array/language_entries"
                 android:entryValues="@array/language_values"

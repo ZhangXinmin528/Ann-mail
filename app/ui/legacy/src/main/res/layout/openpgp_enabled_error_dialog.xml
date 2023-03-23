@@ -8,7 +8,7 @@
     android:paddingRight="24dp"
     android:paddingTop="24dp"
     android:paddingBottom="24dp"
-    tools:context="com.fsck.k9.activity.compose.PgpEnabledErrorDialog">
+    tools:context="com.mail.ann.activity.compose.PgpEnabledErrorDialog">
 
     <TextView
         android:layout_width="wrap_content"

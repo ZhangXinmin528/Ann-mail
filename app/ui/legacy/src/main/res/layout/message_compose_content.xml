@@ -96,7 +96,7 @@
                 android:imeOptions="flagNoExtractUi"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <com.fsck.k9.view.MessageWebView
+            <com.mail.ann.view.MessageWebView
                 android:id="@+id/quoted_html"
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent" />

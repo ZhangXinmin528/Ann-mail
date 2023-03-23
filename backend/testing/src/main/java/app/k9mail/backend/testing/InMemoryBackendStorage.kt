@@ -1,9 +1,9 @@
 package app.k9mail.backend.testing
 
-import com.fsck.k9.backend.api.BackendFolderUpdater
-import com.fsck.k9.backend.api.BackendStorage
-import com.fsck.k9.backend.api.FolderInfo
-import com.fsck.k9.mail.FolderType
+import com.mail.ann.backend.api.BackendFolderUpdater
+import com.mail.ann.backend.api.BackendStorage
+import com.mail.ann.backend.api.FolderInfo
+import com.mail.ann.mail.FolderType
 
 class InMemoryBackendStorage : BackendStorage {
     val folders: MutableMap<String, InMemoryBackendFolder> = mutableMapOf()

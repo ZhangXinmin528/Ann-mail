@@ -9,7 +9,7 @@
     android:paddingRight="10dp"
     android:paddingTop="14dp"
     android:paddingBottom="14dp"
-    tools:context="com.fsck.k9.activity.compose.PgpEncryptDescriptionDialog">
+    tools:context="com.mail.ann.activity.compose.PgpEncryptDescriptionDialog">
 
     <LinearLayout
         android:layout_width="wrap_content"

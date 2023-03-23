@@ -44,7 +44,7 @@
             style="@style/ComposeEditText"
             />
 
-        <com.fsck.k9.view.ToolableViewAnimator
+        <com.mail.ann.view.ToolableViewAnimator
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -95,7 +95,7 @@
                     app:tint="@color/light_black" />
             </FrameLayout>
 
-        </com.fsck.k9.view.ToolableViewAnimator>
+        </com.mail.ann.view.ToolableViewAnimator>
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -106,7 +106,7 @@
             android:id="@+id/crypto_status_anchor"
             >
 
-            <com.fsck.k9.view.ToolableViewAnimator
+            <com.mail.ann.view.ToolableViewAnimator
                 android:layout_width="36dp"
                 android:layout_height="32dp"
                 android:id="@+id/crypto_status"
@@ -162,7 +162,7 @@
                     app:srcCompat="@drawable/status_lock_error"
                     app:tint="?attr/openpgp_red" />
 
-            </com.fsck.k9.view.ToolableViewAnimator>
+            </com.mail.ann.view.ToolableViewAnimator>
 
         </FrameLayout>
 
@@ -224,7 +224,7 @@
             android:text="@string/reply_to_label"
             style="@style/ComposeTextLabel" />
 
-        <com.fsck.k9.view.RecipientSelectView
+        <com.mail.ann.view.RecipientSelectView
             android:id="@+id/reply_to"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -266,7 +266,7 @@
             android:text="@string/recipient_to"
             style="@style/ComposeTextLabel" />
 
-        <com.fsck.k9.view.RecipientSelectView
+        <com.mail.ann.view.RecipientSelectView
             android:id="@+id/to"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -340,7 +340,7 @@
             android:text="@string/recipient_cc"
             style="@style/ComposeTextLabel" />
 
-        <com.fsck.k9.view.RecipientSelectView
+        <com.mail.ann.view.RecipientSelectView
             android:id="@+id/cc"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -387,7 +387,7 @@
             android:text="@string/recipient_bcc"
             style="@style/ComposeTextLabel" />
 
-        <com.fsck.k9.view.RecipientSelectView
+        <com.mail.ann.view.RecipientSelectView
             android:id="@+id/bcc"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"

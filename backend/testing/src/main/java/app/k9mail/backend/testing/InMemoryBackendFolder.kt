@@ -1,12 +1,12 @@
 package app.k9mail.backend.testing
 
-import com.fsck.k9.backend.api.BackendFolder
-import com.fsck.k9.backend.api.BackendFolder.MoreMessages
-import com.fsck.k9.mail.Flag
-import com.fsck.k9.mail.FolderType
-import com.fsck.k9.mail.Message
-import com.fsck.k9.mail.MessageDownloadState
-import com.fsck.k9.mail.internet.MimeMessage
+import com.mail.ann.backend.api.BackendFolder
+import com.mail.ann.backend.api.BackendFolder.MoreMessages
+import com.mail.ann.mail.Flag
+import com.mail.ann.mail.FolderType
+import com.mail.ann.mail.Message
+import com.mail.ann.mail.MessageDownloadState
+import com.mail.ann.mail.internet.MimeMessage
 import java.util.Date
 import okio.Buffer
 import okio.buffer

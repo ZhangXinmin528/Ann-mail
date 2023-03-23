@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context="com.fsck.k9.activity.compose.PgpInlineDialog">
+    tools:context="com.mail.ann.activity.compose.PgpInlineDialog">
 
     <LinearLayout
         android:layout_width="wrap_content"

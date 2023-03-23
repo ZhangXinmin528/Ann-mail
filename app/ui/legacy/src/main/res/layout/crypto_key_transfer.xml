@@ -69,7 +69,7 @@
             android:orientation="horizontal"
             android:padding="8dp">
 
-            <com.fsck.k9.view.StatusIndicator
+            <com.mail.ann.view.StatusIndicator
                 android:id="@+id/transferProgressGenerating"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -94,7 +94,7 @@
             android:orientation="horizontal"
             android:padding="8dp">
 
-            <com.fsck.k9.view.StatusIndicator
+            <com.mail.ann.view.StatusIndicator
                 android:id="@+id/transferProgressSending"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -135,7 +135,7 @@
             android:orientation="horizontal"
             android:padding="8dp">
 
-            <com.fsck.k9.view.StatusIndicator
+            <com.mail.ann.view.StatusIndicator
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"

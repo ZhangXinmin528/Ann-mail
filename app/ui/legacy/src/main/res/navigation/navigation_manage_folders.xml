@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/manageFoldersScreen"
-        android:name="com.fsck.k9.ui.managefolders.ManageFoldersFragment"
+        android:name="com.mail.ann.ui.managefolders.ManageFoldersFragment"
         android:label="@string/folders_action"
         tools:layout="@layout/fragment_manage_folders">
 
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/folderSettingsScreen"
-        android:name="com.fsck.k9.ui.managefolders.FolderSettingsFragment"
+        android:name="com.mail.ann.ui.managefolders.FolderSettingsFragment"
         android:label="@string/folder_settings_title"/>
 
 </navigation>

@@ -1,6 +1,6 @@
 package app.k9mail.backend.demo
 
-import com.fsck.k9.mail.FolderType
+import com.mail.ann.mail.FolderType
 import com.squareup.moshi.JsonClass
 
 typealias MessageStoreInfo = Map<String, FolderData>

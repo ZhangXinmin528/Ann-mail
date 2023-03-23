@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context="com.fsck.k9.activity.setup.AccountSetupOutgoing">
+    tools:context="com.mail.ann.activity.setup.AccountSetupOutgoing">
 
     <include layout="@layout/toolbar"/>
 
@@ -141,7 +141,7 @@
                     style="@style/InputLabel"
                     android:layout_marginTop="6dp"/>
 
-                <com.fsck.k9.view.ClientCertificateSpinner
+                <com.mail.ann.view.ClientCertificateSpinner
                     android:id="@+id/account_client_certificate_spinner"
                     android:paddingStart="6dp"
                     android:paddingEnd="0dp"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.fsck.k9.activity.setup.AccountSetupBasics">
+    tools:context="com.mail.ann.activity.setup.AccountSetupBasics">
 
     <include layout="@layout/toolbar" />
 
@@ -67,13 +67,13 @@
                     android:layout_marginTop="6dp"
                     android:text="@string/account_setup_incoming_client_certificate_label" />
 
-                <com.fsck.k9.view.ClientCertificateSpinner
+                <com.mail.ann.view.ClientCertificateSpinner
                     android:id="@+id/account_client_certificate_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <com.fsck.k9.view.FoldableLinearLayout
+            <com.mail.ann.view.FoldableLinearLayout
                 android:id="@+id/foldable_advanced_options"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/account_setup_basics_client_certificate" />
-            </com.fsck.k9.view.FoldableLinearLayout>
+            </com.mail.ann.view.FoldableLinearLayout>
 
             <View
                 android:layout_width="match_parent"

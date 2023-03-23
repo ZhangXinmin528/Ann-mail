@@ -1,4 +1,4 @@
-include ':app:k9mail'
+include ':app:anmail'
 include ':app:ui:base'
 include ':app:ui:setup'
 include ':app:ui:legacy'

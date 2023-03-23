@@ -11,10 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:elevation="4dp"
+        android:elevation="2dp"
         tools:navigationIcon="@drawable/ic_arrow_back">
 
-        <com.fsck.k9.ui.settings.account.AccountSelectionSpinner
+        <com.mail.ann.ui.settings.account.AccountSelectionSpinner
             android:id="@+id/accountSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

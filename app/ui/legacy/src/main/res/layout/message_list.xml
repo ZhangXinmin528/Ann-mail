@@ -4,7 +4,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fsck.k9.activity.MessageList">
+    tools:context="com.mail.ann.activity.MessageList">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:max="10000"
             android:visibility="invisible" />
 
-        <com.fsck.k9.view.ViewSwitcher
+        <com.mail.ann.view.ViewSwitcher
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -47,7 +47,7 @@
                 android:layout_height="fill_parent"
                 tools:layout="@layout/message" />
 
-        </com.fsck.k9.view.ViewSwitcher>
+        </com.mail.ann.view.ViewSwitcher>
 
     </RelativeLayout>
 

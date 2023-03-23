@@ -5,7 +5,7 @@
     <!-- This should make it easier for forks to change the branding -->
 
     <!-- Used in AndroidManifest.xml -->
-    <string name="app_name">K-9 Mail</string>
+    <string name="app_name">Ann Mail</string>
 
     <string name="shortcuts_title">K-9 Accounts</string>
     <string name="unread_widget_label">K-9 Unread</string>
@@ -33,10 +33,10 @@
 
 
     <!-- Welcome message -->
-    <string name="welcome_message_title">Welcome to K-9 Mail</string>
+    <string name="welcome_message_title">Welcome to Ann Mail</string>
     <string name="accounts_welcome"><![CDATA[
 <p>
-K-9 Mail is a powerful free email client for Android.
+Ann Mail is a powerful free email client for Android.
 </p><p>
 Its improved features include:
 </p>
@@ -57,7 +57,7 @@ Its improved features include:
   <li>…and more</li>
 </ul>
 <p>
-Please note that K-9 does not support most free Hotmail accounts and, like many mail clients, has
+Please note that Ann mail does not support most free Hotmail accounts and, like many mail clients, has
 some quirks when talking to Microsoft Exchange.
 </p><p>
 Please submit bug reports, contribute new features and ask questions at
@@ -67,19 +67,18 @@ Please submit bug reports, contribute new features and ask questions at
 
 
     <!-- Default signature -->
-    <string name="default_signature">-- \nSent from my Android device with K-9 Mail. Please excuse my brevity.</string>
+    <string name="default_signature">-- \nSent from my Android device with Ann Mail. Please excuse my brevity.</string>
 
 
     <!-- General strings that include the app name -->
-    <string name="account_delete_dlg_instructions_fmt">The account \"<xliff:g id="account">%s</xliff:g>\" will be removed from K-9 Mail.</string>
-
+    <string name="account_delete_dlg_instructions_fmt">The account \"<xliff:g id="account">%s</xliff:g>\" will be removed from Ann Mail.</string>
 
 
     <!-- === General strings ================================================================== -->
 
     <string name="authors">Authors</string>
 
-    <string name="about_title">About K-9 Mail</string>
+    <string name="about_title">About Ann Mail</string>
     <string name="accounts_title">Accounts</string>
     <string name="advanced">Advanced</string>
 
@@ -331,7 +330,7 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="account_setup_basics_email_hint">Email address</string>
     <string name="account_setup_basics_password_hint">Password</string>
 
-    <string name="account_setup_oauth_description">To use this email account with K-9 Mail, you need to sign in and grant the app access to your emails.</string>
+    <string name="account_setup_oauth_description">To use this email account with Ann Mail, you need to sign in and grant the app access to your emails.</string>
     <!-- Displayed below the 'account_setup_oauth_description' text -->
     <string name="account_setup_oauth_sign_in">Sign in</string>
     <!-- Displayed below the 'account_setup_oauth_description' text -->
@@ -343,7 +342,7 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="account_setup_basics_show_password_biometrics_subtitle">Unlock to view your password</string>
     <string name="account_setup_basics_manual_setup_action">Manual setup</string>
 
-    <string name="account_setup_check_settings_title"/>
+    <string name="account_setup_check_settings_title" />
     <string name="account_setup_check_settings_retr_info_msg">Retrieving account information\u2026</string>
     <string name="account_setup_check_settings_check_incoming_msg">Checking incoming server settings\u2026</string>
     <string name="account_setup_check_settings_check_outgoing_msg">Checking outgoing server settings\u2026</string>
@@ -763,9 +762,9 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="folder_list_display_mode_first_and_second_class">1st &amp; 2nd Class folders</string>
     <string name="folder_list_display_mode_not_second_class">Hide 2nd Class folders</string>
 
-    <string name="account_settings_signature__location_label">Signature position</string>
-    <string name="account_settings_signature__location_before_quoted_text">Before quoted message</string>
-    <string name="account_settings_signature__location_after_quoted_text">After quoted message</string>
+    <string name="account_settings_signature_mail_location_label">Signature position</string>
+    <string name="account_settings_signature_mail_location_before_quoted_text">Before quoted message</string>
+    <string name="account_settings_signature_mail_location_after_quoted_text">After quoted message</string>
     <string name="setting_theme_global">Use app theme</string>
     <string name="setting_theme_dark">Dark</string>
     <string name="setting_theme_light">Light</string>
@@ -1177,7 +1176,7 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="crypto_no_provider_message">This email has been encrypted with OpenPGP.\nTo read it, you need to install and configure a compatible OpenPGP App.</string>
     <string name="crypto_no_provider_button">Go to Settings</string>
 
-    <string name="mail_list_widget_text">K-9 Message List</string>
+    <string name="mail_list_widget_text">Ann Mail Message List</string>
     <string name="mail_list_widget_loading">Loading messages…</string>
 
     <string name="openpgp_enabled_error_title">Encryption not possible</string>
@@ -1202,7 +1201,7 @@ Please submit bug reports, contribute new features and ask questions at
 
     <string name="dialog_openkeychain_info_title">No OpenPGP app installed</string>
     <string name="dialog_openkeychain_info_install">Install</string>
-    <string name="dialog_openkeychain_info_text">K-9 Mail requires OpenKeychain for end-to-end encryption.</string>
+    <string name="dialog_openkeychain_info_text">Ann Mail requires OpenKeychain for end-to-end encryption.</string>
 
     <string name="encrypted_subject">"Encrypted Message"</string>
     <string name="account_settings_crypto_encrypt_subject">Encrypt message subjects</string>
@@ -1248,7 +1247,7 @@ You can keep this message and use it as a backup for your secret key. If you wan
     <string name="push_notification_info">Tap to learn more.</string>
 
     <string name="push_info_title">Push Info</string>
-    <string name="push_info_notification_explanation_text">When using Push, K-9 Mail maintains a connection to the mail server. Android requires displaying an ongoing notification while the app is active in the background. %s</string>
+    <string name="push_info_notification_explanation_text">When using Push, Ann Mail maintains a connection to the mail server. Android requires displaying an ongoing notification while the app is active in the background. %s</string>
     <string name="push_info_configure_notification_text">However, Android also allows you to hide the notification.</string>
     <string name="push_info_learn_more_text">Learn more</string>
     <string name="push_info_configure_notification_action">Configure notification</string>

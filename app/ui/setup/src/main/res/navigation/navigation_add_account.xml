@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/enterEmailAddressScreen"
-        android:name="com.fsck.k9.ui.setup.EnterEmailAddressFragment"
+        android:name="com.mail.ann.ui.setup.EnterEmailAddressFragment"
         android:label="@string/add_account_title"
         tools:layout="@layout/fragment_enter_email_address">
     </fragment>

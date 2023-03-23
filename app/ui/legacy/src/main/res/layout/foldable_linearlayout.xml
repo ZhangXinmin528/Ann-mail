@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.fsck.k9.view.FoldableLinearLayout">
+    tools:context="com.mail.ann.view.FoldableLinearLayout">
 
     <LinearLayout
         android:id="@+id/foldableControl"

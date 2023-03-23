@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.mail.ann"
+    android:installLocation="auto">
+
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
+    <application
+        android:name="com.mail.ann.App"
+        android:allowBackup="false"
+        android:allowTaskReparenting="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:resizeableActivity="true"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.K9.Startup"
+        android:usesCleartextTraffic="true"
+        tools:ignore="UnusedAttribute"
+        tools:replace="android:theme">
+
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value="com.fsck.k9.activity.Search" />
+
+        <!-- TODO: Remove once minSdkVersion has been changed to 24+ -->
+        <meta-data
+            android:name="com.lge.support.SPLIT_WINDOW"
+            android:value="true" />
+        <uses-library
+            android:name="com.sec.android.app.multiwindow"
+            android:required="false" />
+
+        <meta-data
+            android:name="com.sec.android.support.multiwindow"
+            android:value="true" />
+        <meta-data
+            android:name="com.samsung.android.sdk.multiwindow.penwindow.enable"
+            android:value="true" />
+        <meta-data
+            android:name="android.webkit.WebView.MetricsOptOut"
+            android:value="true" />
+
+        <!-- activity-alias so old launcher shortcuts work -->
+        <!-- TODO: Remove after 2020-12-31 -->
+        <activity-alias
+            android:name=".activity.Accounts"
+            android:exported="true"
+            android:targetActivity="com.mail.ann.activity.MessageList" />
+
+        <!--欢迎页面-->
+        <activity
+            android:name="com.mail.ann.ui.onboarding.OnboardingActivity"
+            android:label="@string/welcome_message_title" />
+
+        <activity
+            android:name="com.mail.ann.ui.settings.account.OpenPgpAppSelectDialog"
+            android:configChanges="locale"
+            android:theme="@style/Theme.K9.Dialog.Translucent.DayNight" />
+
+        <!--创建账户-->
+        <activity
+            android:name="com.mail.ann.activity.setup.AccountSetupBasics"
+            android:configChanges="locale"
+            android:label="@string/account_setup_basics_title" />
+
+        <!--设置账户类型-->
+        <activity
+            android:name="com.mail.ann.activity.setup.AccountSetupAccountType"
+            android:configChanges="locale"
+            android:label="@string/account_setup_account_type_title" />
+
+        <!--收件服务器设置-->
+        <activity
+            android:name="com.mail.ann.activity.setup.AccountSetupIncoming"
+            android:configChanges="locale"
+            android:label="@string/account_setup_incoming_title" />
+
+        <activity
+            android:name="com.mail.ann.activity.setup.AccountSetupComposition"
+            android:configChanges="locale"
+            android:label="@string/account_settings_composition_title" />
+
+        <!--发件服务器设置-->
+        <activity
+            android:name="com.mail.ann.activity.setup.AccountSetupOutgoing"
+            android:configChanges="locale"
+            android:label="@string/account_setup_outgoing_title" />
+
+        <!--账户选项-->
+        <activity
+            android:name="com.mail.ann.activity.setup.AccountSetupOptions"
+            android:configChanges="locale"
+            android:label="@string/account_setup_options_title" />
+
+        <!--快要完成了-->
+        <activity
+            android:name="com.mail.ann.activity.setup.AccountSetupNames"
+            android:configChanges="locale"
+            android:label="@string/account_setup_names_title" />
+
+        <activity
+            android:name="com.mail.ann.activity.ChooseAccount"
+            android:configChanges="locale"
+            android:label="@string/choose_account_title"
+            android:noHistory="true" />
+
+        <activity
+            android:name="com.mail.ann.ui.choosefolder.ChooseFolderActivity"
+            android:configChanges="locale"
+            android:label="@string/choose_folder_title"
+            android:noHistory="true" />
+
+        <activity
+            android:name="com.mail.ann.activity.ChooseIdentity"
+            android:configChanges="locale"
+            android:label="@string/choose_identity_title" />
+
+        <activity
+            android:name="com.mail.ann.activity.ManageIdentities"
+            android:configChanges="locale"
+            android:label="@string/manage_identities_title" />
+
+        <activity
+            android:name="com.mail.ann.activity.EditIdentity"
+            android:configChanges="locale"
+            android:label="@string/edit_identity_title" />
+
+        <activity
+            android:name="com.mail.ann.ui.notification.DeleteConfirmationActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/Theme.K9.Dialog.Translucent.DayNight" />
+
+        <!-- XXX Note: this activity is hacked to ignore config changes,
+             since it doesn't currently handle them correctly in code. -->
+        <!--账户创建一些检查-->
+        <activity
+            android:name="com.mail.ann.activity.setup.AccountSetupCheckSettings"
+            android:configChanges="keyboardHidden|orientation|locale"
+            android:label="@string/account_setup_check_settings_title" />
+
+        <activity
+            android:name="com.mail.ann.ui.endtoend.AutocryptKeyTransferActivity"
+            android:configChanges="locale"
+            android:label="@string/ac_transfer_title" />
+
+        <!-- activity-alias so old launcher shortcuts work -->
+        <!-- TODO: Remove after 2020-12-31 -->
+        <activity-alias
+            android:name=".activity.FolderList"
+            android:exported="true"
+            android:targetActivity="com.mail.ann.activity.MessageList" />
+
+        <activity
+            android:name="com.mail.ann.activity.MessageList"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.APP_EMAIL" />
+
+                <!-- TODO: Remove once minSdkVersion has been changed to 24+ -->
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+                <category android:name="android.intent.category.PENWINDOW_LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <data
+                    android:host="messages"
+                    android:scheme="k9mail" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.mail.ann.activity.MessageCompose"
+            android:configChanges="locale"
+            android:enabled="false"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SENDTO" />
+                <data android:scheme="mailto" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <data android:mimeType="*/*" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <data android:mimeType="*/*" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:scheme="mailto" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.autocrypt.PEER_ACTION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.service.chooser.chooser_target_service"
+                android:value="com.fsck.k9.directshare.K9ChooserTargetService" />
+        </activity>
+
+        <!-- Search Activity - searchable -->
+        <activity
+            android:name="com.mail.ann.activity.Search"
+            android:configChanges="locale"
+            android:exported="true"
+            android:label="@string/search_action"
+            android:uiOptions="splitActionBarWhenNarrow">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+        <activity
+            android:name="com.mail.ann.activity.LauncherShortcuts"
+            android:configChanges="locale"
+            android:exported="true"
+            android:label="@string/shortcuts_title">
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_SHORTCUT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.mail.ann.widget.unread.UnreadWidgetConfigurationActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <!--更新数据库-->
+        <activity
+            android:name="com.mail.ann.activity.UpgradeDatabases"
+            android:label="@string/upgrade_databases_title" />
+
+        <activity
+            android:name="com.mail.ann.ui.managefolders.ManageFoldersActivity"
+            android:label="@string/folders_action" />
+
+        <activity
+            android:name="com.mail.ann.ui.settings.SettingsActivity"
+            android:label="@string/prefs_title" />
+
+        <activity
+            android:name="com.mail.ann.ui.settings.general.GeneralSettingsActivity"
+            android:label="@string/general_settings_title" />
+
+        <activity
+            android:name="com.mail.ann.ui.settings.account.AccountSettingsActivity"
+            android:label="@string/account_settings_title_fmt" />
+
+        <activity
+            android:name="com.mail.ann.ui.messagesource.MessageSourceActivity"
+            android:label="@string/show_headers_action" />
+
+        <activity
+            android:name="com.mail.ann.ui.changelog.RecentChangesActivity"
+            android:label="@string/changelog_recent_changes_title" />
+
+        <activity
+            android:name="com.mail.ann.ui.push.PushInfoActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:label="@string/push_info_title"
+            android:taskAffinity="${applicationId}.push_info">
+            <intent-filter>
+                <action android:name="app.k9mail.action.PUSH_INFO" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!--其他认证登录方式-->
+        <activity
+            android:name="com.mail.ann.activity.setup.OAuthFlowActivity"
+            android:label="@string/account_setup_basics_title" />
+
+        <receiver
+            android:name="com.mail.ann.provider.UnreadWidgetProvider"
+            android:exported="false"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/unread_widget_label">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/unread_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name="com.mail.ann.widget.list.MessageListWidgetProvider"
+            android:exported="false"
+            android:icon="@drawable/message_list_widget_preview"
+            android:label="@string/mail_list_widget_text">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/message_list_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name="com.mail.ann.controller.push.BootCompleteReceiver"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.mail.ann.widget.list.MessageListWidgetService"
+            android:enabled="true"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <service
+            android:name="com.mail.ann.notification.NotificationActionService"
+            android:enabled="true" />
+
+        <service
+            android:name="com.mail.ann.service.DatabaseUpgradeService"
+            android:exported="false" />
+
+
+        <service
+            android:name="com.mail.ann.directshare.K9ChooserTargetService"
+            android:exported="false"
+            android:permission="android.permission.BIND_CHOOSER_TARGET_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.chooser.ChooserTargetService" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="com.mail.ann.account.AccountRemoverService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <service
+            android:name="com.mail.ann.controller.push.PushService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <provider
+            android:name="com.mail.ann.provider.AttachmentProvider"
+            android:authorities="${applicationId}.attachmentprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="de.cketti.safecontentresolver.ALLOW_INTERNAL_ACCESS"
+                android:value="true" />
+
+        </provider>
+
+        <provider
+            android:name="com.mail.ann.provider.RawMessageProvider"
+            android:authorities="${applicationId}.rawmessageprovider"
+            android:exported="false">
+
+            <meta-data
+                android:name="de.cketti.safecontentresolver.ALLOW_INTERNAL_ACCESS"
+                android:value="true" />
+
+        </provider>
+
+        <provider
+            android:name="com.mail.ann.external.MessageProvider"
+            android:authorities="${applicationId}.messageprovider"
+            android:exported="false" />
+
+        <provider
+            android:name="com.mail.ann.provider.EmailProvider"
+            android:authorities="${applicationId}.provider.email"
+            android:exported="false" />
+
+        <provider
+            android:name="com.mail.ann.provider.DecryptedFileProvider"
+            android:authorities="${applicationId}.decryptedfileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/decrypted_file_provider_paths" />
+        </provider>
+
+        <provider
+            android:name="com.mail.ann.provider.AttachmentTempFileProvider"
+            android:authorities="${applicationId}.tempfileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/temp_file_provider_paths" />
+        </provider>
+
+        <activity
+            android:name="net.openid.appauth.RedirectUriReceiverActivity"
+            android:exported="true"
+            tools:node="merge">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Microsoft uses a special redirect URI format for Android apps -->
+                <data
+                    android:host="${applicationId}"
+                    android:scheme="msauth" />
+            </intent-filter>
+        </activity>
+
+    </application>
+</manifest>
