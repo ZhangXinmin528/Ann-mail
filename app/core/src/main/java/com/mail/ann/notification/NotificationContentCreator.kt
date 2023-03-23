@@ -3,7 +3,7 @@ package com.mail.ann.notification
 import android.content.Context
 import android.text.SpannableStringBuilder
 import com.mail.ann.Account
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.helper.Contacts
 import com.mail.ann.helper.MessageHelper
 import com.mail.ann.mail.Message
@@ -70,7 +70,7 @@ internal class NotificationContentCreator(
     }
 
     private fun getMessageSender(account: Account, message: Message): String? {
-        val contacts = if (K9.isShowContactName) Contacts.getInstance(context) else null
+        val contacts = if (Ann.isShowContactName) Contacts.getInstance(context) else null
         var isSelf = false
 
         val fromAddresses = message.from

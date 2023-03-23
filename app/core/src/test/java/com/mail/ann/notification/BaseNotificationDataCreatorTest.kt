@@ -2,8 +2,8 @@ package com.mail.ann.notification
 
 import com.mail.ann.Account
 import com.mail.ann.Identity
-import com.mail.ann.K9
-import com.mail.ann.K9.LockScreenNotificationVisibility
+import com.mail.ann.Ann
+import com.mail.ann.Ann.LockScreenNotificationVisibility
 import com.mail.ann.NotificationLight
 import com.mail.ann.NotificationVibration
 import com.mail.ann.VibratePattern
@@ -179,7 +179,7 @@ class BaseNotificationDataCreatorTest {
     }
 
     private fun setLockScreenMode(mode: LockScreenNotificationVisibility) {
-        K9.lockScreenNotificationVisibility = mode
+        Ann.lockScreenNotificationVisibility = mode
     }
 
     private fun createNotificationData(senders: List<String> = emptyList()): NotificationData {

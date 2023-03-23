@@ -17,7 +17,7 @@ import timber.log.Timber;
 
 import com.mail.ann.Account.QuoteStyle;
 import com.mail.ann.Identity;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.controller.MessageReference;
 import com.mail.ann.mail.Address;
 import com.mail.ann.mail.Body;
@@ -111,7 +111,7 @@ public abstract class MessageBuilder {
             message.setHeader("Return-Receipt-To", from.toEncodedString());
         }
 
-        if (!K9.isHideUserAgent()) {
+        if (!Ann.isHideUserAgent()) {
             String encodedUserAgent = MimeHeaderEncoder.encode("User-Agent", resourceProvider.userAgent());
             message.setHeader("User-Agent", encodedUserAgent);
         }
@@ -209,7 +209,7 @@ public abstract class MessageBuilder {
         // If this is a draft, add metadata for thawing.
         if (isDraft) {
             // Add the identity to the message.
-            message.addHeader(K9.IDENTITY_HEADER, buildIdentityHeader(body, bodyPlain));
+            message.addHeader(Ann.IDENTITY_HEADER, buildIdentityHeader(body, bodyPlain));
         }
     }
 

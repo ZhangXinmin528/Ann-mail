@@ -1,6 +1,6 @@
 package com.mail.ann.storage.messages
 
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.storage.RobolectricTest
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
@@ -41,7 +41,7 @@ class MoveMessageOperationsTest : RobolectricTest() {
         assertPlaceholderEntry(sourceMessage)
 
         val destinationMessage = messages.first { it.id == destinationMessageId }
-        assertThat(destinationMessage.uid).startsWith(K9.LOCAL_UID_PREFIX)
+        assertThat(destinationMessage.uid).startsWith(Ann.LOCAL_UID_PREFIX)
         assertThat(destinationMessage).isEqualTo(
             originalMessage.copy(
                 id = destinationMessageId,
@@ -108,7 +108,7 @@ class MoveMessageOperationsTest : RobolectricTest() {
         assertPlaceholderEntry(sourceMessage)
 
         val destinationMessage = messages.first { it.id == destinationMessageId }
-        assertThat(destinationMessage.uid).startsWith(K9.LOCAL_UID_PREFIX)
+        assertThat(destinationMessage.uid).startsWith(Ann.LOCAL_UID_PREFIX)
         assertThat(destinationMessage).isEqualTo(
             originalMessage.copy(
                 id = destinationMessageId,
@@ -160,7 +160,7 @@ class MoveMessageOperationsTest : RobolectricTest() {
         assertPlaceholderEntry(sourceMessage)
 
         val destinationMessage = messages.first { it.id == destinationMessageId }
-        assertThat(destinationMessage.uid).startsWith(K9.LOCAL_UID_PREFIX)
+        assertThat(destinationMessage.uid).startsWith(Ann.LOCAL_UID_PREFIX)
         assertThat(destinationMessage).isEqualTo(
             originalMessage.copy(
                 id = destinationMessageId,

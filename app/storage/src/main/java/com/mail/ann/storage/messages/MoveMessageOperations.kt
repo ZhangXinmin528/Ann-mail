@@ -2,7 +2,7 @@ package com.mail.ann.storage.messages
 
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.helper.getIntOrNull
 import com.mail.ann.helper.getLongOrNull
 import com.mail.ann.helper.getStringOrNull
@@ -34,7 +34,7 @@ internal class MoveMessageOperations(
         destinationFolderId: Long,
         threadInfo: ThreadInfo?
     ): Long {
-        val destinationUid = K9.LOCAL_UID_PREFIX + UUID.randomUUID().toString()
+        val destinationUid = Ann.LOCAL_UID_PREFIX + UUID.randomUUID().toString()
 
         val contentValues = database.query(
             "messages",

@@ -12,7 +12,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.widget.TextView;
 
 import com.mail.ann.Account;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.Preferences;
 import com.mail.ann.ui.R;
 import com.mail.ann.controller.MessagingController;
@@ -31,9 +31,9 @@ import com.mail.ann.ui.base.AnnActivity;
  * <li>Activities that access an account's database call
  *     {@link #actionUpgradeDatabases(Context, Intent)} in their {@link Activity#onCreate(Bundle)}
  *     method.</li>
- * <li>{@link #actionUpgradeDatabases(Context, Intent)} will call {@link K9#areDatabasesUpToDate()}
+ * <li>{@link #actionUpgradeDatabases(Context, Intent)} will call {@link Ann#areDatabasesUpToDate()}
  *     to check if we already know whether the databases have been upgraded.</li>
- * <li>{@link K9#areDatabasesUpToDate()} will compare the last known database version stored in a
+ * <li>{@link Ann#areDatabasesUpToDate()} will compare the last known database version stored in a
  *     {@link SharedPreferences} file to {@link LocalStore#getDbVersion()}. This
  *     is done as an optimization because it's faster than opening all of the accounts' databases
  *     one by one.</li>
@@ -78,7 +78,7 @@ public class UpgradeDatabases extends AnnActivity {
      *         {@code false}, if the account databases don't need upgrading.
      */
     public static boolean actionUpgradeDatabases(Context context, Intent startIntent) {
-        if (K9.areDatabasesUpToDate()) {
+        if (Ann.areDatabasesUpToDate()) {
             return false;
         }
 
@@ -111,7 +111,7 @@ public class UpgradeDatabases extends AnnActivity {
         decodeExtras();
 
         // If the databases have already been upgraded there's no point in displaying this activity.
-        if (K9.areDatabasesUpToDate()) {
+        if (Ann.areDatabasesUpToDate()) {
             launchOriginalActivity();
             return;
         }
@@ -158,7 +158,7 @@ public class UpgradeDatabases extends AnnActivity {
         super.onResume();
 
         // Check if the upgrade was completed while the activity was paused.
-        if (K9.areDatabasesUpToDate()) {
+        if (Ann.areDatabasesUpToDate()) {
             launchOriginalActivity();
             return;
         }

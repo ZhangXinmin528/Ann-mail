@@ -6,7 +6,7 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 
 import com.mail.ann.Account;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.R;
 import com.mail.ann.helper.Contacts;
 import com.mail.ann.helper.MessageHelper;
@@ -27,7 +27,7 @@ class MessageInfoHolder {
 
     public static MessageInfoHolder create(Context context, LocalMessage message,
             Account account) {
-        Contacts contactHelper = K9.isShowContactName() ? Contacts.getInstance(context) : null;
+        Contacts contactHelper = Ann.isShowContactName() ? Contacts.getInstance(context) : null;
 
         MessageInfoHolder target = new MessageInfoHolder();
 

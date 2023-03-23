@@ -52,7 +52,7 @@ import com.mail.ann.Account;
 import com.mail.ann.Account.MessageFormat;
 import com.mail.ann.DI;
 import com.mail.ann.Identity;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.Preferences;
 import com.mail.ann.activity.MessageLoaderHelper.MessageLoaderCallbacks;
 import com.mail.ann.activity.compose.AttachmentPresenter;
@@ -465,13 +465,13 @@ public class MessageCompose extends AnnActivity implements OnClickListener,
         updateMessageFormat();
 
         // Set font size of input controls
-        int fontSize = K9.getFontSizes().getMessageComposeInput();
-        replyToView.setFontSizes(K9.getFontSizes(), fontSize);
-        recipientMvpView.setFontSizes(K9.getFontSizes(), fontSize);
-        quotedMessageMvpView.setFontSizes(K9.getFontSizes(), fontSize);
-        K9.getFontSizes().setViewTextSize(subjectView, fontSize);
-        K9.getFontSizes().setViewTextSize(messageContentView, fontSize);
-        K9.getFontSizes().setViewTextSize(signatureView, fontSize);
+        int fontSize = Ann.getFontSizes().getMessageComposeInput();
+        replyToView.setFontSizes(Ann.getFontSizes(), fontSize);
+        recipientMvpView.setFontSizes(Ann.getFontSizes(), fontSize);
+        quotedMessageMvpView.setFontSizes(Ann.getFontSizes(), fontSize);
+        Ann.getFontSizes().setViewTextSize(subjectView, fontSize);
+        Ann.getFontSizes().setViewTextSize(messageContentView, fontSize);
+        Ann.getFontSizes().setViewTextSize(signatureView, fontSize);
 
 
         updateMessageFormat();
@@ -715,7 +715,7 @@ public class MessageCompose extends AnnActivity implements OnClickListener,
 
         builder.setSubject(Utility.stripNewLines(subjectView.getText().toString()))
                 .setSentDate(new Date())
-                .setHideTimeZone(K9.isHideTimeZone())
+                .setHideTimeZone(Ann.isHideTimeZone())
                 .setInReplyTo(repliedToMessageId)
                 .setReferences(referencedMessageIds)
                 .setRequestReadReceipt(requestReadReceipt)
@@ -997,7 +997,7 @@ public class MessageCompose extends AnnActivity implements OnClickListener,
     }
 
     private void askBeforeDiscard() {
-        if (K9.isConfirmDiscardMessage()) {
+        if (Ann.isConfirmDiscardMessage()) {
             showDialog(DIALOG_CONFIRM_DISCARD);
         } else {
             onDiscard();
@@ -1394,9 +1394,9 @@ public class MessageCompose extends AnnActivity implements OnClickListener,
         // Decode the identity header when loading a draft.
         // See buildIdentityHeader(TextBody) for a detailed description of the composition of this blob.
         Map<IdentityField, String> k9identity = new HashMap<>();
-        String[] identityHeaders = message.getHeader(K9.IDENTITY_HEADER);
+        String[] identityHeaders = message.getHeader(Ann.IDENTITY_HEADER);
         if (identityHeaders.length == 0) {
-            identityHeaders = messageViewInfo.rootPart.getHeader(K9.IDENTITY_HEADER);
+            identityHeaders = messageViewInfo.rootPart.getHeader(Ann.IDENTITY_HEADER);
         }
 
         if (identityHeaders.length > 0 && identityHeaders[0] != null) {

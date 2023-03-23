@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.mail.ann.Account
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.controller.MessageCountsProvider
 import com.mail.ann.mailstore.DisplayFolder
 import com.mail.ann.mailstore.FolderRepository
@@ -55,7 +55,7 @@ class FoldersViewModel(
     }
 
     private fun getUnifiedInboxAccount(): SearchAccount? {
-        return if (K9.isShowUnifiedInbox) SearchAccount.createUnifiedInboxAccount() else null
+        return if (Ann.isShowUnifiedInbox) SearchAccount.createUnifiedInboxAccount() else null
     }
 
     fun getFolderListLiveData(): LiveData<FolderList> {

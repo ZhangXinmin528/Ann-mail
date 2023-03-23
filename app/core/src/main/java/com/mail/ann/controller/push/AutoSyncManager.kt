@@ -5,7 +5,7 @@ import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import timber.log.Timber
 
 /**
@@ -16,7 +16,7 @@ internal class AutoSyncManager(private val context: Context) {
         get() = respectSystemAutoSync && !ContentResolver.getMasterSyncAutomatically()
 
     val respectSystemAutoSync: Boolean
-        get() = K9.backgroundOps == K9.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC
+        get() = Ann.backgroundOps == Ann.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC
 
     private var isRegistered = false
     private var listener: AutoSyncListener? = null

@@ -19,7 +19,7 @@ import androidx.annotation.WorkerThread;
 import androidx.core.content.FileProvider;
 import timber.log.Timber;
 
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import okio.ByteString;
 import org.apache.commons.io.IOUtils;
 
@@ -110,7 +110,7 @@ public class AttachmentTempFileProvider extends FileProvider {
                     allFilesDeleted = false;
                 }
             } else {
-                if (K9.isDebugLoggingEnabled()) {
+                if (Ann.isDebugLoggingEnabled()) {
                     String timeLeftStr = String.format(
                             Locale.ENGLISH, "%.2f", (lastModified - deletionThreshold) / 1000 / 60.0);
                     Timber.e("Not deleting temp file (for another %s minutes)", timeLeftStr);

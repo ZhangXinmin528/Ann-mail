@@ -27,8 +27,8 @@ import androidx.lifecycle.Observer
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.mail.ann.Account
 import com.mail.ann.Account.SortType
-import com.mail.ann.K9
-import com.mail.ann.K9.SplitViewMode
+import com.mail.ann.Ann
+import com.mail.ann.Ann.SplitViewMode
 import com.mail.ann.Preferences
 import com.mail.ann.account.BackgroundAccountRemover
 import com.mail.ann.activity.compose.MessageActions
@@ -106,7 +106,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
     private var account: Account? = null
     private var search: LocalSearch? = null
     private var singleFolderMode = false
-    private var lastDirection = if (K9.isMessageViewShowNext) NEXT else PREVIOUS
+    private var lastDirection = if (Ann.isMessageViewShowNext) NEXT else PREVIOUS
 
     private var messageListActivityAppearance: MessageListActivityAppearance? = null
 
@@ -273,7 +273,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
         if (!hasMessageListFragment) {
             val fragmentTransaction = fragmentManager.beginTransaction()
             val messageListFragment = MessageListFragment.newInstance(
-                search!!, false, K9.isThreadedViewEnabled && !noThreading
+                search!!, false, Ann.isThreadedViewEnabled && !noThreading
             )
             fragmentTransaction.add(R.id.message_list_container, messageListFragment)
             fragmentTransaction.commit()
@@ -317,7 +317,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
     }
 
     private fun useSplitView(): Boolean {
-        val splitViewMode = K9.splitViewMode
+        val splitViewMode = Ann.splitViewMode
         val orientation = resources.configuration.orientation
         return splitViewMode === SplitViewMode.ALWAYS || splitViewMode === SplitViewMode.WHEN_IN_LANDSCAPE && orientation == Configuration.ORIENTATION_LANDSCAPE
     }
@@ -381,7 +381,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
         val launchData = decodeExtrasToLaunchData(intent)
 
         // If Unified Inbox was disabled show default account instead
-        val search = if (launchData.search.isUnifiedInbox && !K9.isShowUnifiedInbox) {
+        val search = if (launchData.search.isUnifiedInbox && !Ann.isShowUnifiedInbox) {
             createDefaultLocalSearch()
         } else {
             launchData.search
@@ -507,7 +507,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
         }
 
         // Default action
-        val search = if (K9.isShowUnifiedInbox) {
+        val search = if (Ann.isShowUnifiedInbox) {
             SearchAccount.createUnifiedInboxAccount().relatedSearch
         } else {
             createDefaultLocalSearch()
@@ -661,7 +661,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
         }
 
         val openFolderTransaction = fragmentManager.beginTransaction()
-        val messageListFragment = MessageListFragment.newInstance(search, false, K9.isThreadedViewEnabled)
+        val messageListFragment = MessageListFragment.newInstance(search, false, Ann.isThreadedViewEnabled)
         openFolderTransaction.replace(R.id.message_list_container, messageListFragment)
 
         this.messageListFragment = messageListFragment
@@ -696,7 +696,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
             searchView.isIconified = true
         } else {
             if (isDrawerEnabled && account != null && supportFragmentManager.backStackEntryCount == 0) {
-                if (K9.isShowUnifiedInbox) {
+                if (Ann.isShowUnifiedInbox) {
                     if (search!!.id != SearchAccount.UNIFIED_INBOX) {
                         openUnifiedInbox()
                     } else {
@@ -729,19 +729,19 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
 
         when (event.keyCode) {
             KeyEvent.KEYCODE_VOLUME_UP -> {
-                if (messageViewFragment != null && displayMode != DisplayMode.MESSAGE_LIST && K9.isUseVolumeKeysForNavigation) {
+                if (messageViewFragment != null && displayMode != DisplayMode.MESSAGE_LIST && Ann.isUseVolumeKeysForNavigation) {
                     showPreviousMessage()
                     return true
-                } else if (displayMode != DisplayMode.MESSAGE_VIEW && K9.isUseVolumeKeysForListNavigation) {
+                } else if (displayMode != DisplayMode.MESSAGE_VIEW && Ann.isUseVolumeKeysForListNavigation) {
                     messageListFragment!!.onMoveUp()
                     return true
                 }
             }
             KeyEvent.KEYCODE_VOLUME_DOWN -> {
-                if (messageViewFragment != null && displayMode != DisplayMode.MESSAGE_LIST && K9.isUseVolumeKeysForNavigation) {
+                if (messageViewFragment != null && displayMode != DisplayMode.MESSAGE_LIST && Ann.isUseVolumeKeysForNavigation) {
                     showNextMessage()
                     return true
-                } else if (displayMode != DisplayMode.MESSAGE_VIEW && K9.isUseVolumeKeysForListNavigation) {
+                } else if (displayMode != DisplayMode.MESSAGE_VIEW && Ann.isUseVolumeKeysForListNavigation) {
                     messageListFragment!!.onMoveDown()
                     return true
                 }
@@ -881,7 +881,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
 
     override fun onKeyUp(keyCode: Int, event: KeyEvent): Boolean {
         // Swallow these events too to avoid the audible notification of a volume change
-        if (K9.isUseVolumeKeysForListNavigation) {
+        if (Ann.isUseVolumeKeysForListNavigation) {
             if (keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
                 Timber.v("Swallowed key up.")
                 return true
@@ -1137,11 +1137,11 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
                 typedArray.recycle()
             }
 
-            menu.findItem(R.id.delete).isVisible = K9.isMessageViewDeleteActionVisible
+            menu.findItem(R.id.delete).isVisible = Ann.isMessageViewDeleteActionVisible
 
             // Set visibility of copy, move, archive, spam in action bar and refile submenu
             if (messageViewFragment!!.isCopyCapable) {
-                menu.findItem(R.id.copy).isVisible = K9.isMessageViewCopyActionVisible
+                menu.findItem(R.id.copy).isVisible = Ann.isMessageViewCopyActionVisible
                 menu.findItem(R.id.refile_copy).isVisible = true
             } else {
                 menu.findItem(R.id.copy).isVisible = false
@@ -1152,9 +1152,9 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
                 val canMessageBeArchived = messageViewFragment!!.canMessageBeArchived()
                 val canMessageBeMovedToSpam = messageViewFragment!!.canMessageBeMovedToSpam()
 
-                menu.findItem(R.id.move).isVisible = K9.isMessageViewMoveActionVisible
-                menu.findItem(R.id.archive).isVisible = canMessageBeArchived && K9.isMessageViewArchiveActionVisible
-                menu.findItem(R.id.spam).isVisible = canMessageBeMovedToSpam && K9.isMessageViewSpamActionVisible
+                menu.findItem(R.id.move).isVisible = Ann.isMessageViewMoveActionVisible
+                menu.findItem(R.id.archive).isVisible = canMessageBeArchived && Ann.isMessageViewArchiveActionVisible
+                menu.findItem(R.id.spam).isVisible = canMessageBeMovedToSpam && Ann.isMessageViewSpamActionVisible
 
                 menu.findItem(R.id.refile_move).isVisible = true
                 menu.findItem(R.id.refile_archive).isVisible = canMessageBeArchived
@@ -1401,7 +1401,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
     }
 
     override fun showNextMessageOrReturn() {
-        if (K9.isMessageViewReturnToList || !showLogicalNextMessage()) {
+        if (Ann.isMessageViewReturnToList || !showLogicalNextMessage()) {
             if (displayMode == DisplayMode.SPLIT_VIEW) {
                 showMessageViewPlaceHolder()
             } else {
@@ -1612,7 +1612,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
         when {
             singleFolderMode -> drawer.selectFolder(search!!.folderIds[0])
             // Don't select any item in the drawer because the Unified Inbox is displayed, but not listed in the drawer
-            search!!.id == SearchAccount.UNIFIED_INBOX && !K9.isShowUnifiedInbox -> drawer.deselect()
+            search!!.id == SearchAccount.UNIFIED_INBOX && !Ann.isShowUnifiedInbox -> drawer.deselect()
             search!!.id == SearchAccount.UNIFIED_INBOX -> drawer.selectUnifiedInbox()
             else -> drawer.deselect()
         }

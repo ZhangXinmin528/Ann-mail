@@ -12,7 +12,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.mail.ann.Account;
 import com.mail.ann.DI;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.Preferences;
 import com.mail.ann.mail.power.PowerManager;
 import com.mail.ann.mail.power.WakeLock;
@@ -200,7 +200,7 @@ public class DatabaseUpgradeService extends Service {
             mProgress++;
         }
 
-        K9.setDatabasesUpToDate(true);
+        Ann.setDatabasesUpToDate(true);
         sendUpgradeCompleteBroadcast();
     }
 

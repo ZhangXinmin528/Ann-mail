@@ -1,7 +1,7 @@
 package com.mail.ann.storage.messages
 
 import androidx.core.database.getLongOrNull
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.mail.Flag
 import com.mail.ann.mail.Header
 import com.mail.ann.mail.MessagingException
@@ -66,7 +66,7 @@ internal class RetrieveMessageOperations(private val lockableDatabase: LockableD
         return lockableDatabase.execute(false) { database ->
             database.rawQuery(
                 "SELECT uid FROM messages" +
-                    " WHERE empty = 0 AND deleted = 0 AND folder_id = ? AND uid NOT LIKE '${K9.LOCAL_UID_PREFIX}%'",
+                    " WHERE empty = 0 AND deleted = 0 AND folder_id = ? AND uid NOT LIKE '${Ann.LOCAL_UID_PREFIX}%'",
                 arrayOf(folderId.toString())
             ).use { cursor ->
                 val result = mutableSetOf<String>()
@@ -138,7 +138,7 @@ internal class RetrieveMessageOperations(private val lockableDatabase: LockableD
         return lockableDatabase.execute(false) { database ->
             database.rawQuery(
                 "SELECT uid, date FROM messages" +
-                    " WHERE empty = 0 AND deleted = 0 AND folder_id = ? AND uid NOT LIKE '${K9.LOCAL_UID_PREFIX}%'",
+                    " WHERE empty = 0 AND deleted = 0 AND folder_id = ? AND uid NOT LIKE '${Ann.LOCAL_UID_PREFIX}%'",
                 arrayOf(folderId.toString())
             ).use { cursor ->
                 val result = mutableMapOf<String, Long?>()

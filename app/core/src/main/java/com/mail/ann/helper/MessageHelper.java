@@ -13,7 +13,7 @@ import android.text.style.ForegroundColorSpan;
 import com.mail.ann.Account;
 import com.mail.ann.CoreResourceProvider;
 import com.mail.ann.DI;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.mail.Address;
 
 public class MessageHelper {
@@ -54,7 +54,7 @@ public class MessageHelper {
             return resourceProvider.contactUnknownSender();
         }
 
-        Contacts contactHelper = K9.isShowContactName() ? Contacts.getInstance(mContext) : null;
+        Contacts contactHelper = Ann.isShowContactName() ? Contacts.getInstance(mContext) : null;
         return toFriendly(address, contactHelper);
     }
 
@@ -63,7 +63,7 @@ public class MessageHelper {
             return resourceProvider.contactUnknownRecipient();
         }
 
-        Contacts contactHelper = K9.isShowContactName() ? Contacts.getInstance(mContext) : null;
+        Contacts contactHelper = Ann.isShowContactName() ? Contacts.getInstance(mContext) : null;
         CharSequence recipients = toFriendly(addresses, contactHelper);
         return new SpannableStringBuilder(resourceProvider.contactDisplayNamePrefix()).append(recipients);
     }
@@ -90,9 +90,9 @@ public class MessageHelper {
      */
     public static CharSequence toFriendly(Address address, Contacts contacts) {
         return toFriendly(address,contacts,
-                K9.isShowCorrespondentNames(),
-                K9.isChangeContactNameColor(),
-                K9.getContactNameColor());
+                Ann.isShowCorrespondentNames(),
+                Ann.isChangeContactNameColor(),
+                Ann.getContactNameColor());
     }
 
     public static CharSequence toFriendly(Address[] addresses, Contacts contacts) {

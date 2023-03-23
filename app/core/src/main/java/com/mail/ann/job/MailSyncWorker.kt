@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.mail.ann.Account
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.Preferences
 import com.mail.ann.controller.MessagingController
 import com.mail.ann.mail.AuthType
@@ -56,10 +56,10 @@ class MailSyncWorker(
     }
 
     private fun isBackgroundSyncDisabled(): Boolean {
-        return when (K9.backgroundOps) {
-            K9.BACKGROUND_OPS.NEVER -> true
-            K9.BACKGROUND_OPS.ALWAYS -> false
-            K9.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC -> !ContentResolver.getMasterSyncAutomatically()
+        return when (Ann.backgroundOps) {
+            Ann.BACKGROUND_OPS.NEVER -> true
+            Ann.BACKGROUND_OPS.ALWAYS -> false
+            Ann.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC -> !ContentResolver.getMasterSyncAutomatically()
         }
     }
 

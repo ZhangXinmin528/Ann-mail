@@ -13,7 +13,7 @@ import timber.log.Timber
 import timber.log.Timber.DebugTree
 
 @Deprecated("Use GeneralSettingsManager and GeneralSettings instead")
-object K9 : EarlyInit {
+object Ann : EarlyInit {
     private val generalSettingsManager: RealGeneralSettingsManager by inject()
 
     /**
@@ -162,7 +162,7 @@ object K9 : EarlyInit {
     var isShowCorrespondentNames = true
 
     @JvmStatic
-    var isMessageListSenderAboveSubject = false
+    var isMessageListSenderAboveSubject = true
 
     @JvmStatic
     var isShowContactName = false
@@ -276,7 +276,7 @@ object K9 : EarlyInit {
     @Synchronized
     @JvmStatic
     fun setSortAscending(sortType: SortType, sortAscending: Boolean) {
-        K9.sortAscending[sortType] = sortAscending
+        Ann.sortAscending[sortType] = sortAscending
     }
 
     fun init(context: Context) {
@@ -301,7 +301,7 @@ object K9 : EarlyInit {
         isUseVolumeKeysForListNavigation = storage.getBoolean("useVolumeKeysForListNavigation", false)
         isShowUnifiedInbox = storage.getBoolean("showUnifiedInbox", true)
         isShowStarredCount = storage.getBoolean("showStarredCount", false)
-        isMessageListSenderAboveSubject = storage.getBoolean("messageListSenderAboveSubject", false)
+        isMessageListSenderAboveSubject = storage.getBoolean("messageListSenderAboveSubject", true)
         isShowMessageListStars = storage.getBoolean("messageListStars", true)
         messageListPreviewLines = storage.getInt("messageListPreviewLines", 2)
 

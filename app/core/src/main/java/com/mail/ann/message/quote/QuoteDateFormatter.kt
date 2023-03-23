@@ -1,6 +1,6 @@
 package com.mail.ann.message.quote
 
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import java.text.DateFormat
 import java.util.Date
 import java.util.TimeZone
@@ -21,7 +21,7 @@ class QuoteDateFormatter {
 
     private fun createDateFormat(): DateFormat {
         return DateFormat.getDateTimeInstance(DATE_STYLE, TIME_STYLE).apply {
-            if (K9.isHideTimeZone) {
+            if (Ann.isHideTimeZone) {
                 timeZone = TimeZone.getTimeZone("UTC")
             }
         }

@@ -18,7 +18,7 @@ import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.R;
 import com.mail.ann.external.MessageProvider;
 
@@ -51,7 +51,7 @@ public class MessageListRemoteViewFactory implements RemoteViewsService.RemoteVi
 
     @Override
     public void onCreate() {
-        senderAboveSubject = K9.isMessageListSenderAboveSubject();
+        senderAboveSubject = Ann.isMessageListSenderAboveSubject();
         readTextColor = ContextCompat.getColor(context, R.color.message_list_widget_text_read);
         unreadTextColor = ContextCompat.getColor(context, R.color.message_list_widget_text_unread);
     }

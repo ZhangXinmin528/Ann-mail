@@ -22,7 +22,7 @@ import com.mail.ann.Clock;
 import com.mail.ann.Core;
 import com.mail.ann.DI;
 import com.mail.ann.Identity;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.Preferences;
 import com.mail.ann.ServerSettingsSerializer;
 import com.mail.ann.mail.AuthType;
@@ -649,9 +649,9 @@ public class SettingsImporter {
      *         The new value for the preference.
      */
     private static void putString(StorageEditor editor, String key, String value) {
-        if (K9.isDebugLoggingEnabled()) {
+        if (Ann.isDebugLoggingEnabled()) {
             String outputValue = value;
-            if (!K9.isSensitiveDebugLoggingEnabled() &&
+            if (!Ann.isSensitiveDebugLoggingEnabled() &&
                     (key.endsWith("." + AccountPreferenceSerializer.OUTGOING_SERVER_SETTINGS_KEY) ||
                             key.endsWith("." + AccountPreferenceSerializer.INCOMING_SERVER_SETTINGS_KEY))) {
                 outputValue = "*sensitive*";

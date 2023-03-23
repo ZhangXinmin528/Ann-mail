@@ -1,6 +1,6 @@
 package com.mail.ann.preferences
 
-import com.mail.ann.K9RobolectricTest
+import com.mail.ann.AnnRobolectricTest
 import com.mail.ann.Preferences
 import com.mail.ann.mailstore.FolderRepository
 import java.io.ByteArrayOutputStream
@@ -14,7 +14,7 @@ import org.koin.core.component.inject
 import org.mockito.kotlin.mock
 import org.robolectric.RuntimeEnvironment
 
-class SettingsExporterTest : K9RobolectricTest() {
+class SettingsExporterTest : AnnRobolectricTest() {
     private val contentResolver = RuntimeEnvironment.application.contentResolver
     private val preferences: Preferences by inject()
     private val folderSettingsProvider: FolderSettingsProvider by inject()

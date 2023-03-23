@@ -15,7 +15,7 @@ import androidx.annotation.VisibleForTesting;
 
 import com.mail.ann.CoreResourceProvider;
 import com.mail.ann.DI;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.autocrypt.AutocryptDraftStateHeader;
 import com.mail.ann.autocrypt.AutocryptOpenPgpApiInteractor;
 import com.mail.ann.autocrypt.AutocryptOperations;
@@ -205,9 +205,9 @@ public class PgpMessageBuilder extends MessageBuilder {
             bodyPart.setHeader(MimeHeader.HEADER_CONTENT_TYPE, contentType[0]);
         }
         if (isDraft()) {
-            String[] identityHeader = currentProcessedMimeMessage.getHeader(K9.IDENTITY_HEADER);
-            bodyPart.setHeader(K9.IDENTITY_HEADER, identityHeader[0]);
-            currentProcessedMimeMessage.removeHeader(K9.IDENTITY_HEADER);
+            String[] identityHeader = currentProcessedMimeMessage.getHeader(Ann.IDENTITY_HEADER);
+            bodyPart.setHeader(Ann.IDENTITY_HEADER, identityHeader[0]);
+            currentProcessedMimeMessage.removeHeader(Ann.IDENTITY_HEADER);
         }
 
         return bodyPart;

@@ -1,6 +1,6 @@
 package com.mail.ann.autocrypt
 
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.mail.Address
 import com.mail.ann.mail.Flag
 import com.mail.ann.mail.Message
@@ -38,7 +38,7 @@ class AutocryptTransferMessageCreator(private val stringProvider: AutocryptStrin
             message.subject = subjectText
             message.setHeader("Autocrypt-Setup-Message", "v1")
             message.internalDate = nowDate
-            message.addSentDate(nowDate, K9.isHideTimeZone)
+            message.addSentDate(nowDate, Ann.isHideTimeZone)
             message.setFrom(address)
             message.setHeader("To", address.toEncodedString())
 

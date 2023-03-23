@@ -1,6 +1,6 @@
 package com.mail.ann.view;
 
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -49,7 +49,7 @@ public class ViewSwitcher extends ViewAnimator implements AnimationListener {
     }
 
     private void setupAnimations(Animation in, Animation out) {
-        if (K9.isShowAnimations()) {
+        if (Ann.isShowAnimations()) {
             setInAnimation(in);
             setOutAnimation(out);
             out.setAnimationListener(this);
@@ -60,7 +60,7 @@ public class ViewSwitcher extends ViewAnimator implements AnimationListener {
     }
 
     private void handleSwitchCompleteCallback() {
-        if (!K9.isShowAnimations()) {
+        if (!Ann.isShowAnimations()) {
             onAnimationEnd(null);
         }
     }

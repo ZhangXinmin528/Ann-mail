@@ -68,7 +68,7 @@ class Account(override val uuid: String) : BaseAccount {
     var displayCount = 0
         set(value) {
             if (field != value) {
-                field = value.takeIf { it != -1 } ?: K9.DEFAULT_VISIBLE_LIMIT
+                field = value.takeIf { it != -1 } ?: Ann.DEFAULT_VISIBLE_LIMIT
                 isChangedVisibleLimits = true
             }
         }
@@ -591,7 +591,7 @@ class Account(override val uuid: String) : BaseAccount {
     }
 
     override fun toString(): String {
-        return if (K9.isSensitiveDebugLoggingEnabled) displayName else uuid
+        return if (Ann.isSensitiveDebugLoggingEnabled) displayName else uuid
     }
 
     override fun equals(other: Any?): Boolean {

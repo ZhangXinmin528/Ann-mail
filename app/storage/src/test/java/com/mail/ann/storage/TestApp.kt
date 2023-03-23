@@ -5,7 +5,7 @@ import com.mail.ann.AppConfig
 import com.mail.ann.Core
 import com.mail.ann.CoreResourceProvider
 import com.mail.ann.DI
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.backend.BackendManager
 import com.mail.ann.coreModules
 import com.mail.ann.crypto.EncryptionExtractor
@@ -21,7 +21,7 @@ class TestApp : Application() {
         super.onCreate()
         DI.start(this, coreModules + storageModule + testModule)
 
-        K9.init(this)
+        Ann.init(this)
         Core.init(this)
     }
 }

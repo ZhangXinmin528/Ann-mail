@@ -25,7 +25,7 @@ import com.mail.ann.Account
 import com.mail.ann.Account.Expunge
 import com.mail.ann.Account.SortType
 import com.mail.ann.Clock
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.Preferences
 import com.mail.ann.activity.FolderInfoHolder
 import com.mail.ann.activity.misc.ContactPicture
@@ -286,9 +286,9 @@ class MessageListFragment :
             sortAscending = account.isSortAscending(sortType)
             sortDateAscending = account.isSortAscending(SortType.SORT_DATE)
         } else {
-            sortType = K9.sortType
-            sortAscending = K9.isSortAscending(sortType)
-            sortDateAscending = K9.isSortAscending(SortType.SORT_DATE)
+            sortType = Ann.sortType
+            sortAscending = Ann.isSortAscending(sortType)
+            sortDateAscending = Ann.isSortAscending(SortType.SORT_DATE)
         }
     }
 
@@ -461,13 +461,13 @@ class MessageListFragment :
 
     private val messageListAppearance: MessageListAppearance
         get() = MessageListAppearance(
-            fontSizes = K9.fontSizes,
-            previewLines = K9.messageListPreviewLines,
-            stars = !isOutbox && K9.isShowMessageListStars,
-            senderAboveSubject = K9.isMessageListSenderAboveSubject,
-            showContactPicture = K9.isShowContactPicture,
+            fontSizes = Ann.fontSizes,
+            previewLines = Ann.messageListPreviewLines,
+            stars = !isOutbox && Ann.isShowMessageListStars,
+            senderAboveSubject = Ann.isMessageListSenderAboveSubject,
+            showContactPicture = Ann.isShowContactPicture,
             showingThreadedList = showingThreadedList,
-            backGroundAsReadIndicator = K9.isUseBackgroundAsUnreadIndicator,
+            backGroundAsReadIndicator = Ann.isUseBackgroundAsUnreadIndicator,
             showAccountChip = !isSingleAccountMode
         )
 
@@ -555,16 +555,16 @@ class MessageListFragment :
 
             preferences.saveAccount(account)
         } else {
-            K9.sortType = this.sortType
+            Ann.sortType = this.sortType
             if (sortAscending == null) {
-                this.sortAscending = K9.isSortAscending(this.sortType)
+                this.sortAscending = Ann.isSortAscending(this.sortType)
             } else {
                 this.sortAscending = sortAscending
             }
-            K9.setSortAscending(this.sortType, this.sortAscending)
-            sortDateAscending = K9.isSortAscending(SortType.SORT_DATE)
+            Ann.setSortAscending(this.sortType, this.sortAscending)
+            sortDateAscending = Ann.isSortAscending(SortType.SORT_DATE)
 
-            K9.saveSettingsAsync()
+            Ann.saveSettingsAsync()
         }
 
         reSort()
@@ -585,7 +585,7 @@ class MessageListFragment :
     }
 
     private fun onDelete(messages: List<MessageReference>) {
-        if (K9.isConfirmDelete) {
+        if (Ann.isConfirmDelete) {
             // remember the message selection for #onCreateDialog(int)
             activeMessages = messages
             showDialog(R.id.dialog_confirm_delete)
@@ -1078,7 +1078,7 @@ class MessageListFragment :
     }
 
     private fun onSpam(messages: List<MessageReference>) {
-        if (K9.isConfirmSpam) {
+        if (Ann.isConfirmSpam) {
             // remember the message selection for #onCreateDialog(int)
             activeMessages = messages
             showDialog(R.id.dialog_confirm_spam)
@@ -1568,7 +1568,7 @@ class MessageListFragment :
         get() = isSingleAccountMode && isSingleFolderMode && !isOutbox
 
     fun confirmMarkAllAsRead() {
-        if (K9.isConfirmMarkAllRead) {
+        if (Ann.isConfirmMarkAllRead) {
             showDialog(R.id.dialog_confirm_mark_all_as_read)
         } else {
             markAllAsRead()

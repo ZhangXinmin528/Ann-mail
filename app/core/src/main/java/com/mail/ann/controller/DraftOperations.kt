@@ -2,7 +2,7 @@ package com.mail.ann.controller
 
 import com.mail.ann.Account
 import com.mail.ann.Account.Expunge
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.backend.api.Backend
 import com.mail.ann.controller.MessagingControllerCommands.PendingAppend
 import com.mail.ann.controller.MessagingControllerCommands.PendingReplace
@@ -109,7 +109,7 @@ internal class DraftOperations(
         if (localMessage == null) {
             Timber.w("Couldn't find local copy of message to upload [ID: %d]", uploadMessageId)
             return
-        } else if (!localMessage.uid.startsWith(K9.LOCAL_UID_PREFIX)) {
+        } else if (!localMessage.uid.startsWith(Ann.LOCAL_UID_PREFIX)) {
             Timber.i("Message [ID: %d] to be uploaded already has a server ID set. Skipping upload.", uploadMessageId)
         } else {
             uploadMessage(backend, account, localFolder, localMessage)

@@ -13,7 +13,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.mail.ann.Account
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.activity.MessageList
 import com.mail.ann.controller.MessagingController
 import com.mail.ann.controller.SimpleMessagingListener
@@ -184,7 +184,7 @@ class AnnDrawer(private val parent: MessageList, savedInstanceState: Bundle?) : 
     }
 
     private fun buildBadgeText(unreadCount: Int, starredCount: Int): String? {
-        return if (K9.isShowStarredCount) {
+        return if (Ann.isShowStarredCount) {
             buildBadgeTextWithStarredCount(unreadCount, starredCount)
         } else {
             buildBadgeTextWithUnreadCount(unreadCount)

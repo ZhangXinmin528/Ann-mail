@@ -2,7 +2,7 @@ package com.mail.ann.notification
 
 import com.mail.ann.Account
 import com.mail.ann.Clock
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.TestClock
 import com.mail.ann.controller.MessageReference
 import com.google.common.truth.Truth.assertThat
@@ -137,7 +137,7 @@ class SummaryNotificationDataCreatorTest {
 
     @Test
     fun `always show delete action without confirmation`() {
-        setDeleteAction(K9.NotificationQuickDelete.ALWAYS)
+        setDeleteAction(Ann.NotificationQuickDelete.ALWAYS)
         setConfirmDeleteFromNotification(false)
         val notificationData = createNotificationDataWithMultipleMessages()
 
@@ -153,7 +153,7 @@ class SummaryNotificationDataCreatorTest {
 
     @Test
     fun `always show delete action with confirmation`() {
-        setDeleteAction(K9.NotificationQuickDelete.ALWAYS)
+        setDeleteAction(Ann.NotificationQuickDelete.ALWAYS)
         setConfirmDeleteFromNotification(true)
         val notificationData = createNotificationDataWithMultipleMessages()
 
@@ -169,7 +169,7 @@ class SummaryNotificationDataCreatorTest {
 
     @Test
     fun `show delete action for single notification without confirmation`() {
-        setDeleteAction(K9.NotificationQuickDelete.FOR_SINGLE_MSG)
+        setDeleteAction(Ann.NotificationQuickDelete.FOR_SINGLE_MSG)
         setConfirmDeleteFromNotification(false)
         val notificationData = createNotificationDataWithMultipleMessages()
 
@@ -185,7 +185,7 @@ class SummaryNotificationDataCreatorTest {
 
     @Test
     fun `never show delete action`() {
-        setDeleteAction(K9.NotificationQuickDelete.NEVER)
+        setDeleteAction(Ann.NotificationQuickDelete.NEVER)
         val notificationData = createNotificationDataWithMultipleMessages()
 
         val result = notificationDataCreator.createSummaryNotificationData(
@@ -227,19 +227,19 @@ class SummaryNotificationDataCreatorTest {
     }
 
     private fun setQuietTime(quietTime: Boolean) {
-        K9.isQuietTimeEnabled = quietTime
+        Ann.isQuietTimeEnabled = quietTime
         if (quietTime) {
-            K9.quietTimeStarts = "0:00"
-            K9.quietTimeEnds = "23:59"
+            Ann.quietTimeStarts = "0:00"
+            Ann.quietTimeEnds = "23:59"
         }
     }
 
-    private fun setDeleteAction(mode: K9.NotificationQuickDelete) {
-        K9.notificationQuickDeleteBehaviour = mode
+    private fun setDeleteAction(mode: Ann.NotificationQuickDelete) {
+        Ann.notificationQuickDeleteBehaviour = mode
     }
 
     private fun setConfirmDeleteFromNotification(confirm: Boolean) {
-        K9.isConfirmDeleteFromNotification = confirm
+        Ann.isConfirmDeleteFromNotification = confirm
     }
 
     private fun createAccount(): Account {

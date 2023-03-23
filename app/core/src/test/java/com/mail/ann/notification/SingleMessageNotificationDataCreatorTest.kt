@@ -1,8 +1,8 @@
 package com.mail.ann.notification
 
 import com.mail.ann.Account
-import com.mail.ann.K9
-import com.mail.ann.K9.NotificationQuickDelete
+import com.mail.ann.Ann
+import com.mail.ann.Ann.NotificationQuickDelete
 import com.mail.ann.controller.MessageReference
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
@@ -241,15 +241,15 @@ class SingleMessageNotificationDataCreatorTest {
     }
 
     private fun setDeleteAction(mode: NotificationQuickDelete) {
-        K9.notificationQuickDeleteBehaviour = mode
+        Ann.notificationQuickDeleteBehaviour = mode
     }
 
     private fun setConfirmDeleteFromNotification(confirm: Boolean) {
-        K9.isConfirmDeleteFromNotification = confirm
+        Ann.isConfirmDeleteFromNotification = confirm
     }
 
     private fun setConfirmSpam(confirm: Boolean) {
-        K9.isConfirmSpam = confirm
+        Ann.isConfirmSpam = confirm
     }
 
     private fun createAccount(): Account {

@@ -2,7 +2,7 @@ package com.mail.ann.storage.messages
 
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.mail.Address
 import com.mail.ann.mail.Body
 import com.mail.ann.mail.BoundaryGenerator
@@ -56,7 +56,7 @@ internal class SaveMessageOperations(
     }
 
     private fun saveLocalMessage(folderId: Long, messageData: SaveMessageData): Long {
-        val fakeServerId = K9.LOCAL_UID_PREFIX + UUID.randomUUID().toString()
+        val fakeServerId = Ann.LOCAL_UID_PREFIX + UUID.randomUUID().toString()
         return saveMessage(folderId, fakeServerId, messageData)
     }
 

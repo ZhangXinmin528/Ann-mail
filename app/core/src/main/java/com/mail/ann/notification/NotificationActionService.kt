@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import com.mail.ann.Account
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.Preferences
 import com.mail.ann.controller.MessageReference
 import com.mail.ann.controller.MessageReferenceHelper
@@ -105,7 +105,7 @@ class NotificationActionService : Service() {
             return
         }
 
-        if (!K9.isConfirmSpam && messagingController.isMoveCapable(account)) {
+        if (!Ann.isConfirmSpam && messagingController.isMoveCapable(account)) {
             val sourceFolderId = messageReference.folderId
             messagingController.moveMessage(account, sourceFolderId, messageReference, spamFolderId)
         }

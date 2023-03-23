@@ -1,4 +1,4 @@
-package com.mail.ann.storage
+package com.mail.ann
 
 import android.app.Application
 import org.junit.runner.RunWith
@@ -13,4 +13,4 @@ import org.robolectric.annotation.Config
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(application = TestApp::class)
-abstract class K9RobolectricTest : AutoCloseKoinTest()
+abstract class AnnRobolectricTest : AutoCloseKoinTest()

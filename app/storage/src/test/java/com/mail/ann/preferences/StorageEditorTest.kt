@@ -2,7 +2,7 @@ package com.mail.ann.preferences
 
 import com.mail.ann.preferences.K9StoragePersister.StoragePersistOperationCallback
 import com.mail.ann.preferences.K9StoragePersister.StoragePersistOperations
-import com.mail.ann.storage.K9RobolectricTest
+import com.mail.ann.storage.AnnRobolectricTest
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 import org.mockito.ArgumentMatchers.any
@@ -13,7 +13,7 @@ import org.mockito.kotlin.stubbing
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.verifyNoMoreInteractions
 
-class StorageEditorTest : K9RobolectricTest() {
+class StorageEditorTest : AnnRobolectricTest() {
     private val storage: Storage = Storage(mapOf("storage-key" to "storage-value"))
     private val storageUpdater = TestStorageUpdater(storage)
     private val storagePersister = mock<K9StoragePersister>()

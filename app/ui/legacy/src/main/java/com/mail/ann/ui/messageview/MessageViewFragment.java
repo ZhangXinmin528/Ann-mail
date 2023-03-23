@@ -34,7 +34,7 @@ import android.widget.Toast;
 
 import com.mail.ann.Account;
 import com.mail.ann.DI;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.Preferences;
 import com.mail.ann.activity.MessageCompose;
 import com.mail.ann.helper.MailtoUnsubscribeUri;
@@ -296,7 +296,7 @@ public class MessageViewFragment extends Fragment implements ConfirmationDialogF
      * Called from UI thread when user select Delete
      */
     public void onDelete() {
-        if (K9.isConfirmDelete() || (K9.isConfirmDeleteStarred() && mMessage.isSet(Flag.FLAGGED))) {
+        if (Ann.isConfirmDelete() || (Ann.isConfirmDeleteStarred() && mMessage.isSet(Flag.FLAGGED))) {
             showDialog(R.id.dialog_confirm_delete);
         } else {
             delete();
@@ -324,7 +324,7 @@ public class MessageViewFragment extends Fragment implements ConfirmationDialogF
             return;
         }
 
-        if (dstFolderId.equals(mAccount.getSpamFolderId()) && K9.isConfirmSpam()) {
+        if (dstFolderId.equals(mAccount.getSpamFolderId()) && Ann.isConfirmSpam()) {
             destinationFolderId = dstFolderId;
             showDialog(R.id.dialog_confirm_spam);
         } else {

@@ -3,7 +3,7 @@ package com.mail.ann.preferences
 import android.content.Context
 import com.mail.ann.preferences.K9StoragePersister.StoragePersistOperationCallback
 import com.mail.ann.preferences.K9StoragePersister.StoragePersistOperations
-import com.mail.ann.storage.K9RobolectricTest
+import com.mail.ann.storage.AnnRobolectricTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
@@ -17,7 +17,7 @@ import org.mockito.kotlin.verify
 import org.mockito.kotlin.verifyNoMoreInteractions
 import org.robolectric.RuntimeEnvironment
 
-class StoragePersisterTest : K9RobolectricTest() {
+class StoragePersisterTest : AnnRobolectricTest() {
     private var context: Context = RuntimeEnvironment.application
     private var storagePersister = K9StoragePersister(context)
 

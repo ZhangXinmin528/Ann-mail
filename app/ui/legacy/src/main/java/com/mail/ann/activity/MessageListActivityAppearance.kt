@@ -1,6 +1,6 @@
 package com.mail.ann.activity
 
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.preferences.AppTheme
 import com.mail.ann.preferences.GeneralSettingsManager
 import com.mail.ann.preferences.SubTheme
@@ -19,7 +19,7 @@ data class MessageListActivityAppearance(
     val contactNameColor: Int,
     val messageViewTheme: SubTheme,
     val messageListPreviewLines: Int,
-    val splitViewMode: K9.SplitViewMode,
+    val splitViewMode: Ann.SplitViewMode,
     val fontSizeMessageListSubject: Int,
     val fontSizeMessageListSender: Int,
     val fontSizeMessageListDate: Int,
@@ -39,31 +39,31 @@ data class MessageListActivityAppearance(
             val settings = generalSettingsManager.getSettings()
             return MessageListActivityAppearance(
                 appTheme = settings.appTheme,
-                isShowUnifiedInbox = K9.isShowUnifiedInbox,
-                isShowMessageListStars = K9.isShowMessageListStars,
-                isShowCorrespondentNames = K9.isShowCorrespondentNames,
-                isMessageListSenderAboveSubject = K9.isMessageListSenderAboveSubject,
-                isShowContactName = K9.isShowContactName,
-                isChangeContactNameColor = K9.isChangeContactNameColor,
-                isShowContactPicture = K9.isShowContactPicture,
-                isColorizeMissingContactPictures = K9.isColorizeMissingContactPictures,
-                isUseBackgroundAsUnreadIndicator = K9.isUseBackgroundAsUnreadIndicator,
-                contactNameColor = K9.contactNameColor,
+                isShowUnifiedInbox = Ann.isShowUnifiedInbox,
+                isShowMessageListStars = Ann.isShowMessageListStars,
+                isShowCorrespondentNames = Ann.isShowCorrespondentNames,
+                isMessageListSenderAboveSubject = Ann.isMessageListSenderAboveSubject,
+                isShowContactName = Ann.isShowContactName,
+                isChangeContactNameColor = Ann.isChangeContactNameColor,
+                isShowContactPicture = Ann.isShowContactPicture,
+                isColorizeMissingContactPictures = Ann.isColorizeMissingContactPictures,
+                isUseBackgroundAsUnreadIndicator = Ann.isUseBackgroundAsUnreadIndicator,
+                contactNameColor = Ann.contactNameColor,
                 messageViewTheme = settings.messageViewTheme,
-                messageListPreviewLines = K9.messageListPreviewLines,
-                splitViewMode = K9.splitViewMode,
-                fontSizeMessageListSubject = K9.fontSizes.messageListSubject,
-                fontSizeMessageListSender = K9.fontSizes.messageListSender,
-                fontSizeMessageListDate = K9.fontSizes.messageListDate,
-                fontSizeMessageListPreview = K9.fontSizes.messageListPreview,
-                fontSizeMessageViewSender = K9.fontSizes.messageViewSender,
-                fontSizeMessageViewTo = K9.fontSizes.messageViewTo,
-                fontSizeMessageViewCC = K9.fontSizes.messageViewCC,
-                fontSizeMessageViewBCC = K9.fontSizes.messageViewBCC,
-                fontSizeMessageViewAdditionalHeaders = K9.fontSizes.messageViewAdditionalHeaders,
-                fontSizeMessageViewSubject = K9.fontSizes.messageViewSubject,
-                fontSizeMessageViewDate = K9.fontSizes.messageViewDate,
-                fontSizeMessageViewContentAsPercent = K9.fontSizes.messageViewContentAsPercent
+                messageListPreviewLines = Ann.messageListPreviewLines,
+                splitViewMode = Ann.splitViewMode,
+                fontSizeMessageListSubject = Ann.fontSizes.messageListSubject,
+                fontSizeMessageListSender = Ann.fontSizes.messageListSender,
+                fontSizeMessageListDate = Ann.fontSizes.messageListDate,
+                fontSizeMessageListPreview = Ann.fontSizes.messageListPreview,
+                fontSizeMessageViewSender = Ann.fontSizes.messageViewSender,
+                fontSizeMessageViewTo = Ann.fontSizes.messageViewTo,
+                fontSizeMessageViewCC = Ann.fontSizes.messageViewCC,
+                fontSizeMessageViewBCC = Ann.fontSizes.messageViewBCC,
+                fontSizeMessageViewAdditionalHeaders = Ann.fontSizes.messageViewAdditionalHeaders,
+                fontSizeMessageViewSubject = Ann.fontSizes.messageViewSubject,
+                fontSizeMessageViewDate = Ann.fontSizes.messageViewDate,
+                fontSizeMessageViewContentAsPercent = Ann.fontSizes.messageViewContentAsPercent
             )
         }
     }

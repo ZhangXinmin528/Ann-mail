@@ -7,7 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.ui.base.AnnActivity;
 
 
@@ -18,7 +18,7 @@ public abstract class AnnListActivity extends AnnActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // Shortcuts that work no matter what is selected
-        if (K9.isUseVolumeKeysForListNavigation() &&
+        if (Ann.isUseVolumeKeysForListNavigation() &&
                 (keyCode == KeyEvent.KEYCODE_VOLUME_UP ||
                         keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
 
@@ -45,7 +45,7 @@ public abstract class AnnListActivity extends AnnActivity {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         // Swallow these events too to avoid the audible notification of a volume change
-        if (K9.isUseVolumeKeysForListNavigation() &&
+        if (Ann.isUseVolumeKeysForListNavigation() &&
                 (keyCode == KeyEvent.KEYCODE_VOLUME_UP ||
                 keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
             return true;

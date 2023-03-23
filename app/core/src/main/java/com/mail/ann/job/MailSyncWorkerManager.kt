@@ -9,7 +9,7 @@ import androidx.work.WorkManager
 import androidx.work.workDataOf
 import com.mail.ann.Account
 import com.mail.ann.Clock
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import java.util.concurrent.TimeUnit
 import timber.log.Timber
 
@@ -54,7 +54,7 @@ class MailSyncWorkerManager(private val workManager: WorkManager, val clock: Clo
         }
     }
 
-    private fun isNeverSyncInBackground() = K9.backgroundOps == K9.BACKGROUND_OPS.NEVER
+    private fun isNeverSyncInBackground() = Ann.backgroundOps == Ann.BACKGROUND_OPS.NEVER
 
     private fun getSyncIntervalIfEnabled(account: Account): Long? {
         val intervalMinutes = account.automaticCheckIntervalMinutes

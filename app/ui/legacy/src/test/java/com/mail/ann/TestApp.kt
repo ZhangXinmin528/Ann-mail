@@ -13,7 +13,7 @@ class TestApp : Application() {
         super.onCreate()
         DI.start(this, coreModules + storageModule + testModule)
 
-        K9.init(this)
+        Ann.init(this)
         Core.init(this)
     }
 }

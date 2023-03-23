@@ -6,7 +6,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 /**
- * A Robolectric test that does not create an instance of our [Application] class [K9].
+ * A Robolectric test that does not create an instance of our [Application] class [Ann].
  *
  * See also [K9RobolectricTest].
  */

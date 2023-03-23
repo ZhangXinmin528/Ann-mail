@@ -6,7 +6,7 @@ import android.net.Uri.Builder;
 
 import com.mail.ann.Account.QuoteStyle;
 import com.mail.ann.Identity;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.controller.MessageReference;
 import com.mail.ann.mail.internet.TextBody;
 import com.mail.ann.message.quote.InsertableHtmlContent;
@@ -15,7 +15,7 @@ import timber.log.Timber;
 
 public class IdentityHeaderBuilder {
     private static final int MAX_LINE_LENGTH = 72;
-    private static final int FIRST_LINE_EXTRA_LENGTH = K9.IDENTITY_HEADER.length() + 2;
+    private static final int FIRST_LINE_EXTRA_LENGTH = Ann.IDENTITY_HEADER.length() + 2;
 
     private InsertableHtmlContent quotedHtmlContent;
     private QuoteStyle quoteStyle;

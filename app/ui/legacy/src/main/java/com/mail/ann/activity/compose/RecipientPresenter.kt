@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.loader.app.LoaderManager
 import com.mail.ann.Account
 import com.mail.ann.Identity
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.activity.compose.ComposeCryptoStatus.AttachErrorState
 import com.mail.ann.activity.compose.ComposeCryptoStatus.SendErrorState
 import com.mail.ann.autocrypt.AutocryptDraftStateHeader
@@ -690,10 +690,10 @@ class RecipientPresenter(
     }
 
     private fun checkAndIncrementPgpInlineDialogCounter(): Boolean {
-        val pgpInlineDialogCounter = K9.pgpInlineDialogCounter
+        val pgpInlineDialogCounter = Ann.pgpInlineDialogCounter
         if (pgpInlineDialogCounter < PGP_DIALOG_DISPLAY_THRESHOLD) {
-            K9.pgpInlineDialogCounter = pgpInlineDialogCounter + 1
-            K9.saveSettingsAsync()
+            Ann.pgpInlineDialogCounter = pgpInlineDialogCounter + 1
+            Ann.saveSettingsAsync()
             return true
         }
 
@@ -701,10 +701,10 @@ class RecipientPresenter(
     }
 
     private fun checkAndIncrementPgpSignOnlyDialogCounter(): Boolean {
-        val pgpSignOnlyDialogCounter = K9.pgpSignOnlyDialogCounter
+        val pgpSignOnlyDialogCounter = Ann.pgpSignOnlyDialogCounter
         if (pgpSignOnlyDialogCounter < PGP_DIALOG_DISPLAY_THRESHOLD) {
-            K9.pgpSignOnlyDialogCounter = pgpSignOnlyDialogCounter + 1
-            K9.saveSettingsAsync()
+            Ann.pgpSignOnlyDialogCounter = pgpSignOnlyDialogCounter + 1
+            Ann.saveSettingsAsync()
             return true
         }
 

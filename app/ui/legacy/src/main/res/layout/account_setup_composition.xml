@@ -96,7 +96,7 @@
                         android:contentDescription="@string/account_settings_signature_label"/>
 
                 <TextView
-                        android:text="@string/account_settings_signature__location_label"
+                        android:text="@string/account_settings_signature_mail_location_label"
                         android:layout_height="wrap_content"
                         android:layout_width="fill_parent"
                         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -112,15 +112,15 @@
                             android:id="@+id/account_signature_location_before_quoted_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/account_settings_signature__location_before_quoted_text"
-                            android:contentDescription="@string/account_settings_signature__location_label"/>
+                            android:text="@string/account_settings_signature_mail_location_before_quoted_text"
+                            android:contentDescription="@string/account_settings_signature_mail_location_label"/>
 
                     <RadioButton
                             android:id="@+id/account_signature_location_after_quoted_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/account_settings_signature__location_after_quoted_text"
-                            android:contentDescription="@string/account_settings_signature__location_label"/>
+                            android:text="@string/account_settings_signature_mail_location_after_quoted_text"
+                            android:contentDescription="@string/account_settings_signature_mail_location_label"/>
                 </RadioGroup>
             </LinearLayout>
         </LinearLayout>

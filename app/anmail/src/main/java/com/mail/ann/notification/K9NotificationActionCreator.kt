@@ -6,7 +6,7 @@ import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.Context
 import android.content.Intent
 import com.mail.ann.Account
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.activity.MessageList
 import com.mail.ann.activity.compose.MessageActions
 import com.mail.ann.activity.setup.AccountSetupIncoming
@@ -38,7 +38,7 @@ internal class K9NotificationActionCreator(
         messageReference: MessageReference,
         notificationId: Int
     ): PendingIntent {
-        val openInUnifiedInbox = K9.isShowUnifiedInbox && isIncludedInUnifiedInbox(messageReference)
+        val openInUnifiedInbox = Ann.isShowUnifiedInbox && isIncludedInUnifiedInbox(messageReference)
         val intent = createMessageViewIntent(messageReference, openInUnifiedInbox)
 
         return PendingIntent.getActivity(context, notificationId, intent, FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE)
@@ -56,7 +56,7 @@ internal class K9NotificationActionCreator(
     ): PendingIntent {
         val folderIds = extractFolderIds(messageReferences)
 
-        val intent = if (K9.isShowUnifiedInbox && areAllIncludedInUnifiedInbox(account, folderIds)) {
+        val intent = if (Ann.isShowUnifiedInbox && areAllIncludedInUnifiedInbox(account, folderIds)) {
             createUnifiedInboxIntent(account)
         } else if (folderIds.size == 1) {
             createMessageListIntent(account, folderIds.first())
@@ -122,7 +122,7 @@ internal class K9NotificationActionCreator(
         messageReference: MessageReference,
         notificationId: Int
     ): PendingIntent {
-        return if (K9.isConfirmDeleteFromNotification) {
+        return if (Ann.isConfirmDeleteFromNotification) {
             createDeleteConfirmationPendingIntent(messageReference, notificationId)
         } else {
             createDeleteServicePendingIntent(messageReference, notificationId)
@@ -150,7 +150,7 @@ internal class K9NotificationActionCreator(
         messageReferences: List<MessageReference>,
         notificationId: Int
     ): PendingIntent {
-        return if (K9.isConfirmDeleteFromNotification) {
+        return if (Ann.isConfirmDeleteFromNotification) {
             getDeleteAllConfirmationPendingIntent(messageReferences, notificationId)
         } else {
             getDeleteAllServicePendingIntent(account, messageReferences, notificationId)

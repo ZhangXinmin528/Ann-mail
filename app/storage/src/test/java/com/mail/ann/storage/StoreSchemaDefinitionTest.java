@@ -37,7 +37,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 
-public class StoreSchemaDefinitionTest extends K9RobolectricTest {
+public class StoreSchemaDefinitionTest extends AnnRobolectricTest {
     private StoreSchemaDefinition storeSchemaDefinition;
 
 

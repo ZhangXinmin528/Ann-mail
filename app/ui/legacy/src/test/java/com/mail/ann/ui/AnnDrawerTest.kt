@@ -5,7 +5,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.robolectric.RuntimeEnvironment
 
-class K9DrawerTest : RobolectricTest() {
+class AnnDrawerTest : RobolectricTest() {
     @Test
     fun testAccountColorLengthEqualsDrawerColorLength() {
         val resources = RuntimeEnvironment.application.resources

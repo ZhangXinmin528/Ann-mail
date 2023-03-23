@@ -38,7 +38,7 @@ class App : Application() {
 
         DI.start(this, coreModules + uiModules + appModules)
 
-        K9.init(this)
+        Ann.init(this)
         Core.init(this)
         MessageProvider.init()
         initializeAppLanguage()

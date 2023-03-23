@@ -1,6 +1,6 @@
 package com.mail.ann.storage.messages
 
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.helper.FileHelper
 import com.mail.ann.mailstore.StorageManager
 import com.mail.ann.mailstore.StorageManager.InternalStorageProvider
@@ -13,7 +13,7 @@ internal class AttachmentFileManager(
 ) {
     fun deleteFile(messagePartId: Long) {
         val file = getAttachmentFile(messagePartId)
-        if (file.exists() && !file.delete() && K9.isDebugLoggingEnabled) {
+        if (file.exists() && !file.delete() && Ann.isDebugLoggingEnabled) {
             Timber.w("Couldn't delete message part file: %s", file.absolutePath)
         }
     }

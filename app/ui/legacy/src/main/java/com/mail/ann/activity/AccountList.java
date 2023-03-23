@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.mail.ann.Account;
 import com.mail.ann.BaseAccount;
 import com.mail.ann.FontSizes;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.Preferences;
 import com.mail.ann.ui.R;
 import com.mail.ann.search.SearchAccount;
@@ -31,7 +31,7 @@ import com.mail.ann.search.SearchAccount;
  * </p>
  */
 public abstract class AccountList extends AnnListActivity implements OnItemClickListener {
-    private FontSizes mFontSizes = K9.getFontSizes();
+    private FontSizes mFontSizes = Ann.getFontSizes();
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -70,7 +70,7 @@ public abstract class AccountList extends AnnListActivity implements OnItemClick
     public void populateListView(List<Account> realAccounts) {
         List<BaseAccount> accounts = new ArrayList<>();
 
-        if (K9.isShowUnifiedInbox()) {
+        if (Ann.isShowUnifiedInbox()) {
             BaseAccount unifiedInboxAccount = SearchAccount.createUnifiedInboxAccount();
             accounts.add(unifiedInboxAccount);
         }

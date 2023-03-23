@@ -2,7 +2,7 @@ package com.mail.ann.mailstore
 
 import android.net.Uri
 import com.mail.ann.Account
-import com.mail.ann.K9RobolectricTest
+import com.mail.ann.AnnRobolectricTest
 import com.mail.ann.Preferences
 import com.mail.ann.backend.api.BackendStorage
 import com.mail.ann.mail.FolderClass
@@ -16,7 +16,7 @@ import org.mockito.kotlin.any
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 
-class K9BackendStorageTest : K9RobolectricTest() {
+class AnnBackendStorageTest : AnnRobolectricTest() {
     val preferences: Preferences by inject()
     val localStoreProvider: LocalStoreProvider by inject()
     val messageStoreManager: MessageStoreManager by inject()

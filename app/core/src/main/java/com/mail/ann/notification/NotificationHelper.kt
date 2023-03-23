@@ -6,7 +6,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.mail.ann.Account
-import com.mail.ann.K9
+import com.mail.ann.Ann
 
 class NotificationHelper(
     private val context: Context,
@@ -44,7 +44,7 @@ class NotificationHelper(
 internal fun NotificationCompat.Builder.setErrorAppearance(): NotificationCompat.Builder = apply {
     setSilent(true)
 
-    if (!K9.isQuietTime) {
+    if (!Ann.isQuietTime) {
         setLights(
             NotificationHelper.NOTIFICATION_LED_FAILURE_COLOR,
             NotificationHelper.NOTIFICATION_LED_FAST_ON_TIME,

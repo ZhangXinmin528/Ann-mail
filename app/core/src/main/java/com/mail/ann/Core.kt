@@ -24,7 +24,7 @@ object Core : EarlyInit {
      * to the super class's `onCreate` implementation and before initializing the dependency injection library.
      */
     fun earlyInit() {
-        if (K9.DEVELOPER_MODE) {
+        if (Ann.DEVELOPER_MODE) {
             enableStrictMode()
         }
     }

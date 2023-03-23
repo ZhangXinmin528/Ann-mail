@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteException
 import android.net.Uri
 import com.mail.ann.Account
 import com.mail.ann.Account.SortType
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.Preferences
 import com.mail.ann.fragment.MLFProjectionInfo
 import com.mail.ann.fragment.MessageListFragmentComparators.ArrivalComparator
@@ -137,7 +137,7 @@ class MessageListLoader(
         } catch (e: SQLiteException) {
             Timber.e(e, "Error querying EmailProvider")
 
-            if (K9.DEVELOPER_MODE && e.message?.contains("malformed MATCH expression") == false) {
+            if (Ann.DEVELOPER_MODE && e.message?.contains("malformed MATCH expression") == false) {
                 throw e
             }
 

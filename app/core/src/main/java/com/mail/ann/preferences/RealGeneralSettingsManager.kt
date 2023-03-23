@@ -2,7 +2,7 @@
 
 package com.mail.ann.preferences
 
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.Preferences
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -16,10 +16,10 @@ import timber.log.Timber
 /**
  * Retrieve and modify general settings.
  *
- * Currently general settings are split between [K9] and [GeneralSettings]. The goal is to move everything over to
- * [GeneralSettings] and get rid of [K9].
+ * Currently general settings are split between [Ann] and [GeneralSettings]. The goal is to move everything over to
+ * [GeneralSettings] and get rid of [Ann].
  *
- * The [GeneralSettings] instance managed by this class is updated with state from [K9] when [K9.saveSettingsAsync] is
+ * The [GeneralSettings] instance managed by this class is updated with state from [Ann] when [Ann.saveSettingsAsync] is
  * called.
  */
 internal class RealGeneralSettingsManager(
@@ -45,7 +45,7 @@ internal class RealGeneralSettingsManager(
 
     @Synchronized
     fun loadSettings() {
-        K9.loadPrefs(preferences.storage)
+        Ann.loadPrefs(preferences.storage)
         generalSettings = loadGeneralSettings()
     }
 
@@ -68,7 +68,7 @@ internal class RealGeneralSettingsManager(
     @Synchronized
     private fun updateGeneralSettingsWithStateFromK9(): GeneralSettings {
         return getSettings().copy(
-            backgroundSync = K9.backgroundOps.toBackgroundSync()
+            backgroundSync = Ann.backgroundOps.toBackgroundSync()
         ).also { generalSettings ->
             this.generalSettings = generalSettings
         }
@@ -77,7 +77,7 @@ internal class RealGeneralSettingsManager(
     @Synchronized
     private fun saveSettings(settings: GeneralSettings) {
         val editor = preferences.createStorageEditor()
-        K9.save(editor)
+        Ann.save(editor)
         writeSettings(editor, settings)
         editor.commit()
     }
@@ -132,7 +132,7 @@ internal class RealGeneralSettingsManager(
         val storage = preferences.storage
 
         val settings = GeneralSettings(
-            backgroundSync = K9.backgroundOps.toBackgroundSync(),
+            backgroundSync = Ann.backgroundOps.toBackgroundSync(),
             showRecentChanges = storage.getBoolean("showRecentChanges", true),
             appTheme = storage.getEnum("theme", AppTheme.FOLLOW_SYSTEM),
             messageViewTheme = storage.getEnum("messageViewTheme", SubTheme.USE_GLOBAL),
@@ -146,11 +146,11 @@ internal class RealGeneralSettingsManager(
     }
 }
 
-private fun K9.BACKGROUND_OPS.toBackgroundSync(): BackgroundSync {
+private fun Ann.BACKGROUND_OPS.toBackgroundSync(): BackgroundSync {
     return when (this) {
-        K9.BACKGROUND_OPS.ALWAYS -> BackgroundSync.ALWAYS
-        K9.BACKGROUND_OPS.NEVER -> BackgroundSync.NEVER
-        K9.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC -> BackgroundSync.FOLLOW_SYSTEM_AUTO_SYNC
+        Ann.BACKGROUND_OPS.ALWAYS -> BackgroundSync.ALWAYS
+        Ann.BACKGROUND_OPS.NEVER -> BackgroundSync.NEVER
+        Ann.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC -> BackgroundSync.FOLLOW_SYSTEM_AUTO_SYNC
     }
 }
 

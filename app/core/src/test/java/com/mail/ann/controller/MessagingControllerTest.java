@@ -9,8 +9,8 @@ import java.util.Set;
 import android.content.Context;
 
 import com.mail.ann.Account;
-import com.mail.ann.K9;
-import com.mail.ann.K9RobolectricTest;
+import com.mail.ann.Ann;
+import com.mail.ann.AnnRobolectricTest;
 import com.mail.ann.Preferences;
 import com.mail.ann.backend.BackendManager;
 import com.mail.ann.backend.api.Backend;
@@ -67,7 +67,7 @@ import static org.mockito.Mockito.when;
 
 
 @SuppressWarnings("unchecked")
-public class MessagingControllerTest extends K9RobolectricTest {
+public class MessagingControllerTest extends AnnRobolectricTest {
     private static final long FOLDER_ID = 23;
     private static final String FOLDER_NAME = "Folder";
     private static final long SENT_FOLDER_ID = 10;
@@ -408,7 +408,7 @@ public class MessagingControllerTest extends K9RobolectricTest {
         when(localFolder.getMessages()).thenReturn(Collections.singletonList(localMessageToSend1));
         when(localMessageToSend1.getUid()).thenReturn("localMessageToSend1");
         when(localMessageToSend1.getDatabaseId()).thenReturn(42L);
-        when(localMessageToSend1.getHeader(K9.IDENTITY_HEADER)).thenReturn(new String[]{});
+        when(localMessageToSend1.getHeader(Ann.IDENTITY_HEADER)).thenReturn(new String[]{});
 
         OutboxState outboxState = new OutboxState(SendState.READY, 0, null, 0);
         OutboxStateRepository outboxStateRepository = mock(OutboxStateRepository.class);

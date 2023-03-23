@@ -11,7 +11,7 @@ import org.junit.Test
 
 private const val FOLDER_ID = 1L
 
-class K9NotificationStoreTest : RobolectricTest() {
+class AnnNotificationStoreTest : RobolectricTest() {
     private val sqliteDatabase = createDatabase()
     private val lockableDatabase = createLockableDatabaseMock(sqliteDatabase)
     private val store = K9NotificationStore(lockableDatabase)

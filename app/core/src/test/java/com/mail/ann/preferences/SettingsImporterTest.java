@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.mail.ann.K9RobolectricTest;
+import com.mail.ann.AnnRobolectricTest;
 import com.mail.ann.Preferences;
 import com.mail.ann.mail.AuthType;
 import kotlin.text.Charsets;
@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
-public class SettingsImporterTest extends K9RobolectricTest {
+public class SettingsImporterTest extends AnnRobolectricTest {
 
     @Before
     public void before() {

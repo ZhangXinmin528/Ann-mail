@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.ui.R;
 import com.mail.ann.ui.helper.ContextHelper;
 import com.mail.ann.ui.helper.SizeFormatter;
@@ -68,7 +68,7 @@ public class AttachmentView extends FrameLayout implements OnClickListener {
     }
 
     private void displayAttachmentInformation() {
-        if (attachment.size > K9.MAX_ATTACHMENT_DOWNLOAD_SIZE) {
+        if (attachment.size > Ann.MAX_ATTACHMENT_DOWNLOAD_SIZE) {
             saveButton.setVisibility(View.INVISIBLE);
         }
 

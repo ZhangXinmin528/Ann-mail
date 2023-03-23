@@ -1,7 +1,7 @@
 package com.mail.ann.ui.base
 
 import android.content.res.Resources
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.ui.base.extensions.currentLocale
 import com.mail.ann.ui.base.locale.SystemLocaleChangeListener
 import com.mail.ann.ui.base.locale.SystemLocaleManager
@@ -37,21 +37,21 @@ class AppLanguageManager(
     }
 
     fun init() {
-        setLocale(K9.k9Language)
+        setLocale(Ann.k9Language)
     }
 
     fun getOverrideLocale(): Locale? = currentOverrideLocale
 
     fun getAppLanguage(): String {
-        return K9.k9Language
+        return Ann.k9Language
     }
 
     fun setAppLanguage(appLanguage: String) {
-        if (appLanguage == K9.k9Language) {
+        if (appLanguage == Ann.k9Language) {
             return
         }
 
-        K9.k9Language = appLanguage
+        Ann.k9Language = appLanguage
 
         setLocale(appLanguage)
     }

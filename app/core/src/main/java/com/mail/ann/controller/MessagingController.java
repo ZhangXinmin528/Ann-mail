@@ -32,7 +32,7 @@ import com.mail.ann.Account;
 import com.mail.ann.Account.DeletePolicy;
 import com.mail.ann.Account.Expunge;
 import com.mail.ann.DI;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.Preferences;
 import com.mail.ann.backend.BackendManager;
 import com.mail.ann.backend.api.Backend;
@@ -87,7 +87,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import timber.log.Timber;
 
-import static com.mail.ann.K9.MAX_SEND_ATTEMPTS;
+import static com.mail.ann.Ann.MAX_SEND_ATTEMPTS;
 import static com.mail.ann.helper.ExceptionHelper.getRootCauseMessage;
 import static com.mail.ann.helper.Preconditions.checkNotNull;
 import static com.mail.ann.mail.Flag.X_REMOTE_COPY_STARTED;
@@ -657,7 +657,7 @@ public class MessagingController {
                     account.getEarliestPollDate(),
                     account.isSyncRemoteDeletions(),
                     account.getMaximumAutoDownloadMessageSize(),
-                    K9.DEFAULT_VISIBLE_LIMIT,
+                    Ann.DEFAULT_VISIBLE_LIMIT,
                     SYNC_FLAGS);
     }
 
@@ -755,7 +755,7 @@ public class MessagingController {
                     Timber.e(e, "Unexpected exception with command '%s', removing command from queue", commandName);
                     localStore.removePendingCommand(processingCommand);
 
-                    if (K9.DEVELOPER_MODE) {
+                    if (Ann.DEVELOPER_MODE) {
                         throw new AssertionError("Unexpected exception while processing pending command", e);
                     }
                 }
@@ -792,7 +792,7 @@ public class MessagingController {
             return;
         }
 
-        if (!localMessage.getUid().startsWith(K9.LOCAL_UID_PREFIX)) {
+        if (!localMessage.getUid().startsWith(Ann.LOCAL_UID_PREFIX)) {
             //FIXME: This should never happen. Throw in debug builds.
             return;
         }
@@ -1254,7 +1254,7 @@ public class MessagingController {
 
             LocalMessage message = localFolder.getMessage(uid);
 
-            if (uid.startsWith(K9.LOCAL_UID_PREFIX)) {
+            if (uid.startsWith(Ann.LOCAL_UID_PREFIX)) {
                 Timber.w("Message has local UID so cannot download fully.");
                 // ASH move toast
                 android.widget.Toast.makeText(context,
@@ -1560,7 +1560,7 @@ public class MessagingController {
 
                     localFolder.fetch(Collections.singletonList(message), fp, null);
                     try {
-                        if (message.getHeader(K9.IDENTITY_HEADER).length > 0 || message.isSet(Flag.DRAFT)) {
+                        if (message.getHeader(Ann.IDENTITY_HEADER).length > 0 || message.isSet(Flag.DRAFT)) {
                             Timber.v("The user has set the Outbox and Drafts folder to the same thing. " +
                                     "This message appears to be a draft, so K-9 will not send it");
                             continue;
@@ -1701,7 +1701,7 @@ public class MessagingController {
     }
 
     public boolean isMoveCapable(MessageReference messageReference) {
-        return !messageReference.getUid().startsWith(K9.LOCAL_UID_PREFIX);
+        return !messageReference.getUid().startsWith(Ann.LOCAL_UID_PREFIX);
     }
 
     public boolean isCopyCapable(MessageReference message) {
@@ -1830,7 +1830,7 @@ public class MessagingController {
             List<String> uids = new LinkedList<>();
             for (Message message : inMessages) {
                 String uid = message.getUid();
-                if (!uid.startsWith(K9.LOCAL_UID_PREFIX)) {
+                if (!uid.startsWith(Ann.LOCAL_UID_PREFIX)) {
                     uids.add(uid);
                 }
 
@@ -2005,7 +2005,7 @@ public class MessagingController {
 
     @SuppressLint("NewApi") // used for debugging only
     public void debugClearMessagesLocally(final List<MessageReference> messages) {
-        if (!K9.DEVELOPER_MODE) {
+        if (!Ann.DEVELOPER_MODE) {
             throw new AssertionError("method must only be used in developer mode!");
         }
 
@@ -2041,7 +2041,7 @@ public class MessagingController {
                 notificationController.removeNewMailNotification(account, message.makeMessageReference());
 
                 String uid = message.getUid();
-                if (uid.startsWith(K9.LOCAL_UID_PREFIX)) {
+                if (uid.startsWith(Ann.LOCAL_UID_PREFIX)) {
                     localOnlyMessages.add(message);
                 } else {
                     syncedMessages.add(message);
@@ -2301,7 +2301,7 @@ public class MessagingController {
 
             wakeLock = pm.newWakeLock("K9 MessagingController.checkMail");
             wakeLock.setReferenceCounted(false);
-            wakeLock.acquire(K9.MANUAL_WAKE_LOCK_TIMEOUT);
+            wakeLock.acquire(Ann.MANUAL_WAKE_LOCK_TIMEOUT);
         } else {
             wakeLock = null;
         }

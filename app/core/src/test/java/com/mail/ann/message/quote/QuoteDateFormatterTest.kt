@@ -1,6 +1,6 @@
 package com.mail.ann.message.quote
 
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.google.common.truth.Truth.assertThat
 import java.time.ZonedDateTime
 import java.util.Date
@@ -30,7 +30,7 @@ class QuoteDateFormatterTest {
 
     @Test
     fun hideTimeZoneEnabled_UsLocale() {
-        K9.isHideTimeZone = true
+        Ann.isHideTimeZone = true
         Locale.setDefault(Locale.US)
 
         val formattedDate = quoteDateFormatter.format("2020-09-19T20:00:00+00:00".toDate())
@@ -40,7 +40,7 @@ class QuoteDateFormatterTest {
 
     @Test
     fun hideTimeZoneEnabled_GermanyLocale() {
-        K9.isHideTimeZone = true
+        Ann.isHideTimeZone = true
         Locale.setDefault(Locale.GERMANY)
 
         val formattedDate = quoteDateFormatter.format("2020-09-19T20:00:00+00:00".toDate())
@@ -50,7 +50,7 @@ class QuoteDateFormatterTest {
 
     @Test
     fun hideTimeZoneDisabled_UsLocale() {
-        K9.isHideTimeZone = false
+        Ann.isHideTimeZone = false
         Locale.setDefault(Locale.US)
 
         val formattedDate = quoteDateFormatter.format("2020-09-19T20:00:00+00:00".toDate())
@@ -60,7 +60,7 @@ class QuoteDateFormatterTest {
 
     @Test
     fun hideTimeZoneDisabled_GermanyLocale() {
-        K9.isHideTimeZone = false
+        Ann.isHideTimeZone = false
         Locale.setDefault(Locale.GERMANY)
 
         val formattedDate = quoteDateFormatter.format("2020-09-19T20:00:00+00:00".toDate())

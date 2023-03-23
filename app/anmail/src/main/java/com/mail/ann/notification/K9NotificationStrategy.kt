@@ -1,7 +1,7 @@
 package com.mail.ann.notification
 
 import com.mail.ann.Account
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.helper.Contacts
 import com.mail.ann.mail.Flag
 import com.mail.ann.mail.K9MailLib
@@ -20,7 +20,7 @@ class K9NotificationStrategy(private val contacts: Contacts) : NotificationStrat
         isOldMessage: Boolean
     ): Boolean {
 
-        if (!K9.isNotificationDuringQuietTimeEnabled && K9.isQuietTime) {
+        if (!Ann.isNotificationDuringQuietTimeEnabled && Ann.isQuietTime) {
             Timber.v("No notification: Quiet time is active")
             return false
         }

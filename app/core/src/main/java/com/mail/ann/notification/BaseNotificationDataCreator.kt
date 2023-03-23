@@ -1,8 +1,8 @@
 package com.mail.ann.notification
 
 import com.mail.ann.Account
-import com.mail.ann.K9
-import com.mail.ann.K9.LockScreenNotificationVisibility
+import com.mail.ann.Ann
+import com.mail.ann.Ann.LockScreenNotificationVisibility
 
 private const val MAX_NUMBER_OF_SENDERS_IN_LOCK_SCREEN_NOTIFICATION = 5
 
@@ -22,7 +22,7 @@ internal class BaseNotificationDataCreator {
     }
 
     private fun createLockScreenNotificationData(data: NotificationData): LockScreenNotificationData {
-        return when (K9.lockScreenNotificationVisibility) {
+        return when (Ann.lockScreenNotificationVisibility) {
             LockScreenNotificationVisibility.NOTHING -> LockScreenNotificationData.None
             LockScreenNotificationVisibility.APP_NAME -> LockScreenNotificationData.AppName
             LockScreenNotificationVisibility.EVERYTHING -> LockScreenNotificationData.Public

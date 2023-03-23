@@ -33,7 +33,7 @@ import android.widget.ListPopupWindow;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.ui.R;
 import com.mail.ann.activity.AlternateRecipientAdapter;
 import com.mail.ann.activity.AlternateRecipientAdapter.AlternateRecipientListener;
@@ -713,7 +713,7 @@ public class RecipientSelectView extends TokenCompleteTextView<Recipient> implem
         }
 
         public String getDisplayNameOrAddress() {
-            final String displayName = K9.isShowCorrespondentNames() ? getDisplayName() : null;
+            final String displayName = Ann.isShowCorrespondentNames() ? getDisplayName() : null;
 
             if (displayName != null) {
                 return displayName;

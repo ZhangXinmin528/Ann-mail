@@ -22,7 +22,7 @@ import androidx.appcompat.widget.PopupMenu.OnMenuItemClickListener;
 import com.mail.ann.Account;
 import com.mail.ann.DI;
 import com.mail.ann.FontSizes;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.activity.misc.ContactPicture;
 import com.mail.ann.contacts.ContactPictureLoader;
 import com.mail.ann.helper.ClipboardManager;
@@ -63,7 +63,7 @@ public class MessageHeader extends LinearLayout implements OnClickListener, OnLo
     private View mForwardedIcon;
     private Message mMessage;
     private Account mAccount;
-    private FontSizes mFontSizes = K9.getFontSizes();
+    private FontSizes mFontSizes = Ann.getFontSizes();
     private Contacts mContacts;
 
     private MessageHelper mMessageHelper;
@@ -227,7 +227,7 @@ public class MessageHeader extends LinearLayout implements OnClickListener, OnLo
             fromAddress = fromAddresses[0];
         }
 
-        final Contacts contacts = K9.isShowContactName() ? mContacts : null;
+        final Contacts contacts = Ann.isShowContactName() ? mContacts : null;
         final CharSequence from = mMessageHelper.getSenderDisplayName(fromAddress);
         final CharSequence to = MessageHelper.toFriendly(message.getRecipients(Message.RecipientType.TO), contacts);
         final CharSequence cc = MessageHelper.toFriendly(message.getRecipients(Message.RecipientType.CC), contacts);
@@ -236,7 +236,7 @@ public class MessageHeader extends LinearLayout implements OnClickListener, OnLo
         mMessage = message;
         mAccount = account;
 
-        if (K9.isShowContactPicture()) {
+        if (Ann.isShowContactPicture()) {
             mContactBadge.setVisibility(View.VISIBLE);
             mContactsPictureLoader = ContactPicture.getContactPictureLoader();
         }  else {
@@ -260,7 +260,7 @@ public class MessageHeader extends LinearLayout implements OnClickListener, OnLo
                 | DateUtils.FORMAT_SHOW_YEAR);
         mDateView.setText(dateTime);
 
-        if (K9.isShowContactPicture()) {
+        if (Ann.isShowContactPicture()) {
             if (fromAddress != null) {
                 mContactBadge.setContact(fromAddress);
                 mContactsPictureLoader.setContactPicture(mContactBadge, fromAddress);

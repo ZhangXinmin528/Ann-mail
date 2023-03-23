@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import androidx.core.database.getBlobOrNull
 import androidx.core.database.getLongOrNull
 import androidx.core.database.getStringOrNull
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.mailstore.LockableDatabase
 import java.util.UUID
 
@@ -194,7 +194,7 @@ internal class CopyMessageOperations(
 
         return values.apply {
             put("folder_id", destinationFolderId)
-            put("uid", K9.LOCAL_UID_PREFIX + UUID.randomUUID().toString())
+            put("uid", Ann.LOCAL_UID_PREFIX + UUID.randomUUID().toString())
             put("message_part_id", rootMessagePartId)
         }
     }

@@ -1,7 +1,7 @@
 package com.mail.ann.notification
 
 import com.mail.ann.Account
-import com.mail.ann.K9
+import com.mail.ann.Ann
 
 internal class SingleMessageNotificationDataCreator {
 
@@ -72,16 +72,16 @@ internal class SingleMessageNotificationDataCreator {
     }
 
     private fun isDeleteActionEnabled(): Boolean {
-        return K9.notificationQuickDeleteBehaviour != K9.NotificationQuickDelete.NEVER
+        return Ann.notificationQuickDeleteBehaviour != Ann.NotificationQuickDelete.NEVER
     }
 
     // We don't support confirming actions on Wear devices. So don't show the action when confirmation is enabled.
     private fun isDeleteActionAvailableForWear(): Boolean {
-        return isDeleteActionEnabled() && !K9.isConfirmDeleteFromNotification
+        return isDeleteActionEnabled() && !Ann.isConfirmDeleteFromNotification
     }
 
     // We don't support confirming actions on Wear devices. So don't show the action when confirmation is enabled.
     private fun isSpamActionAvailableForWear(account: Account): Boolean {
-        return account.hasSpamFolder() && !K9.isConfirmSpam
+        return account.hasSpamFolder() && !Ann.isConfirmSpam
     }
 }

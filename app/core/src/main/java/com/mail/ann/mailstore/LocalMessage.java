@@ -13,7 +13,7 @@ import android.database.sqlite.SQLiteDatabase;
 import androidx.annotation.VisibleForTesting;
 
 import com.mail.ann.Account;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.controller.MessageReference;
 import com.mail.ann.mail.Address;
 import com.mail.ann.mail.Flag;
@@ -329,7 +329,7 @@ public class LocalMessage extends MimeMessage {
     }
 
     public void debugClearLocalData() throws MessagingException {
-        if (!K9.DEVELOPER_MODE) {
+        if (!Ann.DEVELOPER_MODE) {
             throw new AssertionError("method must only be used in developer mode!");
         }
 

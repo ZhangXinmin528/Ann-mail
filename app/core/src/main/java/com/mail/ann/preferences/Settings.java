@@ -13,7 +13,7 @@ import java.util.TreeMap;
 import timber.log.Timber;
 
 import com.mail.ann.FontSizes;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 
 /*
  * TODO:
@@ -166,7 +166,7 @@ public class Settings {
         T defaultValue = setting.getDefaultValue();
         validatedSettingsMutable.put(settingName, defaultValue);
 
-        if (K9.isDebugLoggingEnabled()) {
+        if (Ann.isDebugLoggingEnabled()) {
             String prettyValue = setting.toPrettyString(defaultValue);
             Timber.v("Added new setting \"%s\" with default value \"%s\"", settingName, prettyValue);
         }
@@ -258,7 +258,7 @@ public class Settings {
      *   <li>
      *   The one that is used by the internal preference {@link Storage}. It is usually obtained by
      *   calling {@code toString()} on the internal representation of the setting value (see e.g.
-     *   {@link K9#save(StorageEditor)}).
+     *   {@link Ann#save(StorageEditor)}).
      *   </li>
      *   <li>
      *   The "pretty" version that is used by the import/export settings file (e.g. colors are

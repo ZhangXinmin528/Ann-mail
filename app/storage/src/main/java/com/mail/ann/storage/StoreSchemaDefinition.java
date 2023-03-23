@@ -3,7 +3,7 @@ package com.mail.ann.storage;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.mail.FolderClass;
 import com.mail.ann.mailstore.LockableDatabase.SchemaDefinition;
 import com.mail.ann.mailstore.MigrationsHelper;
@@ -31,7 +31,7 @@ class StoreSchemaDefinition implements SchemaDefinition {
         try {
             upgradeDatabase(db);
         } catch (Exception e) {
-            if (K9.DEVELOPER_MODE) {
+            if (Ann.DEVELOPER_MODE) {
                 throw new Error("Exception while upgrading database", e);
             }
 

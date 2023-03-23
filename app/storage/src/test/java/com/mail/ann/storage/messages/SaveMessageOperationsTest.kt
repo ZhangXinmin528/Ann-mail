@@ -1,6 +1,6 @@
 package com.mail.ann.storage.messages
 
-import com.mail.ann.K9
+import com.mail.ann.Ann
 import com.mail.ann.mail.Address
 import com.mail.ann.mail.Flag
 import com.mail.ann.mail.Message
@@ -381,7 +381,7 @@ class SaveMessageOperationsTest : RobolectricTest() {
             assertThat(id).isEqualTo(newMessageId)
             assertThat(deleted).isEqualTo(0)
             assertThat(folderId).isEqualTo(1)
-            assertThat(uid).startsWith(K9.LOCAL_UID_PREFIX)
+            assertThat(uid).startsWith(Ann.LOCAL_UID_PREFIX)
             assertThat(subject).isEqualTo("Provided subject")
             assertThat(date).isEqualTo(1618191720000L)
             assertThat(internalDate).isEqualTo(1618191720000L)

@@ -2,7 +2,7 @@
 
 package com.mail.ann.controller
 
-import com.mail.ann.K9
+import com.mail.ann.Ann
 
 fun requireValidUids(uidMap: Map<String?, String?>?) {
     requireNotNull(uidMap)
@@ -21,5 +21,5 @@ fun requireValidUids(uids: List<String?>?) {
 
 private fun requireNotLocalUid(uid: String?) {
     requireNotNull(uid)
-    require(!uid.startsWith(K9.LOCAL_UID_PREFIX)) { "Local UID found: $uid" }
+    require(!uid.startsWith(Ann.LOCAL_UID_PREFIX)) { "Local UID found: $uid" }
 }

@@ -4,7 +4,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
 import androidx.core.content.contentValuesOf
 import com.mail.ann.Account
-import com.mail.ann.K9RobolectricTest
+import com.mail.ann.AnnRobolectricTest
 import com.mail.ann.Preferences
 import com.mail.ann.backend.api.BackendFolder
 import com.mail.ann.backend.api.FolderInfo
@@ -26,7 +26,7 @@ import org.junit.Before
 import org.junit.Test
 import org.koin.core.component.inject
 
-class K9BackendFolderTest : K9RobolectricTest() {
+class AnnBackendFolderTest : AnnRobolectricTest() {
     val preferences: Preferences by inject()
     val localStoreProvider: LocalStoreProvider by inject()
     val messageStoreManager: MessageStoreManager by inject()

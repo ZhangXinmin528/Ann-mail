@@ -15,7 +15,7 @@ import android.content.res.Resources;
 import androidx.annotation.NonNull;
 
 import com.mail.ann.DI;
-import com.mail.ann.K9RobolectricTest;
+import com.mail.ann.AnnRobolectricTest;
 import com.mail.ann.TestCoreResourceProvider;
 import com.mail.ann.mail.Address;
 import com.mail.ann.mail.Body;
@@ -58,7 +58,7 @@ import static org.mockito.Mockito.when;
 
 
 @SuppressWarnings("WeakerAccess")
-public class MessageViewInfoExtractorTest extends K9RobolectricTest {
+public class MessageViewInfoExtractorTest extends AnnRobolectricTest {
     public static final String BODY_TEXT = "K-9 Mail rocks :>";
     public static final String BODY_TEXT_HTML = "K-9 Mail rocks :&gt;";
     public static final String BODY_TEXT_FLOWED = "K-9 Mail rocks :> \r\nflowed line\r\nnot flowed line";

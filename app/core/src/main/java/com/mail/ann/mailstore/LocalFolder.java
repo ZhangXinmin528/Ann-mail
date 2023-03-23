@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 
 import androidx.annotation.Nullable;
 import com.mail.ann.Account;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.controller.MessageReference;
 import com.mail.ann.helper.FileHelper;
 import com.mail.ann.helper.Utility;
@@ -947,7 +947,7 @@ public class LocalFolder {
     }
 
     public void destroyLocalOnlyMessages() throws MessagingException {
-        destroyMessages("uid LIKE '" + K9.LOCAL_UID_PREFIX + "%'");
+        destroyMessages("uid LIKE '" + Ann.LOCAL_UID_PREFIX + "%'");
     }
 
     public void destroyDeletedMessages() throws MessagingException {
@@ -1153,7 +1153,7 @@ public class LocalFolder {
                 String messagePartId = cursor.getString(0);
                 File file = localStore.getAttachmentFile(messagePartId);
                 if (file.exists()) {
-                    if (!file.delete() && K9.isDebugLoggingEnabled()) {
+                    if (!file.delete() && Ann.isDebugLoggingEnabled()) {
                         Timber.d("Couldn't delete message part file: %s", file.getAbsolutePath());
                     }
                 }

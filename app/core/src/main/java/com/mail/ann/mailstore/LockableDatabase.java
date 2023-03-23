@@ -10,7 +10,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.helper.FileHelper;
 import com.mail.ann.mail.MessagingException;
 import timber.log.Timber;
@@ -160,7 +160,7 @@ public class LockableDatabase {
         lockRead();
         final boolean doTransaction = transactional && inTransaction.get() == null;
         try {
-            final boolean debug = K9.isDebugLoggingEnabled();
+            final boolean debug = Ann.isDebugLoggingEnabled();
             if (doTransaction) {
                 inTransaction.set(Boolean.TRUE);
                 mDb.beginTransaction();

@@ -15,9 +15,9 @@ import com.mail.ann.Account;
 import com.mail.ann.Account.SortType;
 import com.mail.ann.DI;
 import com.mail.ann.FontSizes;
-import com.mail.ann.K9;
-import com.mail.ann.K9.NotificationQuickDelete;
-import com.mail.ann.K9.SplitViewMode;
+import com.mail.ann.Ann;
+import com.mail.ann.Ann.NotificationQuickDelete;
+import com.mail.ann.Ann.SplitViewMode;
 import com.mail.ann.core.R;
 import com.mail.ann.preferences.Settings.BooleanSetting;
 import com.mail.ann.preferences.Settings.ColorSetting;
@@ -31,7 +31,7 @@ import com.mail.ann.preferences.Settings.SettingsUpgrader;
 import com.mail.ann.preferences.Settings.V;
 import com.mail.ann.preferences.Settings.WebFontSizeSetting;
 
-import static com.mail.ann.K9.LockScreenNotificationVisibility;
+import static com.mail.ann.Ann.LockScreenNotificationVisibility;
 
 
 public class GeneralSettingsDescriptions {
@@ -50,7 +50,7 @@ public class GeneralSettingsDescriptions {
                 new V(1, new BooleanSetting(false))
         ));
         s.put("backgroundOperations", Settings.versions(
-                new V(1, new EnumSetting<>(K9.BACKGROUND_OPS.class, K9.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC))
+                new V(1, new EnumSetting<>(Ann.BACKGROUND_OPS.class, Ann.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC))
         ));
         s.put("changeRegisteredNameColor", Settings.versions(
                 new V(1, new BooleanSetting(false))

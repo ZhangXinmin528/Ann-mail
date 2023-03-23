@@ -22,7 +22,7 @@ import com.mail.ann.Account.SortType;
 import com.mail.ann.Account.SpecialFolderSelection;
 import com.mail.ann.AccountPreferenceSerializer;
 import com.mail.ann.DI;
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.NotificationLight;
 import com.mail.ann.core.R;
 import com.mail.ann.mailstore.StorageManager;
@@ -80,7 +80,7 @@ public class AccountSettingsDescriptions {
                 new V(1, new DeletePolicySetting(DeletePolicy.NEVER))
         ));
         s.put("displayCount", Settings.versions(
-                new V(1, new IntegerResourceSetting(K9.DEFAULT_VISIBLE_LIMIT,
+                new V(1, new IntegerResourceSetting(Ann.DEFAULT_VISIBLE_LIMIT,
                         R.array.display_count_values))
         ));
         s.put("draftsFolderName", Settings.versions(

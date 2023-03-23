@@ -42,9 +42,9 @@ class AccountPreferenceSerializer(
             alwaysBcc = storage.getString("$accountUuid.alwaysBcc", alwaysBcc)
             automaticCheckIntervalMinutes = storage.getInt("$accountUuid.automaticCheckIntervalMinutes", DEFAULT_SYNC_INTERVAL)
             idleRefreshMinutes = storage.getInt("$accountUuid.idleRefreshMinutes", 24)
-            displayCount = storage.getInt("$accountUuid.displayCount", K9.DEFAULT_VISIBLE_LIMIT)
+            displayCount = storage.getInt("$accountUuid.displayCount", Ann.DEFAULT_VISIBLE_LIMIT)
             if (displayCount < 0) {
-                displayCount = K9.DEFAULT_VISIBLE_LIMIT
+                displayCount = Ann.DEFAULT_VISIBLE_LIMIT
             }
             isNotifyNewMail = storage.getBoolean("$accountUuid.notifyNewMail", false)
 
@@ -538,7 +538,7 @@ class AccountPreferenceSerializer(
             localStorageProviderId = storageManager.defaultProviderId
             automaticCheckIntervalMinutes = DEFAULT_SYNC_INTERVAL
             idleRefreshMinutes = 24
-            displayCount = K9.DEFAULT_VISIBLE_LIMIT
+            displayCount = Ann.DEFAULT_VISIBLE_LIMIT
             accountNumber = UNASSIGNED_ACCOUNT_NUMBER
             isNotifyNewMail = true
             folderNotifyNewMailMode = FolderMode.ALL

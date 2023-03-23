@@ -21,7 +21,7 @@ import androidx.core.content.FileProvider;
 import android.text.TextUtils;
 import timber.log.Timber;
 
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.mailstore.util.FileFactory;
 import org.apache.james.mime4j.codec.Base64InputStream;
 import org.apache.james.mime4j.codec.QuotedPrintableInputStream;
@@ -89,7 +89,7 @@ public class DecryptedFileProvider extends FileProvider {
                     allFilesDeleted = false;
                 }
             } else {
-                if (K9.isDebugLoggingEnabled()) {
+                if (Ann.isDebugLoggingEnabled()) {
                     String timeLeftStr = String.format(
                             Locale.ENGLISH, "%.2f", (lastModified - deletionThreshold) / 1000 / 60.0);
                     Timber.e("Not deleting temp file (for another %s minutes)", timeLeftStr);

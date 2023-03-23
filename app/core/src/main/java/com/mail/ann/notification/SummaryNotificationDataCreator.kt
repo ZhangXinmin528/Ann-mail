@@ -1,7 +1,7 @@
 package com.mail.ann.notification
 
 import com.mail.ann.Account
-import com.mail.ann.K9
+import com.mail.ann.Ann
 
 private const val MAX_NUMBER_OF_MESSAGES_FOR_SUMMARY_NOTIFICATION = 5
 
@@ -10,7 +10,7 @@ internal class SummaryNotificationDataCreator(
 ) {
     fun createSummaryNotificationData(data: NotificationData, silent: Boolean): SummaryNotificationData {
         val timestamp = data.latestTimestamp
-        val shouldBeSilent = silent || K9.isQuietTime
+        val shouldBeSilent = silent || Ann.isQuietTime
         return if (data.isSingleMessageNotification) {
             createSummarySingleNotificationData(data, timestamp, shouldBeSilent)
         } else {
@@ -68,12 +68,12 @@ internal class SummaryNotificationDataCreator(
     }
 
     private fun isDeleteActionEnabled(): Boolean {
-        return K9.notificationQuickDeleteBehaviour == K9.NotificationQuickDelete.ALWAYS
+        return Ann.notificationQuickDeleteBehaviour == Ann.NotificationQuickDelete.ALWAYS
     }
 
     // We don't support confirming actions on Wear devices. So don't show the action when confirmation is enabled.
     private fun isDeleteActionAvailableForWear(): Boolean {
-        return isDeleteActionEnabled() && !K9.isConfirmDeleteFromNotification
+        return isDeleteActionEnabled() && !Ann.isConfirmDeleteFromNotification
     }
 
     private val NotificationData.latestTimestamp: Long

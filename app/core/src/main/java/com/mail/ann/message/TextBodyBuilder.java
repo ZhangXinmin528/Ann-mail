@@ -3,7 +3,7 @@ package com.mail.ann.message;
 
 import timber.log.Timber;
 
-import com.mail.ann.K9;
+import com.mail.ann.Ann;
 import com.mail.ann.message.html.HtmlConverter;
 import com.mail.ann.mail.Body;
 import com.mail.ann.mail.internet.TextBody;
@@ -49,7 +49,7 @@ class TextBodyBuilder {
         if (mIncludeQuotedText) {
             InsertableHtmlContent quotedHtmlContent = getQuotedTextHtml();
 
-            if (K9.isDebugLoggingEnabled()) {
+            if (Ann.isDebugLoggingEnabled()) {
                 Timber.d("insertable: %s", quotedHtmlContent.toDebugString());
             }
 
