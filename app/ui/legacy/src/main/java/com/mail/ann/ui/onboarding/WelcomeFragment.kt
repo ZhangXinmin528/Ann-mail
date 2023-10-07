@@ -47,6 +47,7 @@ class WelcomeFragment : Fragment() {
         }
     }
 
+    //创建账户
     private fun launchAccountSetup() {
         if (BuildConfig.USE_NEW_SETUP_UI_FOR_ONBOARDING) {
             findNavController().navigate(R.id.action_welcomeScreen_to_newAddAccountScreen)
@@ -56,6 +57,7 @@ class WelcomeFragment : Fragment() {
         }
     }
 
+    //导入设置
     private fun launchImportSettings() {
         findNavController().navigate(R.id.action_welcomeScreen_to_settingsImportScreen)
     }

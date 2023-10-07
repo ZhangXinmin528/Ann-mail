@@ -2,6 +2,9 @@
 package com.mail.ann.activity.setup;
 
 
+import java.util.Locale;
+import java.util.Map;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -23,15 +26,15 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.mail.ann.Account;
 import com.mail.ann.DI;
 import com.mail.ann.LocalKeyStoreManager;
 import com.mail.ann.Preferences;
 import com.mail.ann.account.AccountCreator;
-import com.mail.ann.helper.EmailHelper;
-import com.mail.ann.setup.ServerNameSuggester;
-import com.mail.ann.ui.base.AnnActivity;
 import com.mail.ann.activity.setup.AccountSetupCheckSettings.CheckDirection;
+import com.mail.ann.helper.EmailHelper;
 import com.mail.ann.helper.Utility;
 import com.mail.ann.mail.AuthType;
 import com.mail.ann.mail.ConnectionSecurity;
@@ -40,16 +43,12 @@ import com.mail.ann.mail.ServerSettings;
 import com.mail.ann.mail.store.imap.ImapStoreSettings;
 import com.mail.ann.mail.store.webdav.WebDavStoreSettings;
 import com.mail.ann.preferences.Protocols;
+import com.mail.ann.setup.ServerNameSuggester;
 import com.mail.ann.ui.R;
+import com.mail.ann.ui.base.AnnActivity;
 import com.mail.ann.ui.base.extensions.TextInputLayoutHelper;
 import com.mail.ann.view.ClientCertificateSpinner;
 import com.mail.ann.view.ClientCertificateSpinner.OnClientCertificateChangedListener;
-
-import java.util.Locale;
-import java.util.Map;
-
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import timber.log.Timber;
 
 import static java.util.Collections.emptyMap;
@@ -285,7 +284,8 @@ public class AccountSetupIncoming extends AnnActivity implements OnClickListener
 
             // Select currently configured security type
             if (savedInstanceState == null) {
-                mCurrentSecurityTypeViewPosition = securityTypesAdapter.getConnectionSecurityPosition(settings.connectionSecurity);
+                mCurrentSecurityTypeViewPosition =
+                        securityTypesAdapter.getConnectionSecurityPosition(settings.connectionSecurity);
             } else {
 
                 /*
@@ -323,11 +323,9 @@ public class AccountSetupIncoming extends AnnActivity implements OnClickListener
     }
 
     /**
-     * Called at the end of either {@code onCreate()} or
-     * {@code onRestoreInstanceState()}, after the views have been initialized,
-     * so that the listeners are not triggered during the view initialization.
-     * This avoids needless calls to {@code validateFields()} which is called
-     * immediately after this is called.
+     * Called at the end of either {@code onCreate()} or {@code onRestoreInstanceState()}, after the views have been
+     * initialized, so that the listeners are not triggered during the view initialization. This avoids needless calls
+     * to {@code validateFields()} which is called immediately after this is called.
      */
     private void initializeViewListeners() {
 
@@ -371,8 +369,8 @@ public class AccountSetupIncoming extends AnnActivity implements OnClickListener
                 validateFields();
                 AuthType selection = getSelectedAuthType();
 
-               // Have the user select the client certificate if not already selected
-               if ((AuthType.EXTERNAL == selection) && (mClientCertificateSpinner.getAlias() == null)) {
+                // Have the user select the client certificate if not already selected
+                if ((AuthType.EXTERNAL == selection) && (mClientCertificateSpinner.getAlias() == null)) {
                     // This may again invoke validateFields()
                     mClientCertificateSpinner.chooseCertificate();
                 } else {
@@ -433,7 +431,8 @@ public class AccountSetupIncoming extends AnnActivity implements OnClickListener
      */
     private void updateViewFromSecurity() {
         ConnectionSecurity security = getSelectedSecurity();
-        boolean isUsingTLS = ((ConnectionSecurity.SSL_TLS_REQUIRED  == security) || (ConnectionSecurity.STARTTLS_REQUIRED == security));
+        boolean isUsingTLS = ((ConnectionSecurity.SSL_TLS_REQUIRED == security) ||
+                (ConnectionSecurity.STARTTLS_REQUIRED == security));
         boolean isUsingOAuth = getSelectedAuthType() == AuthType.XOAUTH2;
 
         if (isUsingTLS && !isUsingOAuth) {
@@ -444,9 +443,8 @@ public class AccountSetupIncoming extends AnnActivity implements OnClickListener
     }
 
     /**
-     * This is invoked only when the user makes changes to a widget, not when
-     * widgets are changed programmatically.  (The logic is simpler when you know
-     * that this is the last thing called after an input change.)
+     * This is invoked only when the user makes changes to a widget, not when widgets are changed programmatically. (The
+     * logic is simpler when you know that this is the last thing called after an input change.)
      */
     private void validateFields() {
         AuthType authType = getSelectedAuthType();
@@ -555,7 +553,7 @@ public class AccountSetupIncoming extends AnnActivity implements OnClickListener
                 String clientCertificateAlias = null;
                 AuthType authType = getSelectedAuthType();
                 if ((ConnectionSecurity.SSL_TLS_REQUIRED == getSelectedSecurity()) ||
-                        (ConnectionSecurity.STARTTLS_REQUIRED == getSelectedSecurity()) ) {
+                        (ConnectionSecurity.STARTTLS_REQUIRED == getSelectedSecurity())) {
                     clientCertificateAlias = mClientCertificateSpinner.getAlias();
                 }
                 if (AuthType.EXTERNAL != authType) {
@@ -588,21 +586,21 @@ public class AccountSetupIncoming extends AnnActivity implements OnClickListener
         try {
             ConnectionSecurity connectionSecurity = getSelectedSecurity();
 
-            String username = mUsernameView.getText().toString().trim();
+            final String username = mUsernameView.getText().toString().trim();
             String password = null;
             String clientCertificateAlias = null;
 
-            AuthType authType = getSelectedAuthType();
+            final AuthType authType = getSelectedAuthType();
 
             if ((ConnectionSecurity.SSL_TLS_REQUIRED == connectionSecurity) ||
-                    (ConnectionSecurity.STARTTLS_REQUIRED == connectionSecurity) ) {
+                    (ConnectionSecurity.STARTTLS_REQUIRED == connectionSecurity)) {
                 clientCertificateAlias = mClientCertificateSpinner.getAlias();
             }
             if (authType != AuthType.EXTERNAL) {
                 password = mPasswordView.getText().toString();
             }
-            String host = mServerView.getText().toString();
-            int port = Integer.parseInt(mPortView.getText().toString());
+            final String host = mServerView.getText().toString();
+            final int port = Integer.parseInt(mPortView.getText().toString());
 
             Map<String, String> extra = emptyMap();
             if (mStoreType.equals(Protocols.IMAP)) {

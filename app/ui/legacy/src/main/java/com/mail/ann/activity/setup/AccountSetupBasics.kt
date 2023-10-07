@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import androidx.core.view.isVisible
+import com.google.android.material.textfield.TextInputEditText
 import com.mail.ann.Account
 import com.mail.ann.Core
 import com.mail.ann.EmailAddressValidator
@@ -31,7 +32,6 @@ import com.mail.ann.ui.getEnum
 import com.mail.ann.ui.putEnum
 import com.mail.ann.ui.settings.ExtraAccountDiscovery
 import com.mail.ann.view.ClientCertificateSpinner
-import com.google.android.material.textfield.TextInputEditText
 import org.koin.android.ext.android.inject
 
 /**
@@ -128,6 +128,7 @@ class AccountSetupBasics : AnnActivity() {
                 advancedOptionsContainer.isVisible = false
                 nextButton.setOnClickListener { attemptAutoSetupUsingOnlyEmailAddress() }
             }
+
             UiState.PASSWORD_FLOW -> {
                 passwordLayout.isVisible = true
                 advancedOptionsContainer.isVisible = true
@@ -180,15 +181,17 @@ class AccountSetupBasics : AnnActivity() {
             clientCertificateChecked && clientCertificateAlias != null
     }
 
+    //
     private fun attemptAutoSetupUsingOnlyEmailAddress() {
         val email = emailView.text?.toString() ?: error("Email missing")
-
+        //后门:@anmail.example
         val extraConnectionSettings = ExtraAccountDiscovery.discover(email)
         if (extraConnectionSettings != null) {
             finishAutoSetup(extraConnectionSettings)
             return
         }
 
+        //获取邮箱的收发服务器信息
         val connectionSettings = providersXmlDiscoveryDiscover(email)
 
         if (connectionSettings != null &&
@@ -197,6 +200,7 @@ class AccountSetupBasics : AnnActivity() {
         ) {
             startOAuthFlow(connectionSettings)
         } else {
+            //输入密码
             startPasswordFlow()
         }
     }
@@ -232,6 +236,7 @@ class AccountSetupBasics : AnnActivity() {
             return
         }
 
+        //获取邮箱的收发服务器信息
         val connectionSettings = providersXmlDiscoveryDiscover(email)
         if (connectionSettings != null) {
             finishAutoSetup(connectionSettings)
@@ -242,6 +247,7 @@ class AccountSetupBasics : AnnActivity() {
     }
 
     private fun finishAutoSetup(connectionSettings: ConnectionSettings) {
+        //创建账户信息
         val account = createAccount(connectionSettings)
 
         // Check incoming here. Then check outgoing in onActivityResult()
@@ -289,7 +295,7 @@ class AccountSetupBasics : AnnActivity() {
             password = password,
             clientCertificateAlias = clientCertificateAlias
         )
-
+        //这是账户类型
         AccountSetupAccountType.actionSelectAccountType(this, account, makeDefault = false, initialAccountSettings)
     }
 

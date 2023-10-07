@@ -61,6 +61,7 @@ class AccountSetupAccountType : AnnActivity() {
     private fun setupAccount(serverType: String) {
         setupStoreAndSmtpTransport(serverType)
         createSpecialLocalFolders()
+        //收件服务器设置
         returnAccountTypeSelectionResult()
     }
 

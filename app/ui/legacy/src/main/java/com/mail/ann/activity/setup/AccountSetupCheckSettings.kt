@@ -77,18 +77,23 @@ class AccountSetupCheckSettings : AnnActivity(), ConfirmationDialogFragmentListe
                 AuthFlowState.Idle -> {
                     return@observe
                 }
+
                 AuthFlowState.Success -> {
                     startCheckServerSettings()
                 }
+
                 AuthFlowState.Canceled -> {
                     showErrorDialog(R.string.account_setup_failed_dlg_oauth_flow_canceled)
                 }
+
                 is AuthFlowState.Failed -> {
                     showErrorDialog(R.string.account_setup_failed_dlg_oauth_flow_failed, state)
                 }
+
                 AuthFlowState.NotSupported -> {
                     showErrorDialog(R.string.account_setup_failed_dlg_oauth_not_supported)
                 }
+
                 AuthFlowState.BrowserNotFound -> {
                     showErrorDialog(R.string.account_setup_failed_dlg_browser_not_found)
                 }
@@ -110,7 +115,7 @@ class AccountSetupCheckSettings : AnnActivity(), ConfirmationDialogFragmentListe
             ?: error("Missing CheckDirection")
 
         if (savedInstanceState == null) {
-            if (needsAuthorization()) {
+            if (needsAuthorization()) {//是否需要认证
                 setMessage(R.string.account_setup_check_settings_authenticate)
                 authViewModel.login(account)
             } else {
@@ -205,20 +210,24 @@ class AccountSetupCheckSettings : AnnActivity(), ConfirmationDialogFragmentListe
                                     Timber.w("SubjectAltName of type OtherName not supported.")
                                     continue
                                 }
+
                                 1 -> value as String
                                 2 -> value as String
                                 3 -> {
                                     Timber.w("unsupported SubjectAltName of type x400Address")
                                     continue
                                 }
+
                                 4 -> {
                                     Timber.w("unsupported SubjectAltName of type directoryName")
                                     continue
                                 }
+
                                 5 -> {
                                     Timber.w("unsupported SubjectAltName of type ediPartyName")
                                     continue
                                 }
+
                                 6 -> value as String
                                 7 -> value as String
                                 else -> {
@@ -372,15 +381,19 @@ class AccountSetupCheckSettings : AnnActivity(), ConfirmationDialogFragmentListe
             CertificateValidationException.Reason.Expired -> {
                 getString(R.string.client_certificate_expired, e.alias, e.message)
             }
+
             CertificateValidationException.Reason.MissingCapability -> {
                 getString(R.string.auth_external_error)
             }
+
             CertificateValidationException.Reason.RetrievalFailure -> {
                 getString(R.string.client_certificate_retrieval_failure, e.alias)
             }
+
             CertificateValidationException.Reason.UseMessage -> {
                 e.message
             }
+
             else -> {
                 ""
             }
@@ -458,8 +471,9 @@ class AccountSetupCheckSettings : AnnActivity(), ConfirmationDialogFragmentListe
 
         private fun checkIncoming() {
             if (isWebDavAccount) {
+                //用户验证
                 publishProgress(R.string.account_setup_check_settings_authenticate)
-            } else {
+            } else {//检查收件服务器
                 publishProgress(R.string.account_setup_check_settings_check_incoming_msg)
             }
 

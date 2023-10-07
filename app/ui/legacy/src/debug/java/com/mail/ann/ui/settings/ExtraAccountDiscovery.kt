@@ -8,7 +8,7 @@ import com.mail.ann.ui.ConnectionSettings
 object ExtraAccountDiscovery {
     @JvmStatic
     fun discover(email: String): ConnectionSettings? {
-        return if (email.endsWith("@k9mail.example")) {
+        return if (email.endsWith("@anmail.example")) {
             val serverSettings = ServerSettings(
                 type = "demo",
                 host = "irrelevant",

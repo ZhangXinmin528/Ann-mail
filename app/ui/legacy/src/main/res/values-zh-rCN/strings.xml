@@ -54,7 +54,7 @@
 在使用 Microsoft Exchange 协议时会有一些问题。
 </p><p>
 请到下述网址提交问题报告，新功能建议或者提问：
-<a href="https://github.com/k9/小安邮箱/">https://github.com/k9/小安邮箱/</a>。
+<a href="Ann-mail">https://github.com/ZhangXinmin528/Ann-mail/</a>。
 </p>
     ]]></string>
     <!--Default signature-->
@@ -76,7 +76,7 @@
     <string name="choose_folder_move_title">移动至…</string>
     <string name="choose_folder_copy_title">复制到…</string>
     <string name="actionbar_selected">已选择 <xliff:g id="selection_count">%d</xliff:g> 个</string>
-    <string name="next_action">前进</string>
+    <string name="next_action">下一步</string>
     <string name="previous_action">后退</string>
     <!--Used to confirm acceptance of dialog boxes, warnings, errors, etc.-->
     <string name="okay_action">确定</string>
@@ -286,7 +286,7 @@
     <string name="account_setup_basics_show_password_need_lock">要查看您的密码，请在此设备上启用屏幕锁定。</string>
     <string name="account_setup_basics_show_password_biometrics_title">验证你的身份</string>
     <string name="account_setup_basics_show_password_biometrics_subtitle">解锁查看你的密码</string>
-    <string name="account_setup_basics_manual_setup_action">手工设置</string>
+    <string name="account_setup_basics_manual_setup_action">手动设置</string>
     <string name="account_setup_check_settings_title" />
     <string name="account_setup_check_settings_retr_info_msg">正在获取账户信息\u2026</string>
     <string name="account_setup_check_settings_check_incoming_msg">正在检查收件服务器设置\u2026</string>

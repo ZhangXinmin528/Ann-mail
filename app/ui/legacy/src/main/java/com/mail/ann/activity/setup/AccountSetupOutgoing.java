@@ -24,25 +24,25 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.mail.ann.Account;
 import com.mail.ann.DI;
 import com.mail.ann.LocalKeyStoreManager;
 import com.mail.ann.Preferences;
-import com.mail.ann.preferences.Protocols;
-import com.mail.ann.ui.R;
 import com.mail.ann.account.AccountCreator;
-import com.mail.ann.ui.base.AnnActivity;
 import com.mail.ann.activity.setup.AccountSetupCheckSettings.CheckDirection;
 import com.mail.ann.helper.Utility;
 import com.mail.ann.mail.AuthType;
 import com.mail.ann.mail.ConnectionSecurity;
 import com.mail.ann.mail.MailServerDirection;
 import com.mail.ann.mail.ServerSettings;
+import com.mail.ann.preferences.Protocols;
+import com.mail.ann.ui.R;
+import com.mail.ann.ui.base.AnnActivity;
 import com.mail.ann.ui.base.extensions.TextInputLayoutHelper;
 import com.mail.ann.view.ClientCertificateSpinner;
 import com.mail.ann.view.ClientCertificateSpinner.OnClientCertificateChangedListener;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import timber.log.Timber;
 
 
@@ -50,7 +50,7 @@ import timber.log.Timber;
  * 发件服务器设置
  */
 public class AccountSetupOutgoing extends AnnActivity implements OnClickListener,
-    OnCheckedChangeListener {
+        OnCheckedChangeListener {
     private static final String EXTRA_ACCOUNT = "account";
 
     private static final String STATE_SECURITY_TYPE_POSITION = "stateSecurityTypePosition";
@@ -234,11 +234,9 @@ public class AccountSetupOutgoing extends AnnActivity implements OnClickListener
     }
 
     /**
-     * Called at the end of either {@code onCreate()} or
-     * {@code onRestoreInstanceState()}, after the views have been initialized,
-     * so that the listeners are not triggered during the view initialization.
-     * This avoids needless calls to {@code validateFields()} which is called
-     * immediately after this is called.
+     * Called at the end of either {@code onCreate()} or {@code onRestoreInstanceState()}, after the views have been
+     * initialized, so that the listeners are not triggered during the view initialization. This avoids needless calls
+     * to {@code validateFields()} which is called immediately after this is called.
      */
     private void initializeViewListeners() {
 
@@ -389,7 +387,8 @@ public class AccountSetupOutgoing extends AnnActivity implements OnClickListener
      */
     private void updateViewFromSecurity() {
         ConnectionSecurity security = getSelectedSecurity();
-        boolean isUsingTLS = ((ConnectionSecurity.SSL_TLS_REQUIRED  == security) || (ConnectionSecurity.STARTTLS_REQUIRED == security));
+        boolean isUsingTLS = ((ConnectionSecurity.SSL_TLS_REQUIRED == security) ||
+                (ConnectionSecurity.STARTTLS_REQUIRED == security));
         boolean isUsingOAuth = getSelectedAuthType() == AuthType.XOAUTH2;
 
         if (isUsingTLS && !isUsingOAuth) {
@@ -401,9 +400,8 @@ public class AccountSetupOutgoing extends AnnActivity implements OnClickListener
 
 
     /**
-     * This is invoked only when the user makes changes to a widget, not when
-     * widgets are changed programmatically.  (The logic is simpler when you know
-     * that this is the last thing called after an input change.)
+     * This is invoked only when the user makes changes to a widget, not when widgets are changed programmatically.
+     * (The logic is simpler when you know that this is the last thing called after an input change.)
      */
     private void validateFields() {
         AuthType authType = getSelectedAuthType();
@@ -471,7 +469,7 @@ public class AccountSetupOutgoing extends AnnActivity implements OnClickListener
                 .setEnabled(Utility.domainFieldValid(mServerView)
                         && Utility.requiredFieldValid(mPortView)
                         && (!mRequireLoginView.isChecked()
-                                || hasValidPasswordSettings || hasValidExternalAuthSettings || hasValidOAuthSettings));
+                        || hasValidPasswordSettings || hasValidExternalAuthSettings || hasValidOAuthSettings));
         Utility.setCompoundDrawablesAlpha(mNextButton, mNextButton.isEnabled() ? 255 : 128);
     }
 
