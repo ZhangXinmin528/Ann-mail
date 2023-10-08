@@ -51,7 +51,8 @@ public class AccountSetupOptions extends AnnActivity implements OnClickListener 
 
         findViewById(R.id.next).setOnClickListener(this);
 
-        SpinnerOption checkFrequencies[] = {
+        //检查频次
+        SpinnerOption[] checkFrequencies = {
                 new SpinnerOption(-1,
                         getString(R.string.account_setup_options_mail_check_frequency_never)),
                 new SpinnerOption(15,
@@ -78,8 +79,8 @@ public class AccountSetupOptions extends AnnActivity implements OnClickListener 
         checkFrequenciesAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mCheckFrequencyView.setAdapter(checkFrequenciesAdapter);
-
-        SpinnerOption displayCounts[] = {
+        //显示数量
+        SpinnerOption[] displayCounts = {
                 new SpinnerOption(10, getString(R.string.account_setup_options_mail_display_count_10)),
                 new SpinnerOption(25, getString(R.string.account_setup_options_mail_display_count_25)),
                 new SpinnerOption(50, getString(R.string.account_setup_options_mail_display_count_50)),
@@ -116,6 +117,7 @@ public class AccountSetupOptions extends AnnActivity implements OnClickListener 
 
         Preferences.getPreferences(getApplicationContext()).saveAccount(mAccount);
         Core.setServicesEnabled(this);
+        //快要完成了
         AccountSetupNames.actionSetNames(this, mAccount);
     }
 

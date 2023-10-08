@@ -107,7 +107,7 @@ public class AccountSetupOutgoing extends AnnActivity implements OnClickListener
         String accountUuid = getIntent().getStringExtra(EXTRA_ACCOUNT);
         mAccount = Preferences.getPreferences(this).getAccount(accountUuid);
 
-        ServerSettings incomingServerSettings = mAccount.getIncomingServerSettings();
+        final ServerSettings incomingServerSettings = mAccount.getIncomingServerSettings();
         if (incomingServerSettings.type.equals(Protocols.WEBDAV)) {
             mAccount.setOutgoingServerSettings(incomingServerSettings);
             AccountSetupCheckSettings.actionCheckSettings(this, mAccount, CheckDirection.OUTGOING);
@@ -400,8 +400,8 @@ public class AccountSetupOutgoing extends AnnActivity implements OnClickListener
 
 
     /**
-     * This is invoked only when the user makes changes to a widget, not when widgets are changed programmatically.
-     * (The logic is simpler when you know that this is the last thing called after an input change.)
+     * This is invoked only when the user makes changes to a widget, not when widgets are changed programmatically. (The
+     * logic is simpler when you know that this is the last thing called after an input change.)
      */
     private void validateFields() {
         AuthType authType = getSelectedAuthType();
@@ -500,6 +500,7 @@ public class AccountSetupOutgoing extends AnnActivity implements OnClickListener
                 Preferences.getPreferences(getApplicationContext()).saveAccount(mAccount);
                 finish();
             } else {
+                //进入账户选项
                 AccountSetupOptions.actionOptions(this, mAccount);
             }
         }
