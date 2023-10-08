@@ -15,12 +15,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.os.SystemClock;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.appcompat.widget.PopupMenu.OnMenuItemClickListener;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
@@ -32,14 +26,16 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.PopupMenu.OnMenuItemClickListener;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import com.mail.ann.Account;
-import com.mail.ann.DI;
 import com.mail.ann.Ann;
+import com.mail.ann.DI;
 import com.mail.ann.Preferences;
 import com.mail.ann.activity.MessageCompose;
-import com.mail.ann.helper.MailtoUnsubscribeUri;
-import com.mail.ann.helper.UnsubscribeUri;
-import com.mail.ann.ui.choosefolder.ChooseFolderActivity;
 import com.mail.ann.activity.MessageLoaderHelper;
 import com.mail.ann.activity.MessageLoaderHelper.MessageLoaderCallbacks;
 import com.mail.ann.activity.MessageLoaderHelperFactory;
@@ -48,12 +44,15 @@ import com.mail.ann.controller.MessagingController;
 import com.mail.ann.fragment.AttachmentDownloadDialogFragment;
 import com.mail.ann.fragment.ConfirmationDialogFragment;
 import com.mail.ann.fragment.ConfirmationDialogFragment.ConfirmationDialogFragmentListener;
+import com.mail.ann.helper.MailtoUnsubscribeUri;
+import com.mail.ann.helper.UnsubscribeUri;
 import com.mail.ann.mail.Flag;
 import com.mail.ann.mailstore.AttachmentViewInfo;
 import com.mail.ann.mailstore.LocalMessage;
 import com.mail.ann.mailstore.MessageViewInfo;
 import com.mail.ann.ui.R;
 import com.mail.ann.ui.base.ThemeManager;
+import com.mail.ann.ui.choosefolder.ChooseFolderActivity;
 import com.mail.ann.ui.messageview.CryptoInfoDialog.OnClickShowCryptoKeyListener;
 import com.mail.ann.ui.messageview.MessageCryptoPresenter.MessageCryptoMvpView;
 import com.mail.ann.ui.settings.account.AccountSettingsActivity;
@@ -62,6 +61,7 @@ import com.mail.ann.view.MessageCryptoDisplayStatus;
 import timber.log.Timber;
 
 
+//消息查看
 public class MessageViewFragment extends Fragment implements ConfirmationDialogFragmentListener,
         AttachmentViewCallback, OnClickShowCryptoKeyListener {
 
@@ -102,8 +102,7 @@ public class MessageViewFragment extends Fragment implements ConfirmationDialogF
     private UnsubscribeUri preferredUnsubscribeUri;
 
     /**
-     * Used to temporarily store the destination folder for refile operations if a confirmation
-     * dialog is shown.
+     * Used to temporarily store the destination folder for refile operations if a confirmation dialog is shown.
      */
     private Long destinationFolderId;
 
@@ -111,8 +110,7 @@ public class MessageViewFragment extends Fragment implements ConfirmationDialogF
 
     /**
      * {@code true} after {@link #onCreate(Bundle)} has been executed. This is used by
-     * {@code MessageList.configureMenu()} to make sure the fragment has been initialized before
-     * it is used.
+     * {@code MessageList.configureMenu()} to make sure the fragment has been initialized before it is used.
      */
     private boolean mInitialized = false;
 
@@ -319,7 +317,8 @@ public class MessageViewFragment extends Fragment implements ConfirmationDialogF
             return;
         }
         if (!mController.isMoveCapable(mMessageReference)) {
-            Toast toast = Toast.makeText(getActivity(), R.string.move_copy_cannot_copy_unsynced_message, Toast.LENGTH_LONG);
+            Toast toast =
+                    Toast.makeText(getActivity(), R.string.move_copy_cannot_copy_unsynced_message, Toast.LENGTH_LONG);
             toast.show();
             return;
         }
@@ -341,25 +340,29 @@ public class MessageViewFragment extends Fragment implements ConfirmationDialogF
 
     public void onReply() {
         if (mMessage != null) {
-            mFragmentListener.onReply(mMessage.makeMessageReference(), messageCryptoPresenter.getDecryptionResultForReply());
+            mFragmentListener.onReply(mMessage.makeMessageReference(),
+                    messageCryptoPresenter.getDecryptionResultForReply());
         }
     }
 
     public void onReplyAll() {
         if (mMessage != null) {
-            mFragmentListener.onReplyAll(mMessage.makeMessageReference(), messageCryptoPresenter.getDecryptionResultForReply());
+            mFragmentListener.onReplyAll(mMessage.makeMessageReference(),
+                    messageCryptoPresenter.getDecryptionResultForReply());
         }
     }
 
     public void onForward() {
         if (mMessage != null) {
-            mFragmentListener.onForward(mMessage.makeMessageReference(), messageCryptoPresenter.getDecryptionResultForReply());
+            mFragmentListener.onForward(mMessage.makeMessageReference(),
+                    messageCryptoPresenter.getDecryptionResultForReply());
         }
     }
 
     public void onForwardAsAttachment() {
         if (mMessage != null) {
-            mFragmentListener.onForwardAsAttachment(mMessage.makeMessageReference(), messageCryptoPresenter.getDecryptionResultForReply());
+            mFragmentListener.onForwardAsAttachment(mMessage.makeMessageReference(),
+                    messageCryptoPresenter.getDecryptionResultForReply());
         }
     }
 
@@ -384,7 +387,8 @@ public class MessageViewFragment extends Fragment implements ConfirmationDialogF
             return;
         }
         if (!mController.isMoveCapable(mMessageReference)) {
-            Toast toast = Toast.makeText(getActivity(), R.string.move_copy_cannot_copy_unsynced_message, Toast.LENGTH_LONG);
+            Toast toast =
+                    Toast.makeText(getActivity(), R.string.move_copy_cannot_copy_unsynced_message, Toast.LENGTH_LONG);
             toast.show();
             return;
         }
@@ -399,7 +403,8 @@ public class MessageViewFragment extends Fragment implements ConfirmationDialogF
             return;
         }
         if (!mController.isCopyCapable(mMessageReference)) {
-            Toast toast = Toast.makeText(getActivity(), R.string.move_copy_cannot_copy_unsynced_message, Toast.LENGTH_LONG);
+            Toast toast =
+                    Toast.makeText(getActivity(), R.string.move_copy_cannot_copy_unsynced_message, Toast.LENGTH_LONG);
             toast.show();
             return;
         }
@@ -766,18 +771,26 @@ public class MessageViewFragment extends Fragment implements ConfirmationDialogF
 
     public interface MessageViewFragmentListener {
         void onForward(MessageReference messageReference, @Nullable Parcelable decryptionResultForReply);
+
         void onForwardAsAttachment(MessageReference messageReference, @Nullable Parcelable decryptionResultForReply);
+
         void onEditAsNewMessage(MessageReference messageReference);
+
         void disableDeleteAction();
+
         void onReplyAll(MessageReference messageReference, @Nullable Parcelable decryptionResultForReply);
+
         void onReply(MessageReference messageReference, @Nullable Parcelable decryptionResultForReply);
+
         void setProgress(boolean b);
+
         void showNextMessageOrReturn();
+
         void updateMenu();
     }
 
     public boolean isInitialized() {
-        return mInitialized ;
+        return mInitialized;
     }
 
 
