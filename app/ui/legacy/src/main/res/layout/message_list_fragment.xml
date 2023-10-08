@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="5"
-        android:divider="@drawable/message_insert"
-        android:dividerHeight="1dp"
+        android:divider="@null"
         tools:listitem="@layout/message_list_item" />
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

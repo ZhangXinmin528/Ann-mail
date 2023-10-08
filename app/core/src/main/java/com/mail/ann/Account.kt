@@ -348,6 +348,7 @@ class Account(override val uuid: String) : BaseAccount {
     @set:Synchronized
     var lastFolderListRefreshTime: Long = 0
 
+    //账户是否创建完成
     @get:Synchronized
     var isFinishedSetup = false
         private set

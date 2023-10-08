@@ -13,6 +13,7 @@ class ContactImage(
     val contactLetterBitmapCreator: ContactLetterBitmapCreator,
     val address: Address
 ) : Key {
+
     private val contactLetterSignature = contactLetterBitmapCreator.signatureOf(address)
 
     override fun updateDiskCacheKey(messageDigest: MessageDigest) {

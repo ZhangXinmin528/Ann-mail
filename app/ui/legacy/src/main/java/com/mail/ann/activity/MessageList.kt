@@ -154,6 +154,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
             return
         }
 
+        //是否使用左侧导航样式
         if (useSplitView()) {
             setLayout(R.layout.split_message_list)
         } else {

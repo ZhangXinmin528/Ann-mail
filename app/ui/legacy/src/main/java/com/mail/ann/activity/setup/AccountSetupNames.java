@@ -16,10 +16,10 @@ import android.widget.EditText;
 
 import com.mail.ann.Account;
 import com.mail.ann.Preferences;
-import com.mail.ann.ui.base.AnnActivity;
 import com.mail.ann.activity.MessageList;
-import com.mail.ann.ui.R;
 import com.mail.ann.helper.Utility;
+import com.mail.ann.ui.R;
+import com.mail.ann.ui.base.AnnActivity;
 
 
 /**
@@ -94,6 +94,7 @@ public class AccountSetupNames extends AnnActivity implements OnClickListener {
         mAccount.markSetupFinished();
         Preferences.getPreferences(getApplicationContext()).saveAccount(mAccount);
         finishAffinity();
+        //进入邮件列表
         MessageList.launch(this, mAccount);
     }
 

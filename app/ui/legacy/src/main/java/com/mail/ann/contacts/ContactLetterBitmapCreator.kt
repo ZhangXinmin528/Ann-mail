@@ -24,8 +24,9 @@ class ContactLetterBitmapCreator(
 
         val paint = Paint().apply {
             isAntiAlias = true
-            style = Paint.Style.FILL
+            style = Paint.Style.FILL_AND_STROKE
             setARGB(255, 255, 255, 255)
+            strokeWidth = 2f
             textSize = pictureSizeInPx.toFloat() * 0.50f
         }
 
@@ -68,15 +69,15 @@ class ContactLetterBitmapCreator(
             MaterialColors.LIGHT_BLUE_300,
             MaterialColors.GREEN_300,
             MaterialColors.DEEP_ORANGE_300,
-            MaterialColors.BLUE_GREY_300,
             MaterialColors.PINK_300,
             MaterialColors.INDIGO_300,
-            MaterialColors.CYAN_300,
             MaterialColors.AMBER_400,
             MaterialColors.BROWN_300,
             MaterialColors.PURPLE_300,
             MaterialColors.BLUE_300,
             MaterialColors.TEAL_300,
+            MaterialColors.CYAN_300,
+            MaterialColors.BLUE_GREY_300,
             MaterialColors.ORANGE_400
         )
 
@@ -86,15 +87,15 @@ class ContactLetterBitmapCreator(
             MaterialColors.LIGHT_BLUE_600,
             MaterialColors.GREEN_600,
             MaterialColors.DEEP_ORANGE_600,
-            MaterialColors.BLUE_GREY_600,
             MaterialColors.PINK_600,
             MaterialColors.INDIGO_600,
-            MaterialColors.CYAN_600,
             MaterialColors.AMBER_600,
             MaterialColors.BROWN_600,
             MaterialColors.PURPLE_600,
             MaterialColors.BLUE_600,
             MaterialColors.TEAL_600,
+            MaterialColors.CYAN_600,
+            MaterialColors.BLUE_GREY_600,
             MaterialColors.ORANGE_600
         )
     }
