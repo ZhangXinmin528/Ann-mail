@@ -25,6 +25,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.snackbar.Snackbar
 import com.mail.ann.Account
 import com.mail.ann.Account.SortType
 import com.mail.ann.Ann
@@ -46,8 +47,8 @@ import com.mail.ann.search.SearchSpecification
 import com.mail.ann.search.SearchSpecification.SearchCondition
 import com.mail.ann.search.SearchSpecification.SearchField
 import com.mail.ann.search.isUnifiedInbox
-import com.mail.ann.ui.BuildConfig
 import com.mail.ann.ui.AnnDrawer
+import com.mail.ann.ui.BuildConfig
 import com.mail.ann.ui.R
 import com.mail.ann.ui.base.AnnActivity
 import com.mail.ann.ui.base.Theme
@@ -66,7 +67,6 @@ import com.mail.ann.ui.permissions.Permission
 import com.mail.ann.ui.permissions.PermissionUiHelper
 import com.mail.ann.view.ViewSwitcher
 import com.mail.ann.view.ViewSwitcher.OnSwitchCompleteListener
-import com.google.android.material.snackbar.Snackbar
 import com.mikepenz.materialdrawer.util.getOptimalDrawerWidth
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -95,6 +95,8 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
 
     private lateinit var actionBar: ActionBar
     private lateinit var searchView: SearchView
+
+    //抽屉布局
     private var drawer: AnnDrawer? = null
     private var openFolderTransaction: FragmentTransaction? = null
     private var menu: Menu? = null
@@ -333,9 +335,11 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
             DisplayMode.MESSAGE_LIST -> {
                 showMessageList()
             }
+
             DisplayMode.MESSAGE_VIEW -> {
                 showMessageView()
             }
+
             DisplayMode.SPLIT_VIEW -> {
                 messageListWasDisplayed = true
                 messageListFragment?.onListVisible()
@@ -738,6 +742,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
                     return true
                 }
             }
+
             KeyEvent.KEYCODE_VOLUME_DOWN -> {
                 if (messageViewFragment != null && displayMode != DisplayMode.MESSAGE_LIST && Ann.isUseVolumeKeysForNavigation) {
                     showNextMessage()
@@ -747,10 +752,12 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
                     return true
                 }
             }
+
             KeyEvent.KEYCODE_DEL -> {
                 onDeleteHotKey()
                 return true
             }
+
             KeyEvent.KEYCODE_DPAD_LEFT -> {
                 return if (messageViewFragment != null && displayMode == DisplayMode.MESSAGE_VIEW) {
                     showPreviousMessage()
@@ -758,6 +765,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
                     false
                 }
             }
+
             KeyEvent.KEYCODE_DPAD_RIGHT -> {
                 return if (messageViewFragment != null && displayMode == DisplayMode.MESSAGE_VIEW) {
                     showNextMessage()
@@ -772,22 +780,27 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
                 messageListFragment!!.onCompose()
                 return true
             }
+
             'o' -> {
                 messageListFragment!!.onCycleSort()
                 return true
             }
+
             'i' -> {
                 messageListFragment!!.onReverseSort()
                 return true
             }
+
             'd' -> {
                 onDeleteHotKey()
                 return true
             }
+
             's' -> {
                 messageListFragment!!.toggleMessageSelect()
                 return true
             }
+
             'g' -> {
                 if (displayMode == DisplayMode.MESSAGE_LIST) {
                     messageListFragment!!.onToggleFlagged()
@@ -796,6 +809,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
                 }
                 return true
             }
+
             'm' -> {
                 if (displayMode == DisplayMode.MESSAGE_LIST) {
                     messageListFragment!!.onMove()
@@ -804,6 +818,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
                 }
                 return true
             }
+
             'v' -> {
                 if (displayMode == DisplayMode.MESSAGE_LIST) {
                     messageListFragment!!.onArchive()
@@ -812,6 +827,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
                 }
                 return true
             }
+
             'y' -> {
                 if (displayMode == DisplayMode.MESSAGE_LIST) {
                     messageListFragment!!.onCopy()
@@ -820,6 +836,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
                 }
                 return true
             }
+
             'z' -> {
                 if (displayMode == DisplayMode.MESSAGE_LIST) {
                     messageListFragment!!.onToggleRead()
@@ -828,36 +845,42 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
                 }
                 return true
             }
+
             'f' -> {
                 if (messageViewFragment != null) {
                     messageViewFragment!!.onForward()
                 }
                 return true
             }
+
             'a' -> {
                 if (messageViewFragment != null) {
                     messageViewFragment!!.onReplyAll()
                 }
                 return true
             }
+
             'r' -> {
                 if (messageViewFragment != null) {
                     messageViewFragment!!.onReply()
                 }
                 return true
             }
+
             'j', 'p' -> {
                 if (messageViewFragment != null) {
                     showPreviousMessage()
                 }
                 return true
             }
+
             'n', 'k' -> {
                 if (messageViewFragment != null) {
                     showNextMessage()
                 }
                 return true
             }
+
             'h' -> {
                 val toast = if (displayMode == DisplayMode.MESSAGE_LIST) {
                     Toast.makeText(this, R.string.message_list_help_key, Toast.LENGTH_LONG)
@@ -1012,14 +1035,17 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
                 messageListFragment!!.onSendPendingMessages()
                 true
             }
+
             R.id.expunge -> {
                 messageListFragment!!.onExpunge()
                 true
             }
+
             R.id.empty_trash -> {
                 messageListFragment!!.onEmptyTrash()
                 true
             }
+
             else -> {
                 super.onOptionsItemSelected(item)
             }

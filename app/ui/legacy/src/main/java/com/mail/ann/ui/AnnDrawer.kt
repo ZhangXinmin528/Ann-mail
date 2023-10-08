@@ -64,6 +64,7 @@ private const val EN_SPACE = "\u2000"
 
 // 抽屉布局
 class AnnDrawer(private val parent: MessageList, savedInstanceState: Bundle?) : KoinComponent {
+
     private val foldersViewModel: FoldersViewModel by parent.viewModel()
     private val accountsViewModel: AccountsViewModel by parent.viewModel()
     private val folderNameFormatter: FolderNameFormatter by inject { parametersOf(parent) }
