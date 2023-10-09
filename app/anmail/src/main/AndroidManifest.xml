@@ -278,6 +278,7 @@
             android:name="com.mail.ann.ui.managefolders.ManageFoldersActivity"
             android:label="@string/folders_action" />
 
+        <!--设置入口-->
         <activity
             android:name="com.mail.ann.ui.settings.SettingsActivity"
             android:label="@string/prefs_title" />

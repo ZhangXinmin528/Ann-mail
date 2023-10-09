@@ -89,12 +89,14 @@ class SettingsListFragment : Fragment(), ItemTouchCallback {
 
     private fun populateSettingsList(accounts: List<Account>) {
         val listItems = buildSettingsList {
+            //常规设置
             addAction(
                 text = getString(R.string.general_settings_title),
                 navigationAction = R.id.action_settingsListScreen_to_generalSettingsScreen,
                 icon = R.attr.iconSettingsGeneral
             )
 
+            //账户
             addSection(title = getString(R.string.accounts_title)) {
                 val isDraggable = accounts.size > 1
                 for (account in accounts) {
@@ -108,7 +110,7 @@ class SettingsListFragment : Fragment(), ItemTouchCallback {
                 )
 
             }
-
+            //备份
             addSection(title = getString(R.string.settings_list_backup_category)) {
                 addAction(
                     text = getString(R.string.settings_export_title),
@@ -123,6 +125,7 @@ class SettingsListFragment : Fragment(), ItemTouchCallback {
                 )
             }
 
+            //杂项
             addSection(title = getString(R.string.settings_list_miscellaneous_category)) {
                 addAction(
                     text = getString(R.string.about_action),
@@ -130,17 +133,17 @@ class SettingsListFragment : Fragment(), ItemTouchCallback {
                     icon = R.attr.iconSettingsAbout
                 )
 
-                addUrlAction(
-                    text = getString(R.string.user_manual_title),
-                    url = getString(R.string.user_manual_url),
-                    icon = R.attr.iconUserManual
-                )
-
-                addUrlAction(
-                    text = getString(R.string.get_help_title),
-                    url = getString(R.string.user_forum_url),
-                    icon = R.attr.iconHelp
-                )
+//                addUrlAction(
+//                    text = getString(R.string.user_manual_title),
+//                    url = getString(R.string.user_manual_url),
+//                    icon = R.attr.iconUserManual
+//                )
+//
+//                addUrlAction(
+//                    text = getString(R.string.get_help_title),
+//                    url = getString(R.string.user_forum_url),
+//                    icon = R.attr.iconHelp
+//                )
             }
         }
 
