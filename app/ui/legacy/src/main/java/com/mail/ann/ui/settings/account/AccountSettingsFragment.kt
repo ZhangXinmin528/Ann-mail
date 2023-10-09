@@ -88,6 +88,16 @@ class AccountSettingsFragment : PreferenceFragmentCompat(), ConfirmationDialogFr
         initializeCryptoSettings(account)
         initializeFolderSettings(account)
         initializeNotifications(account)
+
+        findPreference<Preference>("openpgp")?.let {
+            preferenceScreen.removePreference(it)
+        }
+        findPreference<Preference>("search")?.let {
+            preferenceScreen.removePreference(it)
+        }
+        findPreference<Preference>("notifications")?.let {
+            preferenceScreen.removePreference(it)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -125,28 +135,33 @@ class AccountSettingsFragment : PreferenceFragmentCompat(), ConfirmationDialogFr
                 onDeleteAccount()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
 
+    //配置收件服务器
     private fun initializeIncomingServer() {
         findPreference<Preference>(PREFERENCE_INCOMING_SERVER)?.onClick {
             AccountSetupIncoming.actionEditIncomingSettings(requireActivity(), accountUuid)
         }
     }
 
+    //撰写新邮件信息
     private fun initializeComposition() {
         findPreference<Preference>(PREFERENCE_COMPOSITION)?.onClick {
             AccountSetupComposition.actionEditCompositionSettings(requireActivity(), accountUuid)
         }
     }
 
+    //管理身份标识
     private fun initializeManageIdentities() {
         findPreference<Preference>(PREFERENCE_MANAGE_IDENTITIES)?.onClick {
             ManageIdentities.start(requireActivity(), accountUuid)
         }
     }
 
+    //上传发送邮件->已发送
     private fun initializeUploadSentMessages(account: Account) {
         findPreference<Preference>(PREFERENCE_UPLOAD_SENT_MESSAGES)?.apply {
             if (!messagingController.supportsUpload(account)) {
@@ -155,12 +170,14 @@ class AccountSettingsFragment : PreferenceFragmentCompat(), ConfirmationDialogFr
         }
     }
 
+    //配置发件服务器
     private fun initializeOutgoingServer() {
         findPreference<Preference>(PREFERENCE_OUTGOING_SERVER)?.onClick {
             AccountSetupOutgoing.actionEditOutgoingSettings(requireActivity(), accountUuid)
         }
     }
 
+    //邮件回复时引用格式
     private fun initializeQuoteStyle() {
         findPreference<Preference>(PREFERENCE_QUOTE_STYLE)?.apply {
             setOnPreferenceChangeListener { _, newValue ->
@@ -171,6 +188,7 @@ class AccountSettingsFragment : PreferenceFragmentCompat(), ConfirmationDialogFr
         }
     }
 
+    //当我删除邮件时的策略
     private fun initializeDeletePolicy(account: Account) {
         (findPreference(PREFERENCE_DELETE_POLICY) as? ListPreference)?.apply {
             if (!messagingController.supportsFlags(account)) {
@@ -179,6 +197,7 @@ class AccountSettingsFragment : PreferenceFragmentCompat(), ConfirmationDialogFr
         }
     }
 
+    //抹掉删除的邮件
     private fun initializeExpungePolicy(account: Account) {
         findPreference<Preference>(PREFERENCE_EXPUNGE_POLICY)?.apply {
             if (!messagingController.supportsExpunge(account)) {
@@ -187,6 +206,7 @@ class AccountSettingsFragment : PreferenceFragmentCompat(), ConfirmationDialogFr
         }
     }
 
+    //同步改时间段内邮件
     private fun initializeMessageAge(account: Account) {
         findPreference<Preference>(PREFERENCE_MESSAGE_AGE)?.apply {
             if (!messagingController.supportsSearchByDate(account)) {
@@ -195,6 +215,7 @@ class AccountSettingsFragment : PreferenceFragmentCompat(), ConfirmationDialogFr
         }
     }
 
+    //推送功能：1.推送文件夹；2.高级
     private fun initializeAdvancedPushSettings(account: Account) {
         if (!messagingController.isPushCapable(account)) {
             findPreference<Preference>(PREFERENCE_PUSH_MODE)?.remove()
@@ -203,32 +224,37 @@ class AccountSettingsFragment : PreferenceFragmentCompat(), ConfirmationDialogFr
     }
 
     private fun initializeNotifications(account: Account) {
+        //震动
         if (vibrator?.hasVibrator() != true) {
             findPreference<Preference>(PREFERENCE_NOTIFICATION_VIBRATION)?.remove()
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            //通知声音
             findPreference<NotificationSoundPreference>(PREFERENCE_NOTIFICATION_SOUND)?.let { preference ->
                 notificationSoundPreference = preference
                 preference.isEnabled = false
             }
 
+            //通知灯
             findPreference<ListPreference>(PREFERENCE_NOTIFICATION_LIGHT)?.let { preference ->
                 notificationLightPreference = preference
                 preference.isEnabled = false
             }
 
+            //通知震动
             findPreference<VibrationPreference>(PREFERENCE_NOTIFICATION_VIBRATION)?.let { preference ->
                 notificationVibrationPreference = preference
                 preference.isEnabled = false
             }
 
+            //通知类别：配置新消息通知
             findPreference<NotificationsPreference>(PREFERENCE_NOTIFICATION_SETTINGS_MESSAGES)?.let {
                 it.notificationChannelIdProvider = {
                     notificationChannelManager.getChannelIdFor(account, ChannelType.MESSAGES)
                 }
             }
-
+            //通知类别：配置错误和状态通知
             findPreference<NotificationsPreference>(PREFERENCE_NOTIFICATION_SETTINGS_MISCELLANEOUS)?.let {
                 it.notificationChannelIdProvider = {
                     notificationChannelManager.getChannelIdFor(account, ChannelType.MISCELLANEOUS)
@@ -274,6 +300,7 @@ class AccountSettingsFragment : PreferenceFragmentCompat(), ConfirmationDialogFr
         }
     }
 
+    //端到端加密
     private fun initializeCryptoSettings(account: Account) {
         findPreference<Preference>(PREFERENCE_OPENPGP)?.let {
             configureCryptoPreferences(account)
@@ -332,6 +359,7 @@ class AccountSettingsFragment : PreferenceFragmentCompat(), ConfirmationDialogFr
         }
     }
 
+    //设置端到端秘钥
     private fun configurePgpKey(account: Account, pgpProvider: String?) {
         (findPreference<Preference>(PREFERENCE_OPENPGP_KEY) as OpenPgpKeyPreference).apply {
             value = account.openPgpKey
@@ -342,6 +370,7 @@ class AccountSettingsFragment : PreferenceFragmentCompat(), ConfirmationDialogFr
         }
     }
 
+    //与其他设备共享端到端配置
     private fun configureAutocryptTransfer(account: Account) {
         findPreference<Preference>(PREFERENCE_AUTOCRYPT_TRANSFER)!!.onClick {
             val intent = AutocryptKeyTransferActivity.createIntent(requireContext(), account.uuid)
@@ -349,6 +378,7 @@ class AccountSettingsFragment : PreferenceFragmentCompat(), ConfirmationDialogFr
         }
     }
 
+    //文件夹模块
     private fun initializeFolderSettings(account: Account) {
         findPreference<Preference>(PREFERENCE_FOLDERS)?.let {
             if (!messagingController.isMoveCapable(account)) {

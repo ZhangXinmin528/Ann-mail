@@ -167,6 +167,7 @@ class SettingsListFragment : Fragment(), ItemTouchCallback {
         }
     }
 
+    //进入邮箱账户设置页面
     private fun launchAccountSettings(account: Account) {
         AccountSettingsActivity.start(requireActivity(), account.uuid)
     }

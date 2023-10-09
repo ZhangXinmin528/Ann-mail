@@ -17,6 +17,7 @@ import com.mail.ann.Preferences;
 import com.mail.ann.ui.R;
 import com.mail.ann.ui.base.AnnActivity;
 
+//撰写新邮件信息
 public class AccountSetupComposition extends AnnActivity {
 
     private static final String EXTRA_ACCOUNT = "account";

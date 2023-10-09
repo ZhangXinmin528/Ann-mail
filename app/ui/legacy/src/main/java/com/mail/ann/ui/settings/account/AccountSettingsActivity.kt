@@ -17,6 +17,7 @@ import com.mail.ann.ui.observeNotNull
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
+//邮箱账号通用设置页面
 class AccountSettingsActivity : AnnActivity(), OnPreferenceStartScreenCallback {
     private val accountViewModel: AccountSettingsViewModel by viewModel()
     private lateinit var accountUuid: String
