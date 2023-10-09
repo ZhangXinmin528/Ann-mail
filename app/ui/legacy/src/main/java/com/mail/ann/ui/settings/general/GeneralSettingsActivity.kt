@@ -19,8 +19,8 @@ import com.mail.ann.ui.fragmentTransactionWithBackStack
 
 //常规设置
 class GeneralSettingsActivity : AnnActivity(), OnPreferenceStartScreenCallback, SearchPreferenceResultListener {
-    private lateinit var searchPreferenceActionView: SearchPreferenceActionView
-    private lateinit var searchPreferenceMenuItem: MenuItem
+//    private lateinit var searchPreferenceActionView: SearchPreferenceActionView
+//    private lateinit var searchPreferenceMenuItem: MenuItem
     private lateinit var searchQuery: String
     private var searchEnabled = false
 
@@ -46,64 +46,66 @@ class GeneralSettingsActivity : AnnActivity(), OnPreferenceStartScreenCallback, 
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        if (::searchPreferenceActionView.isInitialized) {
-            outState.putString(KEY_SEARCH_QUERY, searchPreferenceActionView.query.toString())
-            outState.putBoolean(KEY_SEARCH_ENABLED, !searchPreferenceActionView.isIconified)
-        }
+//        if (::searchPreferenceActionView.isInitialized) {
+//            outState.putString(KEY_SEARCH_QUERY, searchPreferenceActionView.query.toString())
+//            outState.putBoolean(KEY_SEARCH_ENABLED, !searchPreferenceActionView.isIconified)
+//        }
         super.onSaveInstanceState(outState)
     }
 
     override fun onSearchResultClicked(result: SearchPreferenceResult) {
-        searchPreferenceActionView.cancelSearch()
-        searchPreferenceMenuItem.collapseActionView()
-
-        val fragment = GeneralSettingsFragment.create(result.screen)
-        fragmentTransaction {
-            addToBackStack("Search result")
-            replace(R.id.generalSettingsContainer, fragment)
-        }
-
-        result.highlight(fragment as PreferenceFragmentCompat)
+//        searchPreferenceActionView.cancelSearch()
+//        searchPreferenceMenuItem.collapseActionView()
+//
+//        val fragment = GeneralSettingsFragment.create(result.screen)
+//        fragmentTransaction {
+//            addToBackStack("Search result")
+//            replace(R.id.generalSettingsContainer, fragment)
+//        }
+//
+//        result.highlight(fragment as PreferenceFragmentCompat)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.general_settings_option, menu)
-
-        searchPreferenceMenuItem = menu.findItem(R.id.search)
-        searchPreferenceActionView = searchPreferenceMenuItem.actionView as SearchPreferenceActionView
-        searchPreferenceActionView.setActivity(this)
-
-        with(searchPreferenceActionView.searchConfiguration) {
-            setFragmentContainerViewId(R.id.generalSettingsContainer)
-            setBreadcrumbsEnabled(true)
-            setFuzzySearchEnabled(true)
-            textHint = getString(R.string.search_action)
-            textNoResults = getString(R.string.preference_search_no_results)
-
-            index(R.xml.general_settings)
-        }
-
-        searchPreferenceMenuItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-                searchPreferenceActionView.cancelSearch()
-                return true
-            }
-
-            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-                return true
-            }
-        })
-
-        if (searchEnabled) {
-            Handler().post {
-                // If we do not use a handler here, it will not be possible
-                // to use the menuItem after dismissing the searchView
-                searchPreferenceMenuItem.expandActionView()
-                searchPreferenceActionView.setQuery(searchQuery, false)
-            }
-        }
-        return true
-    }
+    //隐藏搜索功能
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//
+//        menuInflater.inflate(R.menu.general_settings_option, menu)
+//
+//        searchPreferenceMenuItem = menu.findItem(R.id.search)
+//        searchPreferenceActionView = searchPreferenceMenuItem.actionView as SearchPreferenceActionView
+//        searchPreferenceActionView.setActivity(this)
+//
+//        with(searchPreferenceActionView.searchConfiguration) {
+//            setFragmentContainerViewId(R.id.generalSettingsContainer)
+//            setBreadcrumbsEnabled(true)
+//            setFuzzySearchEnabled(true)
+//            textHint = getString(R.string.search_action)
+//            textNoResults = getString(R.string.preference_search_no_results)
+//
+//            index(R.xml.general_settings)
+//        }
+//
+//        searchPreferenceMenuItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+//            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+//                searchPreferenceActionView.cancelSearch()
+//                return true
+//            }
+//
+//            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+//                return true
+//            }
+//        })
+//
+//        if (searchEnabled) {
+//            Handler().post {
+//                // If we do not use a handler here, it will not be possible
+//                // to use the menuItem after dismissing the searchView
+//                searchPreferenceMenuItem.expandActionView()
+//                searchPreferenceActionView.setQuery(searchQuery, false)
+//            }
+//        }
+//        return true
+//    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
@@ -115,9 +117,9 @@ class GeneralSettingsActivity : AnnActivity(), OnPreferenceStartScreenCallback, 
     }
 
     override fun onBackPressed() {
-        if (!searchPreferenceActionView.cancelSearch()) {
+//        if (!searchPreferenceActionView.cancelSearch()) {
             super.onBackPressed()
-        }
+//        }
     }
 
     override fun onPreferenceStartScreen(

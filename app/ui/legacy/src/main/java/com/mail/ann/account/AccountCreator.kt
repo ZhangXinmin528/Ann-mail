@@ -69,8 +69,8 @@ class AccountCreator(private val preferences: Preferences, private val resources
 
     companion object {
         private val DEFAULT_COLORS = intArrayOf(
-            MaterialColors.BLUE_700,
             MaterialColors.PINK_500,
+            MaterialColors.TEAL_700,
             MaterialColors.AMBER_600
         )
     }

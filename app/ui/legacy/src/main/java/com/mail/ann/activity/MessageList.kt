@@ -634,6 +634,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
         actionDisplaySearch(this, SearchAccount.createUnifiedInboxAccount().relatedSearch, false, false)
     }
 
+    //管理文件夹
     fun launchManageFoldersScreen() {
         if (account == null) {
             Timber.e("Tried to open \"Manage folders\", but no account selected!")

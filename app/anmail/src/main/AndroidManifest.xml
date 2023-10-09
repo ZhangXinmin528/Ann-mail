@@ -282,6 +282,7 @@
             android:name="com.mail.ann.ui.settings.SettingsActivity"
             android:label="@string/prefs_title" />
 
+        <!--常规设置-->
         <activity
             android:name="com.mail.ann.ui.settings.general.GeneralSettingsActivity"
             android:label="@string/general_settings_title" />

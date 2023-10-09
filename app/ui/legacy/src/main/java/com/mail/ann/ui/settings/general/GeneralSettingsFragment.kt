@@ -7,10 +7,12 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts.CreateDocument
 import androidx.preference.ListPreference
+import androidx.preference.Preference
+import com.google.android.material.snackbar.Snackbar
+import com.mail.ann.ui.BuildConfig
 import com.mail.ann.ui.R
 import com.mail.ann.ui.observe
 import com.mail.ann.ui.withArguments
-import com.google.android.material.snackbar.Snackbar
 import com.takisoft.preferencex.PreferenceFragmentCompat
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -34,6 +36,10 @@ class GeneralSettingsFragment : PreferenceFragmentCompat() {
         this.rootKey = rootKey
         setHasOptionsMenu(true)
         setPreferencesFromResource(R.xml.general_settings, rootKey)
+
+        if (!BuildConfig.DEBUG) findPreference<Preference>("debug_preferences")?.let {
+            preferenceScreen.removePreference(it)
+        }
 
         initializeTheme()
 
@@ -110,9 +116,7 @@ class GeneralSettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun showSnackbar(message: Int) {
-        Snackbar.make(requireView(), message, Snackbar.LENGTH_INDEFINITE)
-            .also { snackbar = it }
-            .show()
+        Snackbar.make(requireView(), message, Snackbar.LENGTH_INDEFINITE).also { snackbar = it }.show()
     }
 
     companion object {

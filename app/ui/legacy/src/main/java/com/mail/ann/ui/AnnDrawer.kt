@@ -51,7 +51,6 @@ import com.mikepenz.materialdrawer.util.getDrawerItem
 import com.mikepenz.materialdrawer.util.removeAllItems
 import com.mikepenz.materialdrawer.widget.AccountHeaderView
 import com.mikepenz.materialdrawer.widget.MaterialDrawerSliderView
-import java.util.ArrayList
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -67,6 +66,7 @@ class AnnDrawer(private val parent: MessageList, savedInstanceState: Bundle?) : 
 
     private val foldersViewModel: FoldersViewModel by parent.viewModel()
     private val accountsViewModel: AccountsViewModel by parent.viewModel()
+
     private val folderNameFormatter: FolderNameFormatter by inject { parametersOf(parent) }
     private val themeManager: ThemeManager by inject()
     private val resources: Resources by inject()
@@ -80,6 +80,7 @@ class AnnDrawer(private val parent: MessageList, savedInstanceState: Bundle?) : 
         dividerBelowHeader = false
         displayBadgesOnCurrentProfileImage = false
     }
+
     private val folderIconProvider: FolderIconProvider = FolderIconProvider(parent.theme)
     private val swipeRefreshLayout: SwipeRefreshLayout
 
@@ -269,7 +270,9 @@ class AnnDrawer(private val parent: MessageList, savedInstanceState: Bundle?) : 
         }
     }
 
+    //add footer to drawer
     private fun addFooterItems() {
+        //管理文件夹
         sliderView.addStickyFooterItem(
             PrimaryDrawerItem().apply {
                 nameRes = R.string.folders_action
@@ -279,6 +282,7 @@ class AnnDrawer(private val parent: MessageList, savedInstanceState: Bundle?) : 
             }
         )
 
+        //设置
         sliderView.addStickyFooterItem(
             PrimaryDrawerItem().apply {
                 nameRes = R.string.preferences_action
@@ -339,7 +343,9 @@ class AnnDrawer(private val parent: MessageList, savedInstanceState: Bundle?) : 
 
     private fun handleItemClickListener(drawerItem: IDrawerItem<*>) {
         when (drawerItem.identifier) {
+            //setting
             DRAWER_ID_PREFERENCES -> SettingsActivity.launch(parent)
+            //管理文件夹
             DRAWER_ID_FOLDERS -> parent.launchManageFoldersScreen()
             DRAWER_ID_UNIFIED_INBOX -> parent.openUnifiedInbox()
             else -> {
