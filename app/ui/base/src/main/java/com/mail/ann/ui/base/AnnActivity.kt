@@ -15,6 +15,8 @@ import org.koin.android.ext.android.inject
 abstract class AnnActivity(private val themeType: ThemeType) : AppCompatActivity() {
     constructor() : this(ThemeType.DEFAULT)
 
+    protected val sTAG = this.javaClass.simpleName
+
     private val pushController: PushController by inject()
     protected val themeManager: ThemeManager by inject()
     private val appLanguageManager: AppLanguageManager by inject()

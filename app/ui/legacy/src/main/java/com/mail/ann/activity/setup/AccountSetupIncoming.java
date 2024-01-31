@@ -160,6 +160,7 @@ public class AccountSetupIncoming extends AnnActivity implements OnClickListener
         mPortView.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
 
         String accountUuid = getIntent().getStringExtra(EXTRA_ACCOUNT);
+        //或取对应的账户信息
         mAccount = Preferences.getPreferences(this).getAccount(accountUuid);
         mMakeDefault = getIntent().getBooleanExtra(EXTRA_MAKE_DEFAULT, false);
 
@@ -542,7 +543,7 @@ public class AccountSetupIncoming extends AnnActivity implements OnClickListener
             if (Intent.ACTION_EDIT.equals(getIntent().getAction())) {
                 Preferences.getPreferences(getApplicationContext()).saveAccount(mAccount);
                 finish();
-            } else {
+            } else {//检查设置之后回调
                 /*
                  * Set the username and password for the outgoing settings to the username and
                  * password the user just set for incoming.
@@ -566,7 +567,7 @@ public class AccountSetupIncoming extends AnnActivity implements OnClickListener
                         -1, ConnectionSecurity.SSL_TLS_REQUIRED, authType, username, password,
                         clientCertificateAlias);
                 mAccount.setOutgoingServerSettings(transportServer);
-
+                //发件服务器
                 AccountSetupOutgoing.actionOutgoingSettings(this, mAccount);
             }
         }
@@ -582,6 +583,7 @@ public class AccountSetupIncoming extends AnnActivity implements OnClickListener
         return super.onOptionsItemSelected(item);
     }
 
+    //点击下一步
     protected void onNext() {
         try {
             ConnectionSecurity connectionSecurity = getSelectedSecurity();
@@ -623,6 +625,7 @@ public class AccountSetupIncoming extends AnnActivity implements OnClickListener
             mAccount.setUseCompression(useCompressionCheckBox.isChecked());
             mAccount.setSubscribedFoldersOnly(mSubscribedFoldersOnly.isChecked());
 
+            //检查账户设置
             AccountSetupCheckSettings.actionCheckSettings(this, mAccount, CheckDirection.INCOMING);
         } catch (Exception e) {
             failure(e);

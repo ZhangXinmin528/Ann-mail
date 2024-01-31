@@ -68,7 +68,7 @@
             android:exported="true"
             android:targetActivity="com.mail.ann.activity.MessageList" />
 
-        <!--欢迎页面-->
+        <!--0-欢迎页面-->
         <activity
             android:name="com.mail.ann.ui.onboarding.OnboardingActivity"
             android:label="@string/welcome_message_title" />
@@ -78,19 +78,19 @@
             android:configChanges="locale"
             android:theme="@style/Theme.K9.Dialog.Translucent.DayNight" />
 
-        <!--创建账户-->
+        <!--1-创建账户-->
         <activity
             android:name="com.mail.ann.activity.setup.AccountSetupBasics"
             android:configChanges="locale"
             android:label="@string/account_setup_basics_title" />
 
-        <!--设置账户类型-->
+        <!--2-设置账户类型-->
         <activity
             android:name="com.mail.ann.activity.setup.AccountSetupAccountType"
             android:configChanges="locale"
             android:label="@string/account_setup_account_type_title" />
 
-        <!--收件服务器设置-->
+        <!--3-收件服务器设置-->
         <activity
             android:name="com.mail.ann.activity.setup.AccountSetupIncoming"
             android:configChanges="locale"
@@ -101,7 +101,7 @@
             android:configChanges="locale"
             android:label="@string/account_settings_composition_title" />
 
-        <!--发件服务器设置-->
+        <!--5-发件服务器设置-->
         <activity
             android:name="com.mail.ann.activity.setup.AccountSetupOutgoing"
             android:configChanges="locale"
@@ -155,7 +155,7 @@
 
         <!-- XXX Note: this activity is hacked to ignore config changes,
              since it doesn't currently handle them correctly in code. -->
-        <!--账户创建一些检查-->
+        <!--4-账户创建一些检查：收发件服务器-->
         <activity
             android:name="com.mail.ann.activity.setup.AccountSetupCheckSettings"
             android:configChanges="keyboardHidden|orientation|locale"

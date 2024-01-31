@@ -181,7 +181,7 @@ class AccountSetupBasics : AnnActivity() {
             clientCertificateChecked && clientCertificateAlias != null
     }
 
-    //
+    //输入邮件地址后，下一步
     private fun attemptAutoSetupUsingOnlyEmailAddress() {
         val email = emailView.text?.toString() ?: error("Email missing")
         //后门:@anmail.example
@@ -205,6 +205,7 @@ class AccountSetupBasics : AnnActivity() {
         }
     }
 
+
     private fun startOAuthFlow(connectionSettings: ConnectionSettings) {
         val account = createAccount(connectionSettings)
 
@@ -212,6 +213,7 @@ class AccountSetupBasics : AnnActivity() {
         startActivityForResult(intent, REQUEST_CODE_OAUTH)
     }
 
+    //开始输入密码
     private fun startPasswordFlow() {
         uiState = UiState.PASSWORD_FLOW
 
@@ -221,6 +223,7 @@ class AccountSetupBasics : AnnActivity() {
         passwordView.requestFocus()
     }
 
+    //输入密码后，下一步
     private fun attemptAutoSetup() {
         if (clientCertificateCheckBox.isChecked) {
             // Auto-setup doesn't support client certificates.
@@ -240,7 +243,7 @@ class AccountSetupBasics : AnnActivity() {
         val connectionSettings = providersXmlDiscoveryDiscover(email)
         if (connectionSettings != null) {
             finishAutoSetup(connectionSettings)
-        } else {
+        } else {//新账户
             // We don't have default settings for this account, start the manual setup process.
             onManualSetup()
         }
@@ -295,7 +298,7 @@ class AccountSetupBasics : AnnActivity() {
             password = password,
             clientCertificateAlias = clientCertificateAlias
         )
-        //这是账户类型
+        //设置账户类型：IMAP or POP3
         AccountSetupAccountType.actionSelectAccountType(this, account, makeDefault = false, initialAccountSettings)
     }
 

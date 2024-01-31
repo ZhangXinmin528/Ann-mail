@@ -51,7 +51,7 @@ class WelcomeFragment : Fragment() {
     private fun launchAccountSetup() {
         if (BuildConfig.USE_NEW_SETUP_UI_FOR_ONBOARDING) {
             findNavController().navigate(R.id.action_welcomeScreen_to_newAddAccountScreen)
-        } else {
+        } else {//默认使用旧版本
             findNavController().navigate(R.id.action_welcomeScreen_to_addAccountScreen)
             requireActivity().finish()
         }
@@ -62,6 +62,7 @@ class WelcomeFragment : Fragment() {
         findNavController().navigate(R.id.action_welcomeScreen_to_settingsImportScreen)
     }
 
+    //加载主页面
     private fun launchMessageList() {
         findNavController().navigate(R.id.action_welcomeScreen_to_messageListScreen)
         requireActivity().finish()

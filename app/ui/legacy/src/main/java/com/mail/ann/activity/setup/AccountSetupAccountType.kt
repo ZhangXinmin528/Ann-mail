@@ -3,6 +3,7 @@ package com.mail.ann.activity.setup
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.mail.ann.Account
 import com.mail.ann.Preferences
@@ -14,7 +15,9 @@ import com.mail.ann.preferences.Protocols
 import com.mail.ann.setup.ServerNameSuggester
 import com.mail.ann.ui.R
 import com.mail.ann.ui.base.AnnActivity
+import com.mail.ann.ui.setup.BuildConfig
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 /**
  * Prompts the user to select an account type. The account type, along with the
@@ -46,14 +49,16 @@ class AccountSetupAccountType : AnnActivity() {
         val accountUuid = intent.getStringExtra(EXTRA_ACCOUNT) ?: error("No account UUID provided")
         account = preferences.getAccount(accountUuid) ?: error("No account with given UUID found")
         makeDefault = intent.getBooleanExtra(EXTRA_MAKE_DEFAULT, false)
-        initialAccountSettings = intent.getParcelableExtra(EXTRA_INITIAL_ACCOUNT_SETTINGS)
-            ?: error("Initial account settings are missing")
+        initialAccountSettings =
+            intent.getParcelableExtra(EXTRA_INITIAL_ACCOUNT_SETTINGS) ?: error("Initial account settings are missing")
     }
 
+    //设置为pop3类型
     private fun setupPop3Account() {
         setupAccount(Protocols.POP3)
     }
 
+    //设置为imap类型
     private fun setupImapAccount() {
         setupAccount(Protocols.IMAP)
     }
@@ -67,7 +72,7 @@ class AccountSetupAccountType : AnnActivity() {
 
     private fun setupStoreAndSmtpTransport(serverType: String) {
         val domainPart = getDomainFromEmailAddress(account.email) ?: error("Couldn't get domain from email address")
-
+        if (BuildConfig.DEBUG) Timber.tag(sTAG).w("setupStoreAndSmtpTransport()..domainPart:%s", domainPart)
         initializeIncomingServerSettings(serverType, domainPart)
         initializeOutgoingServerSettings(domainPart)
     }
@@ -118,10 +123,7 @@ class AccountSetupAccountType : AnnActivity() {
 
         @JvmStatic
         fun actionSelectAccountType(
-            context: Context,
-            account: Account,
-            makeDefault: Boolean,
-            initialAccountSettings: InitialAccountSettings
+            context: Context, account: Account, makeDefault: Boolean, initialAccountSettings: InitialAccountSettings
         ) {
             val intent = Intent(context, AccountSetupAccountType::class.java).apply {
                 putExtra(EXTRA_ACCOUNT, account.uuid)
