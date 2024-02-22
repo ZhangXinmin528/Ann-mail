@@ -78,6 +78,7 @@ import timber.log.Timber
  * MessageList is the primary user interface for the program. This Activity shows a list of messages.
  *
  * From this Activity the user can perform all standard message operations.
+ * 邮件列表主页面
  */
 open class MessageList : AnnActivity(), MessageListFragmentListener, MessageViewFragmentListener,
     FragmentManager.OnBackStackChangedListener, OnSwitchCompleteListener, PermissionUiHelper {
@@ -143,6 +144,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
         }
 
         val accounts = preferences.accounts
+        //删除未完成的登陆账户
         deleteIncompleteAccounts(accounts)
         val hasAccountSetup = accounts.any { it.isFinishedSetup }
         if (!hasAccountSetup) {//未创建账户
@@ -185,10 +187,12 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
 
         initializeActionBar()
 
+        //drawerlayout
         val swipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.material_drawer_swipe_refresh)
         swipeRefreshLayout.layoutParams.width = getOptimalDrawerWidth(this)
         swipeRefreshLayout.setColorSchemeColors(MaterialColors.BLUE_500, MaterialColors.RED_500)
 
+        //初始化drawer布局
         initializeDrawer(savedInstanceState)
 
         if (!decodeExtras(intent)) {
@@ -197,13 +201,15 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
 
         if (isDrawerEnabled) {
             configureDrawer()
-            drawer!!.updateUserAccountsAndFolders(account)
+            drawer?.updateUserAccountsAndFolders(account)
         }
 
         findFragments()
         initializeDisplayMode(savedInstanceState)
         initializeLayout()
+        //初始化页面
         initializeFragments()
+        //根据模式确定展示样式
         displayViews()
         initializeRecentChangesSnackbar()
 
@@ -244,7 +250,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
 
         if (isDrawerEnabled) {
             configureDrawer()
-            drawer!!.updateUserAccountsAndFolders(account)
+            drawer?.updateUserAccountsAndFolders(account)
         }
 
         initializeDisplayMode(null)
@@ -319,6 +325,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
         }
     }
 
+    //todo：修改为平板或者TV使用分栏布局
     private fun useSplitView(): Boolean {
         val splitViewMode = Ann.splitViewMode
         val orientation = resources.configuration.orientation
@@ -332,15 +339,15 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
 
     private fun displayViews() {
         when (displayMode) {
-            DisplayMode.MESSAGE_LIST -> {
+            DisplayMode.MESSAGE_LIST -> {//邮件列表
                 showMessageList()
             }
 
-            DisplayMode.MESSAGE_VIEW -> {
+            DisplayMode.MESSAGE_VIEW -> {//邮件详情
                 showMessageView()
             }
 
-            DisplayMode.SPLIT_VIEW -> {
+            DisplayMode.SPLIT_VIEW -> {//分栏模式
                 messageListWasDisplayed = true
                 messageListFragment?.onListVisible()
                 if (messageViewFragment == null) {
@@ -366,6 +373,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
         }
     }
 
+    //展示版本新增功能
     @SuppressLint("ShowToast")
     private fun initializeRecentChangesSnackbar() {
         recentChangesSnackbar =
@@ -690,8 +698,8 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
     }
 
     override fun onBackPressed() {
-        if (isDrawerEnabled && drawer!!.isOpen) {
-            drawer!!.close()
+        if (isDrawerEnabled && drawer?.isOpen == true) {
+            drawer?.close()
         } else if (displayMode == DisplayMode.MESSAGE_VIEW) {
             if (messageViewOnly) {
                 finish()
@@ -921,10 +929,10 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
         if (id == android.R.id.home) {
             if (displayMode != DisplayMode.MESSAGE_VIEW && !isAdditionalMessageListDisplayed) {
                 if (isDrawerEnabled) {
-                    if (drawer!!.isOpen) {
-                        drawer!!.close()
+                    if (drawer?.isOpen == true) {
+                        drawer?.close()
                     } else {
-                        drawer!!.open()
+                        drawer?.open()
                     }
                 } else {
                     finish()
@@ -1479,6 +1487,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
         return false
     }
 
+    //展示邮件列表
     private fun showMessageList() {
         messageViewOnly = false
         messageListWasDisplayed = true
@@ -1506,6 +1515,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
         }
     }
 
+    //展示邮件详情
     private fun showMessageView() {
         displayMode = DisplayMode.MESSAGE_VIEW
         messageListFragment?.onListHidden()
@@ -1591,12 +1601,12 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
         get() = supportFragmentManager.backStackEntryCount > 0
 
     private fun lockDrawer() {
-        drawer!!.lock()
+        drawer?.lock()
         actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
     }
 
     private fun unlockDrawer() {
-        drawer!!.unlock()
+        drawer?.unlock()
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu)
     }
 
@@ -1663,6 +1673,7 @@ open class MessageList : AnnActivity(), MessageListFragmentListener, MessageView
         openFolderImmediately(defaultFolderId)
     }
 
+    //展示模式：邮件列表，邮件详情，分栏模式
     private enum class DisplayMode {
         MESSAGE_LIST, MESSAGE_VIEW, SPLIT_VIEW
     }

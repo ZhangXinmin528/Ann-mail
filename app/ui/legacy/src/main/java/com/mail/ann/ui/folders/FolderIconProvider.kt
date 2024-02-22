@@ -7,12 +7,19 @@ import com.mail.ann.ui.R
 import com.mail.ann.mail.FolderType as LegacyFolderType
 
 class FolderIconProvider(private val theme: Resources.Theme) {
+    //收件箱
     private val iconFolderInboxResId: Int
+    //发件箱
     private val iconFolderOutboxResId: Int
+    //已发送
     private val iconFolderSentResId: Int
+    //已删除
     private val iconFolderTrashResId: Int
+    //草稿箱
     private val iconFolderDraftsResId: Int
+    //已发送
     private val iconFolderArchiveResId: Int
+    //垃圾邮件
     private val iconFolderSpamResId: Int
     var iconFolderResId: Int
 

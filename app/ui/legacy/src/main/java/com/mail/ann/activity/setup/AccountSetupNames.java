@@ -24,6 +24,8 @@ import com.mail.ann.ui.base.AnnActivity;
 
 /**
  * 快要完成了
+ * 设置账户名称；
+ * 设置邮件签名；
  */
 public class AccountSetupNames extends AnnActivity implements OnClickListener {
     private static final String EXTRA_ACCOUNT = "account";

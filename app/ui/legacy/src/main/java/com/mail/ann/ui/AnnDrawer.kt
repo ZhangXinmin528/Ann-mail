@@ -62,6 +62,11 @@ private const val THIN_SPACE = "\u2009"
 private const val EN_SPACE = "\u2000"
 
 // 抽屉布局
+/**
+ * 主页抽屉布局：
+ * 1.隐藏账户下管理文件夹功能
+ * 2.隐藏全局文件夹功能：把所有账户
+ */
 class AnnDrawer(private val parent: MessageList, savedInstanceState: Bundle?) : KoinComponent {
 
     private val foldersViewModel: FoldersViewModel by parent.viewModel()
@@ -81,6 +86,7 @@ class AnnDrawer(private val parent: MessageList, savedInstanceState: Bundle?) : 
         displayBadgesOnCurrentProfileImage = false
     }
 
+    //提供文件夹资源
     private val folderIconProvider: FolderIconProvider = FolderIconProvider(parent.theme)
     private val swipeRefreshLayout: SwipeRefreshLayout
 
@@ -131,12 +137,15 @@ class AnnDrawer(private val parent: MessageList, savedInstanceState: Bundle?) : 
             }
         }
 
+        //底部功能
         addFooterItems()
 
+        //展示创建的账户列表
         accountsViewModel.displayAccountsLiveData.observeNotNull(parent) { accounts ->
             setAccounts(accounts)
         }
 
+        //展示账户下文件夹列表
         foldersViewModel.getFolderListLiveData().observe(parent) { folderList ->
             setUserFolders(folderList)
         }
@@ -219,6 +228,7 @@ class AnnDrawer(private val parent: MessageList, savedInstanceState: Bundle?) : 
         return if (unreadCount > 0) unreadCount.toString() else null
     }
 
+    //设置邮箱账户列表,账户在这里
     private fun setAccounts(displayAccounts: List<DisplayAccount>) {
         val oldSelectedBackgroundColor = selectedBackgroundColor
 
@@ -271,16 +281,17 @@ class AnnDrawer(private val parent: MessageList, savedInstanceState: Bundle?) : 
     }
 
     //add footer to drawer
+    //暂时隐藏管理文件夹功能
     private fun addFooterItems() {
         //管理文件夹
-        sliderView.addStickyFooterItem(
-            PrimaryDrawerItem().apply {
-                nameRes = R.string.folders_action
-                iconRes = folderIconProvider.iconFolderResId
-                identifier = DRAWER_ID_FOLDERS
-                isSelectable = false
-            }
-        )
+//        sliderView.addStickyFooterItem(
+//            PrimaryDrawerItem().apply {
+//                nameRes = R.string.folders_action
+//                iconRes = folderIconProvider.iconFolderResId
+//                identifier = DRAWER_ID_FOLDERS
+//                isSelectable = false
+//            }
+//        )
 
         //设置
         sliderView.addStickyFooterItem(
@@ -348,13 +359,14 @@ class AnnDrawer(private val parent: MessageList, savedInstanceState: Bundle?) : 
             //管理文件夹
             DRAWER_ID_FOLDERS -> parent.launchManageFoldersScreen()
             DRAWER_ID_UNIFIED_INBOX -> parent.openUnifiedInbox()
-            else -> {
+            else -> {//普通文件夹
                 val folder = drawerItem.tag as Folder
                 parent.openFolder(folder.id)
             }
         }
     }
 
+    //具体账户文件夹
     private fun setUserFolders(folderList: FolderList?) {
         this.latestFolderList = folderList
         clearUserFolders()
@@ -378,9 +390,9 @@ class AnnDrawer(private val parent: MessageList, savedInstanceState: Bundle?) : 
                     badgeStyle = folderBadgeStyle
                 }
             }
-
-            sliderView.addItems(unifiedInboxItem)
-            sliderView.addItems(FixedDividerDrawerItem(identifier = DRAWER_ID_DIVIDER))
+//隐藏全局收件箱
+//            sliderView.addItems(unifiedInboxItem)
+//            sliderView.addItems(FixedDividerDrawerItem(identifier = DRAWER_ID_DIVIDER))
 
             if (unifiedInboxSelected) {
                 openedFolderDrawerId = DRAWER_ID_UNIFIED_INBOX
@@ -388,6 +400,7 @@ class AnnDrawer(private val parent: MessageList, savedInstanceState: Bundle?) : 
         }
 
         val accountOffset = folderList.accountId.toLong() shl DRAWER_ACCOUNT_SHIFT
+        //todo：此处过滤账户文件夹
         for (displayFolder in folderList.folders) {
             val folder = displayFolder.folder
             val drawerId = accountOffset + folder.id

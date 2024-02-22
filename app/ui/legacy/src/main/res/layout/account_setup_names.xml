@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:fadingEdge="none"
-        android:padding="6dip"
+        android:padding="16dip"
         android:scrollbarStyle="outsideInset">
 
         <LinearLayout

@@ -531,6 +531,7 @@ public class AccountSetupOutgoing extends AnnActivity implements OnClickListener
                 password, clientCertificateAlias);
         DI.get(LocalKeyStoreManager.class).deleteCertificate(mAccount, newHost, newPort, MailServerDirection.OUTGOING);
         mAccount.setOutgoingServerSettings(server);
+        //发件服务器检查
         AccountSetupCheckSettings.actionCheckSettings(this, mAccount, CheckDirection.OUTGOING);
     }
 

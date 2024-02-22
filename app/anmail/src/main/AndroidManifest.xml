@@ -107,13 +107,13 @@
             android:configChanges="locale"
             android:label="@string/account_setup_outgoing_title" />
 
-        <!--账户选项-->
+        <!--7-账户选项-->
         <activity
             android:name="com.mail.ann.activity.setup.AccountSetupOptions"
             android:configChanges="locale"
             android:label="@string/account_setup_options_title" />
 
-        <!--快要完成了-->
+        <!--8-快要完成了-->
         <activity
             android:name="com.mail.ann.activity.setup.AccountSetupNames"
             android:configChanges="locale"
@@ -155,7 +155,7 @@
 
         <!-- XXX Note: this activity is hacked to ignore config changes,
              since it doesn't currently handle them correctly in code. -->
-        <!--4-账户创建一些检查：收发件服务器-->
+        <!--4&6-账户创建一些检查：收发件服务器-->
         <activity
             android:name="com.mail.ann.activity.setup.AccountSetupCheckSettings"
             android:configChanges="keyboardHidden|orientation|locale"
@@ -173,6 +173,7 @@
             android:exported="true"
             android:targetActivity="com.mail.ann.activity.MessageList" />
 
+        <!--邮件列表主页面-->
         <activity
             android:name="com.mail.ann.activity.MessageList"
             android:exported="true"

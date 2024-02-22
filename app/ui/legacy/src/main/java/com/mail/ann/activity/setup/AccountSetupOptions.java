@@ -20,6 +20,8 @@ import com.mail.ann.ui.base.AnnActivity;
 
 /**
  * 账户选项
+ * 设置邮件检查频次；
+ * 设置邮件显示数量；
  */
 public class AccountSetupOptions extends AnnActivity implements OnClickListener {
     private static final String EXTRA_ACCOUNT = "account";
@@ -61,16 +63,16 @@ public class AccountSetupOptions extends AnnActivity implements OnClickListener 
                         getString(R.string.account_setup_options_mail_check_frequency_30min)),
                 new SpinnerOption(60,
                         getString(R.string.account_setup_options_mail_check_frequency_1hour)),
-                new SpinnerOption(120,
-                        getString(R.string.account_setup_options_mail_check_frequency_2hour)),
-                new SpinnerOption(180,
-                        getString(R.string.account_setup_options_mail_check_frequency_3hour)),
-                new SpinnerOption(360,
-                        getString(R.string.account_setup_options_mail_check_frequency_6hour)),
-                new SpinnerOption(720,
-                        getString(R.string.account_setup_options_mail_check_frequency_12hour)),
-                new SpinnerOption(1440,
-                        getString(R.string.account_setup_options_mail_check_frequency_24hour)),
+//                new SpinnerOption(120,
+//                        getString(R.string.account_setup_options_mail_check_frequency_2hour)),
+//                new SpinnerOption(180,
+//                        getString(R.string.account_setup_options_mail_check_frequency_3hour)),
+//                new SpinnerOption(360,
+//                        getString(R.string.account_setup_options_mail_check_frequency_6hour)),
+//                new SpinnerOption(720,
+//                        getString(R.string.account_setup_options_mail_check_frequency_12hour)),
+//                new SpinnerOption(1440,
+//                        getString(R.string.account_setup_options_mail_check_frequency_24hour)),
 
         };
 
@@ -85,9 +87,9 @@ public class AccountSetupOptions extends AnnActivity implements OnClickListener 
                 new SpinnerOption(25, getString(R.string.account_setup_options_mail_display_count_25)),
                 new SpinnerOption(50, getString(R.string.account_setup_options_mail_display_count_50)),
                 new SpinnerOption(100, getString(R.string.account_setup_options_mail_display_count_100)),
-                new SpinnerOption(250, getString(R.string.account_setup_options_mail_display_count_250)),
-                new SpinnerOption(500, getString(R.string.account_setup_options_mail_display_count_500)),
-                new SpinnerOption(1000, getString(R.string.account_setup_options_mail_display_count_1000)),
+//                new SpinnerOption(250, getString(R.string.account_setup_options_mail_display_count_250)),
+//                new SpinnerOption(500, getString(R.string.account_setup_options_mail_display_count_500)),
+//                new SpinnerOption(1000, getString(R.string.account_setup_options_mail_display_count_1000)),
         };
 
         ArrayAdapter<SpinnerOption> displayCountsAdapter = new ArrayAdapter<>(this,
