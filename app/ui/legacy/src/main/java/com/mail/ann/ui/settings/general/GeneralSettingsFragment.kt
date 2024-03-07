@@ -17,6 +17,7 @@ import com.takisoft.preferencex.PreferenceFragmentCompat
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+//常规设置
 class GeneralSettingsFragment : PreferenceFragmentCompat() {
     private val viewModel: GeneralSettingsViewModel by viewModel()
     private val dataStore: GeneralSettingsDataStore by inject()

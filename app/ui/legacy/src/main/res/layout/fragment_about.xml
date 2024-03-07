@@ -23,8 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="16dp"
-            android:paddingEnd="0dp"
             android:paddingTop="16dp"
+            android:paddingEnd="0dp"
             android:paddingBottom="16dp"
             android:text="@string/about_title"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -195,12 +195,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="16dp"
-            android:paddingEnd="0dp"
             android:paddingTop="32dp"
+            android:paddingEnd="0dp"
             android:paddingBottom="16dp"
             android:text="@string/about_project_title"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="?android:attr/textColorPrimary" />
+            android:textColor="?android:attr/textColorPrimary"
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/websiteLayout"
@@ -213,7 +214,8 @@
             android:paddingLeft="16dp"
             android:paddingTop="8dp"
             android:paddingRight="16dp"
-            android:paddingBottom="8dp">
+            android:paddingBottom="8dp"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="24dp"
@@ -253,7 +255,8 @@
             android:paddingLeft="16dp"
             android:paddingTop="8dp"
             android:paddingRight="16dp"
-            android:paddingBottom="8dp">
+            android:paddingBottom="8dp"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="24dp"
@@ -293,7 +296,8 @@
             android:paddingLeft="16dp"
             android:paddingTop="8dp"
             android:paddingRight="16dp"
-            android:paddingBottom="8dp">
+            android:paddingBottom="8dp"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="24dp"
@@ -333,7 +337,8 @@
             android:paddingLeft="16dp"
             android:paddingTop="8dp"
             android:paddingRight="16dp"
-            android:paddingBottom="8dp">
+            android:paddingBottom="8dp"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="24dp"
@@ -367,8 +372,8 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:paddingStart="16dp"
-            android:paddingEnd="0dp"
             android:paddingTop="32dp"
+            android:paddingEnd="0dp"
             android:paddingBottom="16dp"
             android:text="@string/about_libraries"
             android:textAppearance="?android:attr/textAppearanceLarge"

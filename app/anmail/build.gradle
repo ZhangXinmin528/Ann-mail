@@ -13,8 +13,8 @@ android {
         applicationId "com.mail.ann"
         testApplicationId "com.mail.ann.tests"
 
-        versionCode 100
-        versionName '1.100'
+        versionCode 101
+        versionName '1.101'
 
         // Keep in sync with the resource string array 'supported_languages'
         resConfigs "en", "zh_CN", "zh_TW"/*,"in", "br", "ca", "cs", "cy", "da", "de", "et",  "en_GB", "es", "eo", "eu", "fr", "gd", "gl",
